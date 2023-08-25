@@ -3,20 +3,23 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   Location: [
     {
-      Location: {
-        "# Operation *": "",
-        "Object *": "",
-        "dcTrack Location Code*": "",
-        "dcTrack Location Name*": "",
-        "dcTrack Location Hierarchy*": "",
-        "dcTrack Location Parent*": "",
-        "Can Contain Assets": "",
-        "Data Center Area*": "",
-        "Country*": "",
-        "Enable AC Virtual Power Chain": "",
-        "Is Default Location": "",
-        "Capacity(kW)": "",
-      },
+      Location: [
+        {
+          "ID": "",
+          "# Operation *": "",
+          "Object *": "",
+          "dcTrack Location Code*": "",
+          "dcTrack Location Name*": "",
+          "dcTrack Location Hierarchy*": "",
+          "dcTrack Location Parent*": "",
+          "Can Contain Assets": "",
+          "Data Center Area*": "",
+          "Country*": "",
+          "Enable AC Virtual Power Chain": "",
+          "Is Default Location": "",
+          "Capacity(kW)": "",
+        },
+      ],
       RoomDataArray: [
         {
           "ID": "",
@@ -71,6 +74,22 @@ const initialState = {
   },
 };
 
+let LocationTemplate = {
+  "ID": "",
+  "# Operation *": "",
+  "Object *": "",
+  "dcTrack Location Code*": "",
+  "dcTrack Location Name*": "",
+  "dcTrack Location Hierarchy*": "",
+  "dcTrack Location Parent*": "",
+  "Can Contain Assets": "",
+  "Data Center Area*": "",
+  "Country*": "",
+  "Enable AC Virtual Power Chain": "",
+  "Is Default Location": "",
+  "Capacity(kW)": "",
+};
+
 let AssetsTemplate = {
   "ID": "",
   "Asset ID*": "",
@@ -119,9 +138,17 @@ const locationSlice = createSlice({
   initialState,
   reducers: {
     //LOCATION
+
     updateKeyValueInLocation: (state, action) => {
-      state.Location[action.payload.index].Location[action.payload.key] = action.payload.value;
+      state.Location[action.payload.index].Location[action.payload.arrayIndex][action.payload.key] = action.payload.value;
+      if (action.payload.key === "dcTrack Location Code*") {
+        state.Location[action.payload.index].Location[action.payload.arrayIndex]["ID"] = action.payload.value;
+      }
     },
+    addToLocation: (state, action) => {
+      state.Location[action.payload.index].Location = [...state.Location[action.payload.index].Location, LocationTemplate];
+    },
+
     //ROOM DATA
     updateKeyValueInRoomData: (state, action) => {
       state.Location[action.payload.index].RoomDataArray[action.payload.arrayIndex][action.payload.key] = action.payload.value;
@@ -168,6 +195,6 @@ const locationSlice = createSlice({
 /* The line `export const { updateLocationName, updateLocationCode, addToArray, removeFromArray,
 updateArrayValue } = locationSlice.actions;` is exporting specific action creators from the
 `locationSlice` slice. */
-export const { addToAssets, removeFromArray, updateArrayValue, updateKeyValueInLocation, updateKeyValueInRoomData, updateKeyValueInAssets, updateKeyValueInRack, addToRack, addToRoom, updateCurrent } = locationSlice.actions;
+export const { addToAssets, removeFromArray, updateArrayValue, updateKeyValueInLocation, addToLocation, updateKeyValueInRoomData, updateKeyValueInAssets, updateKeyValueInRack, addToRack, addToRoom, updateCurrent } = locationSlice.actions;
 // export {locationSlice.reducers} = locationSlice.actions
 export default locationSlice.reducer;
