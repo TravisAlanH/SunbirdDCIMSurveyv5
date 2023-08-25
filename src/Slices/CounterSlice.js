@@ -17,19 +17,23 @@ const initialState = {
         "Is Default Location": "",
         "Capacity(kW)": "",
       },
-      RoomData: {
-        "Room Number": "",
-        "GPS Location": "",
-        "Floor Type": "",
-        "Floor Condition": "",
-        "Ceiling Type": "",
-        "Ceiling Condition": "",
-        "Water Damage": "",
-        "Water Damage Note": "",
-      },
+      RoomDataArray: [
+        {
+          "ID": "",
+          "Room Number*": "",
+          "GPS Location": "",
+          "Floor Type": "",
+          "Floor Condition": "",
+          "Ceiling Type": "",
+          "Ceiling Condition": "",
+          "Water Damage": "",
+          "Water Damage Note": "",
+        },
+      ],
       AssetsArray: [
         {
-          "Asset ID": "",
+          "ID": "",
+          "Asset ID*": "",
           "Serial Number": "",
           "Device Name": "",
           "Make": "",
@@ -45,7 +49,8 @@ const initialState = {
       ],
       RacksArray: [
         {
-          "Serial Number": "",
+          "ID": "",
+          "Serial Number*": "",
           "Make": "",
           "Model": "",
           "Type": "",
@@ -60,10 +65,15 @@ const initialState = {
       ],
     },
   ],
+  Current: {
+    "dcTrack Location Name*": "",
+    "Room Number": "",
+  },
 };
 
 let AssetsTemplate = {
-  "Asset ID": "",
+  "ID": "",
+  "Asset ID*": "",
   "Serial Number": "",
   "Device Name": "",
   "Make": "",
@@ -78,7 +88,8 @@ let AssetsTemplate = {
 };
 
 let RacksTemplate = {
-  "Serial Number": "",
+  "ID": "",
+  "Serial Number*": "",
   "Make": "",
   "Model": "",
   "Type": "",
@@ -91,27 +102,59 @@ let RacksTemplate = {
   "Grounded": "",
 };
 
+let RoomDataTemplate = {
+  "ID": "",
+  "Room Number*": "",
+  "GPS Location": "",
+  "Floor Type": "",
+  "Floor Condition": "",
+  "Ceiling Type": "",
+  "Ceiling Condition": "",
+  "Water Damage": "",
+  "Water Damage Note": "",
+};
+
 const locationSlice = createSlice({
   name: "location", // Use lowercase name for consistency
   initialState,
   reducers: {
+    //LOCATION
     updateKeyValueInLocation: (state, action) => {
       state.Location[action.payload.index].Location[action.payload.key] = action.payload.value;
     },
+    //ROOM DATA
     updateKeyValueInRoomData: (state, action) => {
-      state.Location[action.payload.index].RoomData[action.payload.key] = action.payload.value;
+      state.Location[action.payload.index].RoomDataArray[action.payload.arrayIndex][action.payload.key] = action.payload.value;
+      if (action.payload.key === "Room Number*") {
+        state.Location[action.payload.index].RoomDataArray[action.payload.arrayIndex]["ID"] = action.payload.value;
+      }
     },
+    addToRoom: (state, action) => {
+      state.Location[action.payload.index].RoomDataArray = [...state.Location[action.payload.index].RoomDataArray, RoomDataTemplate];
+    },
+    //ASSETS
     updateKeyValueInAssets: (state, action) => {
       state.Location[action.payload.index].AssetsArray[action.payload.arrayIndex][action.payload.key] = action.payload.value;
+      if (action.payload.key === "Asset ID*") {
+        state.Location[action.payload.index].AssetsArray[action.payload.arrayIndex]["ID"] = action.payload.value;
+      }
     },
     addToAssets: (state, action) => {
       state.Location[action.payload.index].AssetsArray = [...state.Location[action.payload.index].AssetsArray, AssetsTemplate];
     },
+    //RACKS
     updateKeyValueInRack: (state, action) => {
       state.Location[action.payload.index].RacksArray[action.payload.arrayIndex][action.payload.key] = action.payload.value;
+      if (action.payload.key === "Serial Number*") {
+        state.Location[action.payload.index].RacksArray[action.payload.arrayIndex]["ID"] = action.payload.value;
+      }
     },
     addToRack: (state, action) => {
       state.Location[action.payload.index].RacksArray = [...state.Location[action.payload.index].RacksArray, RacksTemplate];
+    },
+    //CURRENT
+    updateCurrent: (state, action) => {
+      state.Current[action.payload.key] = action.payload.value;
     },
     removeFromArray: (state, action) => {
       state["Array"] = state["Array"].filter((item, index) => index !== action.payload);
@@ -125,6 +168,6 @@ const locationSlice = createSlice({
 /* The line `export const { updateLocationName, updateLocationCode, addToArray, removeFromArray,
 updateArrayValue } = locationSlice.actions;` is exporting specific action creators from the
 `locationSlice` slice. */
-export const { addToAssets, removeFromArray, updateArrayValue, updateKeyValueInLocation, updateKeyValueInRoomData, updateKeyValueInAssets, updateKeyValueInRack, addToRack } = locationSlice.actions;
+export const { addToAssets, removeFromArray, updateArrayValue, updateKeyValueInLocation, updateKeyValueInRoomData, updateKeyValueInAssets, updateKeyValueInRack, addToRack, addToRoom, updateCurrent } = locationSlice.actions;
 // export {locationSlice.reducers} = locationSlice.actions
 export default locationSlice.reducer;
