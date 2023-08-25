@@ -6,7 +6,6 @@ import * as actions from "../../Slices/CounterSlice";
 
 export default function Modal() {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
-  // const [currentShowIndex, setCurrentShowIndex] = React.useState(0);
   const [currentLocationIndex, setCurrentLocationIndex] = React.useState(0);
   const [currentRoomIndex, setCurrentRoomIndex] = React.useState(0);
   const [currentAssetsIndex, setCurrentAssetsIndex] = React.useState(0);
@@ -20,6 +19,7 @@ export default function Modal() {
     key: "",
     value: "",
     arrayIndex: 0,
+    modalType: "",
   };
 
   function setNewCurrentShowLength(boolValue, arrayLength, index) {
@@ -79,22 +79,8 @@ export default function Modal() {
                     className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
                     onClick={(e) => {
                       e.stopPropagation();
-                      switch (modalBlock) {
-                        case "Location":
-                          dispatch(actions.addToLocation(payload));
-                          break;
-                        case "AssetsArray":
-                          dispatch(actions.addToAssets(payload));
-                          break;
-                        case "RacksArray":
-                          dispatch(actions.addToRack(payload));
-                          break;
-                        case "RoomDataArray":
-                          dispatch(actions.addToRoom(payload));
-                          break;
-                        default:
-                          break;
-                      }
+                      payload.modalType = modalBlock;
+                      dispatch(actions.addToArray(payload));
                     }}
                   >
                     +
@@ -158,23 +144,9 @@ export default function Modal() {
                                       payload.index = index;
                                       payload.key = item2;
                                       payload.value = e.target.value;
+                                      payload.modalType = modalBlock;
                                       payload.arrayIndex = useIndex[modalIndex];
-                                      switch (modalBlock) {
-                                        case "Location":
-                                          dispatch(actions.updateKeyValueInLocation(payload));
-                                          break;
-                                        case "AssetsArray":
-                                          dispatch(actions.updateKeyValueInAssets(payload));
-                                          break;
-                                        case "RacksArray":
-                                          dispatch(actions.updateKeyValueInRack(payload));
-                                          break;
-                                        case "RoomDataArray":
-                                          dispatch(actions.updateKeyValueInRoomData(payload));
-                                          break;
-                                        default:
-                                          break;
-                                      }
+                                      dispatch(actions.updateKeyValueIn(payload));
                                     }}
                                   />
                                 </div>
@@ -194,22 +166,8 @@ export default function Modal() {
                   </div>
                   <button
                     onClick={() => {
-                      switch (modalBlock) {
-                        case "Location":
-                          dispatch(actions.addToLocation(payload));
-                          break;
-                        case "AssetsArray":
-                          dispatch(actions.addToAssets(payload));
-                          break;
-                        case "RacksArray":
-                          dispatch(actions.addToRack(payload));
-                          break;
-                        case "RoomDataArray":
-                          dispatch(actions.addToRoom(payload));
-                          break;
-                        default:
-                          break;
-                      }
+                      payload.modalType = modalBlock;
+                      dispatch(actions.addToArray(payload));
                     }}
                   >
                     Add
