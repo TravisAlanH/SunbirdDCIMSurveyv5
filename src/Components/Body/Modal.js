@@ -35,7 +35,7 @@ export default function Modal() {
         {Object.keys(BASE_DATA).map((modalBlock, modalIndex) => (
           <div
             key={modalIndex}
-            className="w-[20rem] h-[7rem] rounded-md bg-slate-300"
+            className="w-[20rem] h-[7rem] rounded-lg py-2 px-4 bg-slate-500"
             id="myBtn"
             onClick={() => {
               let modal = document.getElementById("modal" + modalIndex);
@@ -54,8 +54,54 @@ export default function Modal() {
             }}
           >
             {/* DATA IN BLOCK */}
-            {modalBlock}
             <div>
+              {/* HEAD OF MODAL */}
+              <div className="flex flex-row justify-between items-center">
+                <h2 className="font-bold">{modalBlock.split(/(?=[A-Z])/)[0]}</h2>
+                <div className="flex flex-row items-center">
+                  <div>
+                    <select
+                      className="max-w-[10rem] min-w-[10rem] min-h-8 border-2 border-gray-300 rounded-md"
+                      onClick={(e) => e.stopPropagation()}
+                      onChange={(e) => {
+                        let set = setIndex[modalIndex];
+                        set(e.target.options.selectedIndex);
+                      }}
+                    >
+                      {BASE_DATA[modalBlock].map((item, index) => (
+                        <option key={index} value={index}>
+                          {BASE_DATA[modalBlock][index]["ID"] !== "" ? BASE_DATA[modalBlock][index]["ID"] : `New ${index + 1}`}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      switch (modalBlock) {
+                        case "Location":
+                          dispatch(actions.addToLocation(payload));
+                          break;
+                        case "AssetsArray":
+                          dispatch(actions.addToAssets(payload));
+                          break;
+                        case "RacksArray":
+                          dispatch(actions.addToRack(payload));
+                          break;
+                        case "RoomDataArray":
+                          dispatch(actions.addToRoom(payload));
+                          break;
+                        default:
+                          break;
+                      }
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              {/* MISSING DATA IN MODAL */}
               {BASE_DATA[modalBlock]
                 .filter((_, index) => index === useIndex[modalIndex])
                 .map((item, index) => (
@@ -72,22 +118,8 @@ export default function Modal() {
                       ))}
                   </div>
                 ))}
-              <div>
-                <select
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    let set = setIndex[modalIndex];
-                    set(e.target.options.selectedIndex);
-                  }}
-                >
-                  {BASE_DATA[modalBlock].map((item, index) => (
-                    <option key={index} value={index}>
-                      {BASE_DATA[modalBlock][index]["ID"] !== "" ? BASE_DATA[modalBlock][index]["ID"] : `New ${index + 1}`}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </div>
+            {/* MODAL CONTENT */}
             <div className="modal" id={"modal" + modalIndex}>
               <div className="modal-content max-w-[25rem]">
                 <div className="flex flex-row justify-between items-center">
