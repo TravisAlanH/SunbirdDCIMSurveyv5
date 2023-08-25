@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export default function Current() {
   const CURRENT_DATA = useSelector((state) => state.location.Current);
-  const ROOMS = useSelector((state) => state.location.Location[0]["RoomDataArray"]);
+  // const ROOMS = useSelector((state) => state.location.Location[0]["RoomDataArray"]);
 
   return (
     <div className="grid grid-cols-2 lg:flex lg:flex-row md:flex md:flex-row justify-center items-center gap-4 p-4">
