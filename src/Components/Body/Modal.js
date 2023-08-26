@@ -30,9 +30,9 @@ export default function Modal() {
 
   return (
     <div className="flex flex-col justify-center items-center pt-8">
-      {/* <Current /> */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         {Object.keys(BASE_DATA).map((modalBlock, modalIndex) => (
+          //! Block sets up MODAL Clicks
           <div
             key={modalIndex}
             className="w-[20rem] h-[7rem] rounded-lg py-2 px-4 bg-slate-500"
@@ -87,6 +87,8 @@ export default function Modal() {
                   </button>
                 </div>
               </div>
+              {/* END HEAD OF MODAL */}
+
               {/* MISSING DATA IN MODAL */}
               {BASE_DATA[modalBlock]
                 .filter((_, index) => index === useIndex[modalIndex])
@@ -105,6 +107,8 @@ export default function Modal() {
                   </div>
                 ))}
             </div>
+            {/* END MISSING DATA IN MODAL */}
+
             {/* MODAL CONTENT */}
             <div className="modal" id={"modal" + modalIndex}>
               <div className="modal-content max-w-[25rem]">
