@@ -127,5 +127,5 @@ const State2 = {
   },
 };
 
-export { State };
+export { State, State2 };
 export default Templates;
