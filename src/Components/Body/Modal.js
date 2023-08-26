@@ -15,6 +15,14 @@ export default function Modal() {
 
   const [indexArray, setIndexArray] = React.useState([0, 0, 0, 0]);
 
+  function textCleanUp(text) {
+    return text
+      .replace("dcTrack", "dcT")
+      .replace("Data Center", "DC")
+      .replace(/[^a-zA-Z0-9 ]/g, "")
+      .slice(0, 12);
+  }
+
   // let setIndex = [setCurrentLocationIndex, setCurrentRoomIndex, setCurrentAssetsIndex, setCurrentRacksIndex];
   // let useIndex = [currentLocationIndex, currentRoomIndex, currentAssetsIndex, currentRacksIndex];
   const dispatch = useDispatch();
@@ -110,25 +118,45 @@ export default function Modal() {
               </div>
 
               {/* MISSING DATA IN MODAL */}
+              <div className="flex flex-row justify-start border-b-2">
+                {BASE_DATA[modalBlock].length > 0 ? (
+                  <div>
+                    <h2 className="text-sm">Required Actions</h2>
+                  </div>
+                ) : (
+                  <div>
+                    <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>
+                  </div>
+                )}
+              </div>
               {BASE_DATA[modalBlock]
                 // .filter((_, index) => index === indexArray[modalIndex])
                 .filter((_, index) => index === CURRENT[modalBlock + "Index"])
-
                 .map((item, index) => (
-                  <div key={index}>
+                  <div key={index} className="flex flex-row gap-2">
                     {Object.keys(BASE_DATA[modalBlock][index])
                       .filter((item) => item.includes("*"))
-                      // .filter((item) => BASE_DATA[modalBlock][indexArray[modalIndex]][item] === "")
                       .filter((item) => BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item] === "")
-
-                      .map((item, index2) => (
-                        <div key={index2}>
-                          <div className="flex flex-row justify-start">
-                            <label>{item}</label>
-                            <label>{BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]]["Name*"]}</label>
-                          </div>
-                        </div>
-                      ))}
+                      .slice(0, 4)
+                      .map((item, index2, array) => {
+                        if (index2 < 3) {
+                          return (
+                            <div key={index2}>
+                              <div className="flex flex-row justify-start">
+                                <label>{textCleanUp(item) + ","}</label>
+                              </div>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div key={index2}>
+                              <div className="flex flex-row justify-start">
+                                <label>{"..."}</label>
+                              </div>
+                            </div>
+                          );
+                        }
+                      })}
                   </div>
                 ))}
             </div>
