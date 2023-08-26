@@ -82,6 +82,7 @@ export default function Modal() {
                         // setIndexArray(updateIndexArray);
                       }}
                     >
+                      <option value={0}>Select</option>
                       {BASE_DATA[modalBlock].map((item, index) => (
                         <option key={index} value={index}>
                           {BASE_DATA[modalBlock][index]["ID"] !== "" ? BASE_DATA[modalBlock][index]["ID"] : `New ${index + 1}`}
@@ -98,8 +99,9 @@ export default function Modal() {
                       payload.key = modalBlock + "Index";
                       payload.value = BASE_DATA[modalBlock].length;
                       dispatch(actions.updateCurrent(payload));
-                      console.log(CURRENT[modalBlock + "Index"]);
-                      document.getElementById("ModalHeader" + modalIndex).selectedIndex = BASE_DATA[modalBlock].length - 1;
+                      setTimeout(() => {
+                        document.getElementById("ModalHeader" + modalIndex).lastElementChild.selected = true;
+                      }, 200);
                     }}
                   >
                     +
