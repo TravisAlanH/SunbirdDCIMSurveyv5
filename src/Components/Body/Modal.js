@@ -81,13 +81,67 @@ export default function Modal() {
                       e.stopPropagation();
                       payload.modalType = modalBlock;
                       dispatch(actions.addToArray(payload));
+                      // OPEN NEW NAME MODAL
+                      let modal = document.getElementById("modal" + modalIndex + "Name");
+                      modal.style.display = "block";
+                      let close = document.getElementById("close" + modalIndex + "Name");
+                      close.onclick = function () {
+                        modal.style.display = "none";
+                      };
+                      window.onclick = function (event) {
+                        if (event.target === modal) {
+                          modal.style.display = "none";
+                        } else if (event.target === close) {
+                          modal.style.display = "none";
+                        }
+                      };
+                      // OPEN NEW NAME MODAL
                     }}
                   >
                     +
                   </button>
+                  {/* END HEAD OF MODAL */}
+
+                  {/* MODAL NEW NAME */}
+                  <div className="modal" id={"modal" + modalIndex + "Name"} onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-content max-w-[25rem]">
+                      <div className="flex flex-row justify-between items-center">
+                        <h2 className="font-black">{modalBlock.split(/(?=[A-Z])/)[0]}</h2>
+                        <span className="close" id={"close" + modalIndex + "Name"}>
+                          {/* &times; */}
+                        </span>
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <label>Name</label>
+                        <form
+                          className="w-full flex flex-col items-end"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            let modal = document.getElementById("modal" + modalIndex + "Name");
+                            modal.style.display = "none";
+                          }}
+                        >
+                          <input
+                            required={true}
+                            type="text"
+                            className="w-full border-2 border-gray-300 rounded-md"
+                            onChange={(e) => {
+                              payload.index = 0;
+                              payload.key = "Name*";
+                              payload.value = e.target.value;
+                              payload.modalType = modalBlock;
+                              payload.arrayIndex = useIndex[modalIndex];
+                              dispatch(actions.updateKeyValueIn(payload));
+                            }}
+                          />
+                          <input type="submit" value="Submit" className="" />
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              {/* END HEAD OF MODAL */}
+              {/* END MODAL NEW NAME */}
 
               {/* MISSING DATA IN MODAL */}
               {BASE_DATA[modalBlock]
