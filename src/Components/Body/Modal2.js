@@ -1,22 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
-// import { current } from "@reduxjs/toolkit";
 
 // CHECKS : "Type", "Condition", "Damage", "Note", "GPS"
 
 export default function Modal() {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
-  const CURRENT = useSelector((state) => state.location.Current);
-  // const [currentLocationIndex, setCurrentLocationIndex] = React.useState(0);
-  // const [currentRoomIndex, setCurrentRoomIndex] = React.useState(0);
-  // const [currentAssetsIndex, setCurrentAssetsIndex] = React.useState(0);
-  // const [currentRacksIndex, setCurrentRacksIndex] = React.useState(0);
+  const [currentLocationIndex, setCurrentLocationIndex] = React.useState(0);
+  const [currentRoomIndex, setCurrentRoomIndex] = React.useState(0);
+  const [currentAssetsIndex, setCurrentAssetsIndex] = React.useState(0);
+  const [currentRacksIndex, setCurrentRacksIndex] = React.useState(0);
 
-  const [indexArray, setIndexArray] = React.useState([0, 0, 0, 0]);
-
-  // let setIndex = [setCurrentLocationIndex, setCurrentRoomIndex, setCurrentAssetsIndex, setCurrentRacksIndex];
-  // let useIndex = [currentLocationIndex, currentRoomIndex, currentAssetsIndex, currentRacksIndex];
+  let setIndex = [setCurrentLocationIndex, setCurrentRoomIndex, setCurrentAssetsIndex, setCurrentRacksIndex];
+  let useIndex = [currentLocationIndex, currentRoomIndex, currentAssetsIndex, currentRacksIndex];
   const dispatch = useDispatch();
   let payload = {
     index: 0,
@@ -65,21 +61,11 @@ export default function Modal() {
                 <div className="flex flex-row items-center">
                   <div>
                     <select
-                      id={"ModalHeader" + modalIndex}
                       className="max-w-[10rem] min-w-[10rem] min-h-8 border-2 border-gray-300 rounded-md"
                       onClick={(e) => e.stopPropagation()}
                       onChange={(e) => {
-                        // let set = setIndex[modalIndex];
-                        // set(e.target.options.selectedIndex);
-
-                        // Testing Store index
-                        payload.key = modalBlock + "Index";
-                        payload.value = e.target.options.selectedIndex;
-                        dispatch(actions.updateCurrent(payload));
-
-                        // let updateIndexArray = indexArray;
-                        // updateIndexArray[modalIndex] = e.target.options.selectedIndex;
-                        // setIndexArray(updateIndexArray);
+                        let set = setIndex[modalIndex];
+                        set(e.target.options.selectedIndex);
                       }}
                     >
                       {BASE_DATA[modalBlock].map((item, index) => (
@@ -95,11 +81,6 @@ export default function Modal() {
                       e.stopPropagation();
                       payload.modalType = modalBlock;
                       dispatch(actions.addToArray(payload));
-                      payload.key = modalBlock + "Index";
-                      payload.value = BASE_DATA[modalBlock].length;
-                      dispatch(actions.updateCurrent(payload));
-                      console.log(CURRENT[modalBlock + "Index"]);
-                      document.getElementById("ModalHeader" + modalIndex).selectedIndex = BASE_DATA[modalBlock].length - 1;
                     }}
                   >
                     +
@@ -109,21 +90,17 @@ export default function Modal() {
 
               {/* MISSING DATA IN MODAL */}
               {BASE_DATA[modalBlock]
-                // .filter((_, index) => index === indexArray[modalIndex])
-                .filter((_, index) => index === CURRENT[modalBlock + "Index"])
-
+                .filter((_, index) => index === useIndex[modalIndex])
                 .map((item, index) => (
                   <div key={index}>
                     {Object.keys(BASE_DATA[modalBlock][index])
                       .filter((item) => item.includes("*"))
-                      // .filter((item) => BASE_DATA[modalBlock][indexArray[modalIndex]][item] === "")
-                      .filter((item) => BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item] === "")
-
+                      .filter((item) => BASE_DATA[modalBlock][useIndex[modalIndex]][item] === "")
                       .map((item, index2) => (
                         <div key={index2}>
                           <div className="flex flex-row justify-start">
                             <label>{item}</label>
-                            <label>{BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]]["Name*"]}</label>
+                            <label>{BASE_DATA[modalBlock][index]["Name*"]}</label>
                           </div>
                         </div>
                       ))}
@@ -144,29 +121,15 @@ export default function Modal() {
                   <div className="flex flex-row justify-between items-center w-full">
                     <button
                       onClick={() => {
-                        // testing index in store
-                        payload.key = modalBlock + "Index";
-                        payload.value = setNewCurrentShowLength(false, BASE_DATA[modalBlock].length, CURRENT[modalBlock + "Index"]);
-                        dispatch(actions.updateCurrent(payload));
-                        console.log(CURRENT[modalBlock + "Index"]);
-
-                        //Tested good, updates array
-                        // let updateIndexArray = indexArray;
-                        // updateIndexArray[modalIndex] = setNewCurrentShowLength(false, BASE_DATA[modalBlock].length, indexArray[modalIndex]);
-                        // setIndexArray(updateIndexArray);
-
-                        //
-                        // let set = setIndex[modalIndex];
-                        // set(setNewCurrentShowLength(false, BASE_DATA[modalBlock].length, useIndex[modalIndex]));
+                        let set = setIndex[modalIndex];
+                        set(setNewCurrentShowLength(false, BASE_DATA[modalBlock].length, useIndex[modalIndex]));
                       }}
                     >
                       {"<"}
                     </button>
                     <div>
                       {BASE_DATA[modalBlock]
-                        //  .filter((_, index) => index === indexArray[modalIndex])
-                        .filter((_, index) => index === CURRENT[modalBlock + "Index"])
-
+                        .filter((_, index) => index === useIndex[modalIndex])
                         .map((item, index) => (
                           <div key={index}>
                             {Object.keys(BASE_DATA[modalBlock][index]).map((item2, index2) => (
@@ -178,13 +141,13 @@ export default function Modal() {
                                   <input
                                     className="w-full border-2 border-gray-300 rounded-md"
                                     type="text"
-                                    value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
+                                    value={BASE_DATA[modalBlock][useIndex[modalIndex]][item2]}
                                     onChange={(e) => {
                                       payload.index = index;
                                       payload.key = item2;
                                       payload.value = e.target.value;
                                       payload.modalType = modalBlock;
-                                      payload.arrayIndex = CURRENT[modalBlock + "Index"];
+                                      payload.arrayIndex = useIndex[modalIndex];
                                       dispatch(actions.updateKeyValueIn(payload));
                                     }}
                                   />
@@ -196,21 +159,8 @@ export default function Modal() {
                     </div>
                     <button
                       onClick={() => {
-                        // testing index in store
-
-                        payload.key = modalBlock + "Index";
-                        payload.value = setNewCurrentShowLength(true, BASE_DATA[modalBlock].length, CURRENT[modalBlock + "Index"]);
-                        dispatch(actions.updateCurrent(payload));
-                        console.log(CURRENT[modalBlock + "Index"]);
-                        //
-
-                        //Tested good, updates array
-                        let updateIndexArray = indexArray;
-                        updateIndexArray[modalIndex] = setNewCurrentShowLength(true, BASE_DATA[modalBlock].length, indexArray[modalIndex]);
-                        setIndexArray(updateIndexArray);
-
-                        // let set = indexArray[modalIndex];
-                        // set(setNewCurrentShowLength(true, BASE_DATA[modalBlock].length, indexArray[modalIndex]));
+                        let set = setIndex[modalIndex];
+                        set(setNewCurrentShowLength(true, BASE_DATA[modalBlock].length, useIndex[modalIndex]));
                       }}
                     >
                       {">"}

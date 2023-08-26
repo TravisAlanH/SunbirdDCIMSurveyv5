@@ -18,7 +18,6 @@ const Templates = {
   AssetsArray: {
     "ID": "",
     "Name*": "",
-
     "Asset ID*": "",
     "Serial Number": "",
     "Device Name": "",
@@ -35,7 +34,6 @@ const Templates = {
   RacksArray: {
     "ID": "",
     "Name*": "",
-
     "Serial Number*": "",
     "Make": "",
     "Model": "",
@@ -74,6 +72,10 @@ const State = {
   Current: {
     "dcTrack Location Name*": "",
     "Room Number": "",
+    "LocationIndex": 0,
+    "RoomArrayIndex": 0,
+    "AssetsArrayIndex": 0,
+    "RacksArrayIndex": 0,
   },
 };
 
