@@ -2,25 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import Templates, { State } from "./Templates";
 
 const initialState = State;
-// {
-//   Location: [
-//     {
-//       Location: [],
-//       RoomDataArray: [],
-//       AssetsArray: [],
-//       RacksArray: [],
-//     },
-//   ],
-//   Current: {
-//     "dcTrack Location Name*": "",
-//     "Room Number": "",
-//   },
-// };
 
 const locationSlice = createSlice({
-  name: "location", // Use lowercase name for consistency
+  name: "location",
   initialState,
   reducers: {
+    // Update and Add to Modals
     updateKeyValueIn: (state, action) => {
       state.Location[action.payload.index][action.payload.modalType][action.payload.arrayIndex][action.payload.key] = action.payload.value;
       if (action.payload.key === "Name*") {

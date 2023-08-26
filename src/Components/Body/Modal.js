@@ -19,6 +19,7 @@ export default function Modal() {
     return text
       .replace("dcTrack", "dcT")
       .replace("Data Center", "DC")
+      .replace("Number", "Num")
       .replace(/[^a-zA-Z0-9 ]/g, "")
       .slice(0, 12);
   }

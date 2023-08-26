@@ -4,7 +4,7 @@ import Layout from "./Components/Layout";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex flex-col items-center">
       {/* <Counter /> */}
       <Layout />
     </div>
