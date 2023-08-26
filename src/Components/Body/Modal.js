@@ -126,7 +126,7 @@ export default function Modal() {
                             type="text"
                             className="w-full border-2 border-gray-300 rounded-md"
                             onChange={(e) => {
-                              payload.index = 0;
+                              payload.index = BASE_DATA[modalBlock].length - 1;
                               payload.key = "Name*";
                               payload.value = e.target.value;
                               payload.modalType = modalBlock;
