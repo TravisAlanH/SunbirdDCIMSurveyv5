@@ -58,9 +58,17 @@ const Templates = {
     "Water Damage": "",
     "Water Damage Note": "",
   },
+  FireProtectionArray: {
+    "ID": "",
+    "Name*": "",
+    "Type": "",
+    "Detection": "",
+    "Protection": "",
+    "Rated": "",
+  },
 };
 
-const State = {
+const State2 = {
   Location: [
     {
       Location: [],
@@ -83,36 +91,54 @@ const State = {
 
 // turn Modal.js into component, passing in State2.Location[//Section from something//].Sections Below (Not the LocationData)
 
-const State2 = {
+const State = {
   Location: [
     {
-      LocationData: {
-        // will be larger Modal
-        //hold standard Data
+      // LocationData: {
+      //   // will be larger Modal
+      //   //hold standard Data
+      // },
+      RoomData: {
+        "@COLOR": "red",
+        RoomDataArray: [],
+      }, // change these to objects not arrays, that hold Array Data
+      Assets: {
+        AssetsArray: [],
+        "@COLOR": "orange",
       },
-      RoomDataArray: [], // change these to objects not arrays, that hold Array Data
-      AssetsArray: [],
-      RacksArray: [],
+      Racks: {
+        RacksArray: [],
+        "@COLOR": "yellow",
+      },
       Electrical: {
-        Panels: [],
-        Receptacles: [],
-        UPS: [],
-        RackATS: [],
-        RackPDU: [],
-        GroundBus: [],
-        Other: [],
+        "ID": [],
+        "Name*": [],
+        "@COLOR": "green",
+        "PanelsArray": [],
+        "ReceptaclesArray": [],
+        "UPSArray": [],
+        "RackATSArray": [],
+        "RackPDUArray": [],
+        "GroundBusArray": [],
+        "OtherArray": [],
       },
       Mechanical: {
-        "@COLOR": "", // Set color for each section
-        AirConditioning: [],
-        Humidifier: [],
+        "ID": [],
+        "Name*": [],
+        "@COLOR": "blue", // Set color for each section
+        AirConditioningArray: [],
+        HumidifierArray: [],
       },
       FireDetectionProtection: {
-        Detection: [],
-        Protection: [],
-        Rated: [],
+        "ID": [],
+        "Name*": [],
+        "@COLOR": "purple",
+        FireProtectionArray: [],
       },
       FiberTrunkCabling: {
+        "ID": [],
+        "Name*": [],
+        "@COLOR": "pink",
         LIU: [],
       },
     },

@@ -4,6 +4,7 @@ import * as actions from "../../Slices/CounterSlice";
 
 export default function Modal() {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
+  console.log(BASE_DATA);
   const CURRENT = useSelector((state) => state.location.Current);
   function textCleanUp(text) {
     return text

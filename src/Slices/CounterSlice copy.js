@@ -9,17 +9,15 @@ const locationSlice = createSlice({
   reducers: {
     // Update and Add to Modals
     updateKeyValueIn: (state, action) => {
-      state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex][action.payload.key] = action.payload.value;
+      state.Location[action.payload.index][action.payload.modalType][action.payload.modalType][action.payload.arrayIndex][action.payload.key] = action.payload.value;
       if (action.payload.key === "Name*") {
-        state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex]["ID"] = action.payload.value;
+        state.Location[action.payload.index][action.payload.modalType][action.payload.modalType][action.payload.arrayIndex]["ID"] = action.payload.value;
       }
     },
     addToArray: (state, action) => {
+      console.log(action.payload.state);
       // action.payload.state = [...action.payload.state, Templates[action.payload.modalType]];
-      // console.log([...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType]]);
-      // console.log(action.payload.modalType);
-      // console.log(action.payload.ObjKey);
-      state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType] = [...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType], Templates[action.payload.modalType]];
+      state.Location[action.payload.index][action.payload.modalType][action.payload.modalType] = [...state.Location[action.payload.index][action.payload.modalType][action.payload.modalType], Templates[action.payload.modalType]];
     },
     // addToArray: (state, action) => {
     //   state.Location[action.payload.index][action.payload.modalType] = [...state.Location[action.payload.index][action.payload.modalType], Templates[action.payload.modalType]];
