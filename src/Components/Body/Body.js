@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
 import { useSelector } from "react-redux";
+import AssetView from "./AssetView";
 
 export default function Body() {
   const State = useSelector((state) => state.location.Location[0]);
@@ -13,6 +14,7 @@ export default function Body() {
         <p className="text-xs">input type needed</p>
         <p className="text-xs">input validation needed</p>
       </div>
+      <AssetView />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {Object.keys(State).map((DataItem, DataIndex) => (
           <Modal data={State[DataItem]} ObjKey={DataItem} key={DataIndex} />

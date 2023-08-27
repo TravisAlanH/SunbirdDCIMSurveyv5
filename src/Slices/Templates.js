@@ -39,7 +39,7 @@ const Templates = {
     "Model": "",
     "Type": "",
     "Position On Floor": "",
-    "Height in UP": "",
+    "Height in UP": 5,
     "Width": "",
     "Depth": "",
     "RU Filled": "",
@@ -52,9 +52,9 @@ const Templates = {
     "Room Number*": "",
     "GPS Location": "",
     "Floor Type": "",
-    "Floor Condition": "",
+    "Floor Condition^": "",
     "Ceiling Type": "",
-    "Ceiling Condition": "",
+    "Ceiling Condition^": "",
     "Water Damage": "",
     "Water Damage Note": "",
   },
@@ -102,13 +102,13 @@ const State = {
         "@COLOR": "red",
         RoomDataArray: [],
       }, // change these to objects not arrays, that hold Array Data
-      Assets: {
-        AssetsArray: [],
-        "@COLOR": "orange",
-      },
       Racks: {
         RacksArray: [],
         "@COLOR": "yellow",
+      },
+      Assets: {
+        AssetsArray: [],
+        "@COLOR": "orange",
       },
       Electrical: {
         "ID": [],

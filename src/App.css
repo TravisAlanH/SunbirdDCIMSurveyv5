@@ -6,12 +6,17 @@
   height: 40vmin;
   pointer-events: none;
 }
+* {
+  border: 1px solid black;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+html, body { height: 100% }
 
 .App-header {
   background-color: #282c34;
@@ -77,3 +82,32 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+
+
+
+/** float container */
+.float-container {
+  border: solid 1px #ccc;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  padding: 0 8px;
+  position: relative;
+  width: 300px;
+} 
+.ModInput {  
+    border: none;
+    font-size: 16px;
+    outline: 0;
+    padding: 16px 0 10px;    
+    width: 100%;
+  }
+
+.ModLabel {
+    font-size: 12px;
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    background: white;
+  }
+  

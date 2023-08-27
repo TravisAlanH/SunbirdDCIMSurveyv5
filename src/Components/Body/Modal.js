@@ -6,6 +6,12 @@ export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const BASE_DATA = data;
 
+  let inputType = {
+    "*": "text",
+    "#": "numeric",
+    "^": "select",
+  };
+
   // console.log(ObjKey);
   const CURRENT = useSelector((state) => state.location.Current);
   function textCleanUp(text) {
@@ -71,94 +77,29 @@ export default function Modal({ data, ObjKey }) {
             {/* HEAD OF MODAL */}
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-bold text-lg">{formatString(modalBlock)}</h2>
-              {/* <div className="flex flex-row items-center pb-2">
-                  <select
-                    id={"ModalHeader" + modalIndex}
-                    className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
-                    onClick={(e) => e.stopPropagation()}
-                    onChange={(e) => {
-                      // let set = setIndex[modalIndex];
-                      // set(e.target.options.selectedIndex);
-
-                      // Testing Store index
-                      payload.key = modalBlock + "Index";
-                      payload.value = e.target.options.selectedIndex;
-                      dispatch(actions.updateCurrent(payload));
-
-                      // let updateIndexArray = indexArray;
-                      // updateIndexArray[modalIndex] = e.target.options.selectedIndex;
-                      // setIndexArray(updateIndexArray);
-                    }}
-                  >
-                    <option value={0}>Select</option>
-                    {BASE_DATA[modalBlock].map((item, index) => (
-                      <option key={index} value={index}>
-                        {BASE_DATA[modalBlock][index]["ID"] !== "" ? BASE_DATA[modalBlock][index]["ID"] : `New ${index + 1}`}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      payload.modalType = modalBlock;
-                      dispatch(actions.addToArray(payload));
-                      payload.key = modalBlock + "Index";
-                      payload.value = BASE_DATA[modalBlock].length;
-                      dispatch(actions.updateCurrent(payload));
-                      setTimeout(() => {
-                        document.getElementById("ModalHeader" + modalIndex).lastElementChild.selected = true;
-                      }, 200);
-                    }}
-                  >
-                    +
-                  </button>
-                </div> */}
             </div>
             {/* MISSING DATA IN MODAL */}
             <div>
-              <div className="flex flex-row justify-start border-b-2">
-                {BASE_DATA[modalBlock].length > 0 ? (
-                  <div>
-                    <h2 className="text-sm">Required Actions</h2>
-                  </div>
-                ) : (
-                  <div>
-                    <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>
-                  </div>
-                )}
-              </div>
-              {BASE_DATA[modalBlock]
-                // .filter((_, index) => index === indexArray[modalIndex])
-                .filter((_, index) => index === CURRENT[modalBlock + "Index"])
-                .map((item, index) => (
-                  <div key={index} className="flex flex-row gap-2">
-                    {Object.keys(BASE_DATA[modalBlock][index])
-                      .filter((item) => item.includes("*"))
-                      .filter((item) => BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item] === "")
-                      .slice(0, 4)
-                      .map((item, index2, array) => {
-                        if (index2 < 3) {
-                          return (
-                            <div key={index2}>
-                              <div className="flex flex-row justify-start">
-                                <label>{textCleanUp(item) + ","}</label>
-                              </div>
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div key={index2}>
-                              <div className="flex flex-row justify-start">
-                                <label>{"..."}</label>
-                              </div>
-                            </div>
-                          );
-                        }
-                      })}
-                  </div>
-                ))}
+              <div className="flex flex-row justify-start border-b-2">{BASE_DATA[modalBlock].length > 0 ? <h2 className="text-sm">Required Actions</h2> : <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>}</div>
             </div>
+            {BASE_DATA[modalBlock]
+              // .filter((_, index) => index === indexArray[modalIndex])
+              .filter((_, index) => index === CURRENT[modalBlock + "Index"])
+              .map((item, index) => (
+                <div key={index} className="flex flex-row gap-2 h-[2rem]">
+                  {Object.keys(BASE_DATA[modalBlock][index])
+                    .filter((item) => item.includes("*"))
+                    .filter((item) => BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item] === "")
+                    .slice(0, 4)
+                    .map((item, index2, array) => {
+                      if (index2 < 3) {
+                        return <p key={index2}>{textCleanUp(item) + ","}</p>;
+                      } else {
+                        return <p key={index2}>{"..."}</p>;
+                      }
+                    })}
+                </div>
+              ))}
           </div>
           {/* MODAL SELECT / ADD */}
           <div>
@@ -173,7 +114,6 @@ export default function Modal({ data, ObjKey }) {
                   dispatch(actions.updateCurrent(payload));
                 }}
               >
-                {/* <option value={0}>Select</option> */}
                 {BASE_DATA[modalBlock].map((item, index) => (
                   <option key={index} value={index}>
                     {BASE_DATA[modalBlock][index]["ID"] !== "" ? BASE_DATA[modalBlock][index]["ID"] : `New ${index + 1}`}
@@ -228,30 +168,41 @@ export default function Modal({ data, ObjKey }) {
                     .filter((_, index) => index === CURRENT[modalBlock + "Index"])
                     .map((item, index) => (
                       <div key={index}>
-                        {Object.keys(BASE_DATA[modalBlock][index]).map((item2, index2) => (
-                          <div key={index2}>
-                            <div className="flex flex-row justify-start">
-                              <label>{item2}</label>
-                            </div>
-                            <div className="flex flex-row justify-end">
-                              <input
-                                className="w-full border-2 border-gray-300 rounded-md"
-                                type="text"
-                                value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
-                                onChange={(e) => {
-                                  payload.index = index;
-                                  payload.key = item2;
-                                  payload.value = e.target.value;
-                                  payload.modalType = modalBlock;
-                                  payload.state = BASE_DATA[modalBlock];
-                                  console.log(BASE_DATA[modalBlock]);
-                                  payload.arrayIndex = CURRENT[modalBlock + "Index"];
-                                  dispatch(actions.updateKeyValueIn(payload));
-                                }}
-                              />
-                            </div>
-                          </div>
-                        ))}
+                        {Object.keys(BASE_DATA[modalBlock][index])
+                          .filter((item) => item !== "ID")
+                          .map((item2, index2) => {
+                            let type = inputType[item2.charAt(item2.length - 1)];
+                            if (type === "select") {
+                              return (
+                                <div key={index2} className="relative my-2 float-container">
+                                  <select>
+                                    <option value="">{item2}</option>
+                                  </select>
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div key={index2} className="relative my-2 float-container">
+                                  <legend className="absolute top-[-.5rem] left-[.5rem] inline-block text-[.75rem]">{item2}</legend>
+                                  <input
+                                    className="block w-full  px-1 ModInput"
+                                    inputMode={type}
+                                    value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
+                                    onChange={(e) => {
+                                      payload.index = index;
+                                      payload.key = item2;
+                                      payload.value = e.target.value;
+                                      payload.modalType = modalBlock;
+                                      payload.state = BASE_DATA[modalBlock];
+                                      console.log(BASE_DATA[modalBlock]);
+                                      payload.arrayIndex = CURRENT[modalBlock + "Index"];
+                                      dispatch(actions.updateKeyValueIn(payload));
+                                    }}
+                                  />
+                                </div>
+                              );
+                            }
+                          })}
                       </div>
                     ))}
                 </div>
