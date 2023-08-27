@@ -7,8 +7,11 @@ export default function Body() {
   return (
     // <div className="w-full flex flex-col items-center">
     <div>
-      <div className="w-full flex flex-row justify-center p-3">
+      <div className="w-full flex flex-col justify-center p-3">
         <h1 className="text-xl font-black">V1.3 GREEN BLUE PINK MODALS NON FUNCTIONAL</h1>
+        <p className="text-xs">input format needed</p>
+        <p className="text-xs">input type needed</p>
+        <p className="text-xs">input validation needed</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {Object.keys(State).map((DataItem, DataIndex) => (
