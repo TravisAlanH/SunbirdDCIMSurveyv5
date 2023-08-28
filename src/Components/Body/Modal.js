@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import AssetView from "./AssetView/AssetView";
+import SearchInput from "../Inputs/SearchInput";
 
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -245,20 +246,39 @@ export default function Modal({ data, ObjKey }) {
                               return (
                                 <div key={index2} className="relative my-2 float-container">
                                   <legend className="absolute top-[-.5rem] left-[.5rem] inline-block text-[.75rem]">{item2}</legend>
-                                  <input
-                                    className="block w-full  px-1 ModInput"
-                                    inputMode={type}
-                                    value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
-                                    onChange={(e) => {
-                                      payload.index = index;
-                                      payload.key = item2;
-                                      payload.value = e.target.value;
-                                      payload.modalType = modalBlock;
-                                      payload.state = BASE_DATA[modalBlock];
-                                      payload.arrayIndex = CURRENT[modalBlock + "Index"];
-                                      dispatch(actions.updateKeyValueIn(payload));
-                                    }}
-                                  />
+                                  {(modalBlock === "RacksArray" && item2 === "Model") || (modalBlock === "AssetsArray" && item2 === "Model") ? (
+                                    // <SearchInput payload={payload} modalBlock={modalBlock} ItemKey={item2} index={index} data={BASE_DATA} />
+                                    <input
+                                      className="block w-full  px-1 ModInput"
+                                      inputMode={type}
+                                      placeholder="test"
+                                      value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
+                                      onChange={(e) => {
+                                        payload.index = index;
+                                        payload.key = item2;
+                                        payload.value = e.target.value;
+                                        payload.modalType = modalBlock;
+                                        payload.state = BASE_DATA[modalBlock];
+                                        payload.arrayIndex = CURRENT[modalBlock + "Index"];
+                                        dispatch(actions.updateKeyValueIn(payload));
+                                      }}
+                                    />
+                                  ) : (
+                                    <input
+                                      className="block w-full  px-1 ModInput"
+                                      inputMode={type}
+                                      value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
+                                      onChange={(e) => {
+                                        payload.index = index;
+                                        payload.key = item2;
+                                        payload.value = e.target.value;
+                                        payload.modalType = modalBlock;
+                                        payload.state = BASE_DATA[modalBlock];
+                                        payload.arrayIndex = CURRENT[modalBlock + "Index"];
+                                        dispatch(actions.updateKeyValueIn(payload));
+                                      }}
+                                    />
+                                  )}
                                 </div>
                               );
                             }

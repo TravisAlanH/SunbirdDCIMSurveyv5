@@ -19,7 +19,7 @@ function levenshteinDistance(s1, s2) {
   return 1 - dp[m][n] / Math.max(m, n);
 }
 
-export default function findClosestMatches(userInput, dataArray) {
+export default function findClosestMatches(userInput, dataArray, MatchKey) {
   // let index = 0;
   // let closestMatches = [];
   // dataArray.forEach(element => {
@@ -36,7 +36,7 @@ export default function findClosestMatches(userInput, dataArray) {
   userInput = userInput.replace(/[^\w\s]/gi, "").toUpperCase();
 
   dataArray.forEach((item, index) => {
-    let model = item["Model Name *"];
+    let model = item[MatchKey];
     model = model.replace(/[^\w\s]/gi, "").toUpperCase();
     const score = levenshteinDistance(userInput, model);
     scores.push({ index, score });

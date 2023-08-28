@@ -83,7 +83,7 @@ export default function Current({ RackIndex, MatchedIndex }) {
                       onChange={(e) => {
                         e.stopPropagation();
                         setInputText(e.target.value);
-                        setMakeArray(FindMatch(e.target.value, Devices));
+                        setMakeArray(FindMatch(e.target.value, Devices, "Model Name *"));
                         setTimeout(() => {
                           payload.key = "Model";
                           payload.value = e.target.value;
@@ -112,7 +112,10 @@ export default function Current({ RackIndex, MatchedIndex }) {
                                   dispatch(actions.updateKeyValueIn(payload));
                                   setTimeout(() => {
                                     payload.key = "Name*";
-                                    payload.value = `${Devices[CabItem]["Make *"].substring(0, 4)}-${Devices[CabItem]["Model Name *"].substring(0, 4)}-${RackIndex + 1}`;
+                                    payload.value = `${Devices[CabItem]["Make *"].substring(0, 4)}-${Devices[CabItem]["Model Name *"].substring(
+                                      0,
+                                      4
+                                    )}-${RackIndex + 1}`;
                                     dispatch(actions.updateKeyValueIn(payload));
                                     setTimeout(() => {
                                       setName(payload.value);
