@@ -6,6 +6,7 @@ import AssetView from "./AssetView/AssetView";
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const BASE_DATA = data;
+  const ALL_DATA = useSelector((state) => state.location.Location[0]);
 
   let inputType = {
     "*": "text",
@@ -81,7 +82,13 @@ export default function Modal({ data, ObjKey }) {
             </div>
             {/* MISSING DATA IN MODAL */}
             <div>
-              <div className="flex flex-row justify-start border-b-2">{BASE_DATA[modalBlock].length > 0 ? <h2 className="text-sm">Required Actions</h2> : <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>}</div>
+              <div className="flex flex-row justify-start border-b-2">
+                {BASE_DATA[modalBlock].length > 0 ? (
+                  <h2 className="text-sm">Required Actions</h2>
+                ) : (
+                  <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>
+                )}
+              </div>
             </div>
             {BASE_DATA[modalBlock]
               // .filter((_, index) => index === indexArray[modalIndex])
@@ -137,6 +144,7 @@ export default function Modal({ data, ObjKey }) {
               >
                 +
               </button>
+              {/* ASSETS QUICK ADD */}
               {modalBlock === "AssetsArray" ? (
                 <button
                   className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
@@ -155,7 +163,25 @@ export default function Modal({ data, ObjKey }) {
         <div className="modal" id={"RackModal" + modalIndex + modalBlock} onClick={(e) => e.stopPropagation()}>
           <div className="modal-content max-w-[25rem]">
             <div className="flex flex-row justify-between items-center">
-              <h2 className="font-black">{modalBlock}</h2>
+              <h2 className="font-black">Current Rack</h2>
+              {/*  */}
+              <select
+                // id={"ModalHeader" + modalIndex + modalBlock}
+                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  payload.key = "RacksArrayIndex";
+                  payload.value = e.target.options.selectedIndex;
+                  dispatch(actions.updateCurrent(payload));
+                }}
+              >
+                {ALL_DATA.Racks.RacksArray.map((item, index) => (
+                  <option key={index} value={index}>
+                    {ALL_DATA.Racks.RacksArray[index]["Name*"] !== "" ? ALL_DATA.Racks.RacksArray[index]["Name*"] : `New ${index + 1}`}
+                  </option>
+                ))}
+              </select>
+              {/*  */}
               <span
                 className="close"
                 id={"RackClose" + modalIndex + modalBlock}
@@ -175,6 +201,7 @@ export default function Modal({ data, ObjKey }) {
             <AssetView />
           </div>
         </div>
+        {/* END ASSETS QUICK ADD */}
         {/* MODAL CONTENT */}
         <div className="modal" id={"modal" + modalIndex + modalBlock}>
           <div className="modal-content max-w-[25rem]">

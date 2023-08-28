@@ -95,10 +95,10 @@ const State2 = {
 const State = {
   Location: [
     {
-      // LocationData: {
-      //   // will be larger Modal
-      //   //hold standard Data
-      // },
+      LocationData: {
+        // will be larger Modal
+        //hold standard Data
+      },
       RoomData: {
         "@COLOR": "red",
         RoomDataArray: [],

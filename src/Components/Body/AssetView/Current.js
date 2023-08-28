@@ -33,7 +33,7 @@ export default function Current({ RackIndex, MatchedIndex }) {
           <p>{RackIndex + 1}</p>
         </div>
         <div
-          className="w-[20rem] h-[4.2rem] modAssetView"
+          className="w-[20rem] lg:w-[30rem] h-[4.2rem] modAssetView"
           id="myBtn"
           onClick={() => {
             let modal = document.getElementById("myModal");
