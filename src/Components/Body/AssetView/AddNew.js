@@ -19,12 +19,13 @@ export default function AddNew({ RackIndex }) {
   };
 
   return (
-    <div className="flex flex-row items-center justify-start">
-      <div className="w-[1.5rem] h-[1.5rem] flex flex-row justify-center items-center">
-        <p>{RackIndex}</p>
+    <div className="flex flex-row items-center justify-start border-2 rounded-md">
+      <div className="w-[1.5rem] h-[1.5rem] flex flex-row justify-center items-center border-r-2">
+        <p>{RackIndex + 1}</p>
       </div>
-      <div className="w-[20rem] h-[2rem] flex flex-row justify-start px-4">
+      <div className="w-[20rem] h-[2rem] flex flex-row justify-start items-center px-4">
         <button
+          className="w-[4rem] h-[1.5rem] bg-slate-200 rounded-md"
           onClick={() => {
             payload.modalType = "AssetsArray";
             dispatch(actions.addToArray(payload));

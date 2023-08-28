@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
+import AssetView from "./AssetView/AssetView";
 
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -136,7 +137,42 @@ export default function Modal({ data, ObjKey }) {
               >
                 +
               </button>
+              {modalBlock === "AssetsArray" ? (
+                <button
+                  className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    let modal = document.getElementById("RackModal" + modalIndex + modalBlock);
+                    modal.style.display = "block";
+                  }}
+                >
+                  R
+                </button>
+              ) : null}
             </div>
+          </div>
+        </div>
+        <div className="modal" id={"RackModal" + modalIndex + modalBlock} onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content max-w-[25rem]">
+            <div className="flex flex-row justify-between items-center">
+              <h2 className="font-black">{modalBlock}</h2>
+              <span
+                className="close"
+                id={"RackClose" + modalIndex + modalBlock}
+                onClick={() => {
+                  let modal = document.getElementById("RackModal" + modalIndex + modalBlock);
+                  modal.style.display = "none";
+                  window.onclick = function (event) {
+                    if (event.target === modal) {
+                      modal.style.display = "none";
+                    }
+                  };
+                }}
+              >
+                &times;
+              </span>
+            </div>
+            <AssetView />
           </div>
         </div>
         {/* MODAL CONTENT */}
