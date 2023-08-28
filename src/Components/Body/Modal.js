@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import AssetView from "./AssetView/AssetView";
-import SearchInput from "../Inputs/SearchInput";
+// import SearchInput from "../Inputs/SearchInput";
 
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);

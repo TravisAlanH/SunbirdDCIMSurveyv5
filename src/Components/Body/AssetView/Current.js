@@ -104,7 +104,6 @@ export default function Current({ RackIndex, MatchedIndex }) {
                                 payload.key = "Model";
                                 payload.value = Devices[CabItem]["Model Name *"];
                                 dispatch(actions.updateKeyValueIn(payload));
-
                                 console.log(payload.value);
                                 setTimeout(() => {
                                   payload.key = "Make";
