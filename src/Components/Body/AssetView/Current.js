@@ -7,6 +7,8 @@ import Devices from "../../../Data/4Device";
 export default function Current({ RackIndex, MatchedIndex }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0].Assets.AssetsArray[MatchedIndex]);
   const [makeArray, setMakeArray] = React.useState([]);
+  const [inputText, setInputText] = React.useState("");
+  const [name, setName] = React.useState("");
 
   let payload = {
     index: 0,
@@ -45,15 +47,18 @@ export default function Current({ RackIndex, MatchedIndex }) {
               <input
                 type="text"
                 id={"Name" + MatchedIndex}
-                autocomplete="off"
+                // defaultValue={BASE_DATA["Name*"] === "" ? `` : BASE_DATA["Name*"]}
+                value={name}
                 className="w-[7.5rem] text-sm bottom-1 text-black"
                 // defaultValue={BASE_DATA["Name*"] === "" ? `Name` : BASE_DATA["Name*"]}
                 onClick={(e) => {
                   e.stopPropagation();
-                  e.target.value = BASE_DATA["Name*"].split("-")[1];
+                  // e.target.value = BASE_DATA["Name*"].split("-")[1];
+                  setName(BASE_DATA["Name*"].split("-")[1]);
                 }}
                 onBlur={(e) => {
-                  e.target.value = BASE_DATA["Name*"] === "" ? `Name` : BASE_DATA["Name*"];
+                  // e.target.value = BASE_DATA["Name*"] === "" ? `Name` : BASE_DATA["Name*"];
+                  setName(BASE_DATA["Name*"] === "" ? `Name` : BASE_DATA["Name*"]);
                 }}
                 onChange={(e) => {
                   payload.key = "Name*";
@@ -73,9 +78,11 @@ export default function Current({ RackIndex, MatchedIndex }) {
                       type="text"
                       id={"Model" + MatchedIndex}
                       className="dropbtn w-[7.5rem]"
-                      placeholder={BASE_DATA["Model"] === "" ? `Model` : BASE_DATA["Model"]}
+                      // value={BASE_DATA["Model"] === "" ? `Model` : BASE_DATA["Model"]}
+                      value={inputText}
                       onChange={(e) => {
                         e.stopPropagation();
+                        setInputText(e.target.value);
                         setMakeArray(FindMatch(e.target.value, Devices));
                         setTimeout(() => {
                           payload.key = "Model";
@@ -92,11 +99,13 @@ export default function Current({ RackIndex, MatchedIndex }) {
                             onClick={(e) => {
                               e.stopPropagation();
                               e.preventDefault();
-                              document.getElementById("Model" + MatchedIndex).value = Devices[CabItem]["Model Name *"];
+                              setInputText(Devices[CabItem]["Model Name *"]);
                               setTimeout(() => {
                                 payload.key = "Model";
                                 payload.value = Devices[CabItem]["Model Name *"];
                                 dispatch(actions.updateKeyValueIn(payload));
+
+                                console.log(payload.value);
                                 setTimeout(() => {
                                   payload.key = "Make";
                                   payload.value = Devices[CabItem]["Make *"];
@@ -106,7 +115,8 @@ export default function Current({ RackIndex, MatchedIndex }) {
                                     payload.value = `${Devices[CabItem]["Make *"].substring(0, 4)}-${Devices[CabItem]["Model Name *"].substring(0, 4)}-${RackIndex + 1}`;
                                     dispatch(actions.updateKeyValueIn(payload));
                                     setTimeout(() => {
-                                      document.getElementById("Name" + MatchedIndex).setAttribute("value", payload.value);
+                                      setName(payload.value);
+                                      // document.getElementById("Name" + MatchedIndex).setAttribute("value", payload.value);
                                     }, 111);
                                   }, 111);
                                 }, 100);
