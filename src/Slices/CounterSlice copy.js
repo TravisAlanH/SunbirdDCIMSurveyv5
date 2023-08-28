@@ -10,6 +10,7 @@ const locationSlice = createSlice({
     // Update and Add to Modals
     updateKeyValueIn: (state, action) => {
       state.Location[action.payload.index][action.payload.modalType][action.payload.modalType][action.payload.arrayIndex][action.payload.key] = action.payload.value;
+
       if (action.payload.key === "Name*") {
         state.Location[action.payload.index][action.payload.modalType][action.payload.modalType][action.payload.arrayIndex]["ID"] = action.payload.value;
       }

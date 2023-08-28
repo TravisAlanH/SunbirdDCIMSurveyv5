@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
 import { useSelector } from "react-redux";
-import AssetView from "./AssetView";
+import AssetView from "./AssetView/AssetView";
 
 export default function Body() {
   const State = useSelector((state) => state.location.Location[0]);

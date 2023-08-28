@@ -20,12 +20,12 @@ const Templates = {
     "Name*": "",
     "Asset ID*": "",
     "Serial Number": "",
-    "Device Name": "",
-    "Make": "",
-    "Model": "",
+    "Device Name": "", //
+    "Make": "", //
+    "Model": "", //
     "Type": "",
-    "Rack Location": "",
-    "RU Location": "",
+    "Rack Location": "", //
+    "RU Location": "", //
     "Mounting Type": "",
     "Power": "",
     "Network": "",

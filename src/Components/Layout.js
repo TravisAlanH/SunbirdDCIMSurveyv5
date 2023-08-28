@@ -1,5 +1,6 @@
 import React from "react";
 import Body from "./Body/Body";
+// import AssetView from "./Body/AssetView/AssetView";
 
 export default function Layout() {
   return (

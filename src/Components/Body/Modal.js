@@ -128,8 +128,6 @@ export default function Modal({ data, ObjKey }) {
                   dispatch(actions.addToArray(payload));
                   payload.key = modalBlock + "Index";
                   payload.value = BASE_DATA[modalBlock].length;
-                  console.log(BASE_DATA[modalBlock].length);
-                  console.log(BASE_DATA[ObjKey]);
                   dispatch(actions.updateCurrent(payload));
                   setTimeout(() => {
                     document.getElementById("ModalHeader" + modalIndex + modalBlock).lastElementChild.selected = true;
@@ -194,7 +192,6 @@ export default function Modal({ data, ObjKey }) {
                                       payload.value = e.target.value;
                                       payload.modalType = modalBlock;
                                       payload.state = BASE_DATA[modalBlock];
-                                      console.log(BASE_DATA[modalBlock]);
                                       payload.arrayIndex = CURRENT[modalBlock + "Index"];
                                       dispatch(actions.updateKeyValueIn(payload));
                                     }}
