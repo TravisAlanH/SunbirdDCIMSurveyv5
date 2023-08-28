@@ -23,7 +23,7 @@ export default function AssetView() {
 
   if (RackState.length > 0) {
     return (
-      <div>
+      <div className="flex flex-col-reverse">
         {Array(parseInt(RackState[CurrentRack]["Height in UP"]) ? parseInt(RackState[CurrentRack]["Height in UP"]) : 1)
           .fill()
           .map((_, RackIndex) => {
