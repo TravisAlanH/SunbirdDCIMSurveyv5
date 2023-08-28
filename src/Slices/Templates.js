@@ -26,7 +26,8 @@ const Templates = {
     "Type": "",
     "Rack Location": "", //
     "RU Location": "", //
-    "Mounting Type": "",
+    "Mounting Type": "", //
+    "Orientation": "", //
     "Power": "",
     "Network": "",
     "Fiber": "",
