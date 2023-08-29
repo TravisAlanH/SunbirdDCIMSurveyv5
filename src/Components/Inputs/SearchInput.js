@@ -43,7 +43,7 @@ export default function SearchInput({ modalBlock }) {
 
   switch (modalBlock) {
     case "RacksArray":
-      Data = Racks;
+      // Data = Racks;
       payload.ObjKey = "Racks";
       payload.modalType = "RacksArray";
       payload.arrayIndex = CURRENT.RacksArrayIndex;
@@ -58,7 +58,7 @@ export default function SearchInput({ modalBlock }) {
       KeyChanging5 = "RU Available";
       break;
     case "AssetsArray":
-      Data = Devices;
+      // Data = Devices;
       payload.ObjKey = "Assets";
       payload.modalType = "AssetsArray";
       payload.arrayIndex = CURRENT.AssetsArrayIndex;
