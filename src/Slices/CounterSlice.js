@@ -9,7 +9,8 @@ const locationSlice = createSlice({
   reducers: {
     // Update and Add to Modals
     updateKeyValueIn: (state, action) => {
-      state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex][action.payload.key] = action.payload.value;
+      state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex][action.payload.key] =
+        action.payload.value;
       if (action.payload.key === "Name*") {
         state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex]["ID"] = action.payload.value;
       }
@@ -19,7 +20,13 @@ const locationSlice = createSlice({
       // console.log([...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType]]);
       // console.log(action.payload.modalType);
       // console.log(action.payload.ObjKey);
-      state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType] = [...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType], Templates[action.payload.modalType]];
+      state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType] = [
+        ...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType],
+        Templates[action.payload.modalType],
+      ];
+    },
+    updateLocation: (state, action) => {
+      state.Location[action.payload.index].LocationData[action.payload.ObjKey] = action.payload.value;
     },
     // addToArray: (state, action) => {
     //   state.Location[action.payload.index][action.payload.modalType] = [...state.Location[action.payload.index][action.payload.modalType], Templates[action.payload.modalType]];
@@ -34,6 +41,6 @@ const locationSlice = createSlice({
   },
 });
 
-export const { addToArray, updateKeyValueIn, removeFromArray, updateCurrent } = locationSlice.actions;
+export const { updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } = locationSlice.actions;
 // export {locationSlice.reducers} = locationSlice.actions
 export default locationSlice.reducer;

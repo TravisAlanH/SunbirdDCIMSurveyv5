@@ -4,11 +4,11 @@ const Templates = {
     "Name*": "",
     "# Operation *": "",
     "Object *": "",
-    "dcTrack Location Code*": "",
     "dcTrack Location Name*": "",
+    "dcTrack Location Code*": "",
     "dcTrack Location Hierarchy*": "",
     "dcTrack Location Parent*": "",
-    "Can Contain Assets": "",
+    "Can Contain Assets": true,
     "Data Center Area*": "",
     "Country*": "",
     "Enable AC Virtual Power Chain": "",
@@ -26,6 +26,7 @@ const Templates = {
     "Type": "",
     "Rack Location": "", //
     "RU Location": "", //
+    "Height in UP": "",
     "Mounting Type": "", //
     "Orientation": "", //
     "Power": "",
@@ -96,8 +97,20 @@ const State = {
   Location: [
     {
       LocationData: {
-        // will be larger Modal
-        //hold standard Data
+        "ID": "",
+        "Name*": "",
+        "# Operation *": "",
+        "Object *": "",
+        "dcTrack Location Code*": "",
+        "dcTrack Location Name*": "",
+        "dcTrack Location Hierarchy*": "",
+        "dcTrack Location Parent*": "",
+        "Can Contain Assets": "",
+        "Data Center Area*": "",
+        "Country*": "",
+        "Enable AC Virtual Power Chain": "",
+        "Is Default Location": "",
+        "Capacity(kW)": "",
       },
       RoomData: {
         "@COLOR": "red",

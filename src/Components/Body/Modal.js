@@ -244,8 +244,8 @@ export default function Modal({ data, ObjKey }) {
                               );
                             } else {
                               return (
-                                <div key={index2} className="relative my-2 float-container">
-                                  <legend className="absolute top-[-.5rem] left-[.5rem] inline-block text-[.75rem]">{item2}</legend>
+                                <div key={index2} className="relative my-4 float-container">
+                                  <legend className="absolute top-[-1rem] left-[.8rem] inline-block text-[.75rem] z-10">{item2}</legend>
                                   {(modalBlock === "RacksArray" && item2 === "Model") || (modalBlock === "AssetsArray" && item2 === "Model") ? (
                                     <SearchInput payload={payload} modalBlock={modalBlock} ItemKey={item2} index={index} data={BASE_DATA} />
                                   ) : (

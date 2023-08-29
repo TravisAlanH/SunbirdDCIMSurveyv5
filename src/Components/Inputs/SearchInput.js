@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import FindMatch from "../../Reuse/FindMatch";
 // import Devices from "../../Data/4Device";
-import Racks from "../../Data/3Cabinet";
+// import Racks from "../../Data/3Cabinet";
 
-export default function SearchInput({ modalBlock, ItemKey, index, data }) {
+export default function SearchInput({ modalBlock }) {
   const [modelArray, setModelArray] = React.useState([]);
   const [inputText, setInputText] = React.useState("");
   const CURRENT = useSelector((state) => state.location.Current);
+  const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const dispatch = useDispatch();
   // const BASE_DATA = data;
 
@@ -25,19 +26,54 @@ export default function SearchInput({ modalBlock, ItemKey, index, data }) {
   let KeySearching2 = "MAKE";
   let KeySearching3 = "RU";
   let KeySearching4 = "CLASS";
-
   let KeyChanging = "Model";
   let KeyChanging2 = "Make";
   let KeyChanging3 = "Height in UP";
   let KeyChanging4 = "Type";
   let KeyChanging5 = "RU Available";
+  let KeyChanging6 = "Rack Location";
+  let Data;
 
   let payload = {
     index: 0,
-    ObjKey: "Racks",
-    modalType: "RacksArray",
-    arrayIndex: CURRENT.RacksArrayIndex,
+    ObjKey: "",
+    modalType: "",
+    arrayIndex: 0,
   };
+
+  switch (modalBlock) {
+    case "RacksArray":
+      Data = Racks;
+      payload.ObjKey = "Racks";
+      payload.modalType = "RacksArray";
+      payload.arrayIndex = CURRENT.RacksArrayIndex;
+      KeySearching = "MODEL";
+      KeySearching2 = "MAKE";
+      KeySearching3 = "RU";
+      KeySearching4 = "CLASS";
+      KeyChanging = "Model";
+      KeyChanging2 = "Make";
+      KeyChanging3 = "Height in UP";
+      KeyChanging4 = "Type";
+      KeyChanging5 = "RU Available";
+      break;
+    case "AssetsArray":
+      Data = Devices;
+      payload.ObjKey = "Assets";
+      payload.modalType = "AssetsArray";
+      payload.arrayIndex = CURRENT.AssetsArrayIndex;
+      KeySearching = "Model Name *";
+      KeySearching2 = "Make *";
+      KeySearching3 = "Rack Units *";
+      KeySearching4 = "Class *";
+      KeyChanging = "Model";
+      KeyChanging2 = "Make";
+      KeyChanging3 = "Height in UP";
+      KeyChanging4 = "Type";
+      break;
+    default:
+      break;
+  }
 
   return (
     <div className="dropdown" onClick={(e) => e.stopPropagation()}>
@@ -49,7 +85,7 @@ export default function SearchInput({ modalBlock, ItemKey, index, data }) {
         onChange={(e) => {
           e.stopPropagation();
           setInputText(e.target.value);
-          setModelArray(FindMatch(e.target.value, Racks, KeySearching));
+          setModelArray(FindMatch(e.target.value, Data, KeySearching));
           setTimeout(() => {
             payload.key = KeyChanging;
             payload.value = e.target.value;
@@ -65,51 +101,45 @@ export default function SearchInput({ modalBlock, ItemKey, index, data }) {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                setInputText(Racks[SearchedItem][KeySearching]);
-                console.log(Racks[SearchedItem][KeySearching]);
+                setInputText(Data[SearchedItem][KeySearching]);
+                console.log(Data[SearchedItem][KeySearching]);
                 setTimeout(() => {
                   payload.key = KeyChanging;
-                  payload.value = Racks[SearchedItem][KeySearching];
+                  payload.value = Data[SearchedItem][KeySearching];
                   dispatch(actions.updateKeyValueIn(payload));
                   setTimeout(() => {
                     payload.key = KeyChanging2;
-                    payload.value = Racks[SearchedItem][KeySearching2];
+                    payload.value = Data[SearchedItem][KeySearching2];
                     dispatch(actions.updateKeyValueIn(payload));
                     setTimeout(() => {
                       payload.key = KeyChanging3;
-                      payload.value = Racks[SearchedItem][KeySearching3];
+                      payload.value = Data[SearchedItem][KeySearching3];
                       dispatch(actions.updateKeyValueIn(payload));
                       setTimeout(() => {
                         payload.key = KeyChanging4;
-                        payload.value = Racks[SearchedItem][KeySearching4];
+                        payload.value = Data[SearchedItem][KeySearching4];
                         dispatch(actions.updateKeyValueIn(payload));
-                        setTimeout(() => {
-                          payload.key = KeyChanging5;
-                          payload.value = Racks[SearchedItem][KeySearching3];
-                          dispatch(actions.updateKeyValueIn(payload));
-                        }, 100);
                       }, 100);
                     }, 100);
                   }, 100);
                 }, 100);
-                // setTimeout(() => {
-                //   payload.key = "Model";
-                //   payload.value = Racks[SearchedItem]["Model Name *"];
-                //   setTimeout(() => {
-                //     payload.key = "Model";
-                //     payload.value = Devices[SearchedItem]["Model Name *"];
-                //     dispatch(actions.updateKeyValueIn(payload));
-                //     console.log(payload.value);
-                //     setTimeout(() => {
-                //       payload.key = "Make";
-                //       payload.value = Devices[SearchedItem]["Make *"];
-                //       dispatch(actions.updateKeyValueIn(payload));
-                //     }, 100);
-                //   }, 111);
-                // }, 111);
+                if (modalBlock === "RacksArray") {
+                  setTimeout(() => {
+                    payload.key = KeyChanging5;
+                    payload.value = Data[SearchedItem][KeySearching3];
+                    dispatch(actions.updateKeyValueIn(payload));
+                  }, 100);
+                }
+                if (modalBlock === "AssetsArray") {
+                  setTimeout(() => {
+                    payload.key = KeyChanging6;
+                    payload.value = BASE_DATA["Racks"]["RacksArray"][CURRENT.RacksArrayIndex]["Name*"];
+                    dispatch(actions.updateKeyValueIn(payload));
+                  }, 100);
+                }
               }}
             >
-              {Racks[SearchedItem][KeySearching]}
+              {Data[SearchedItem][KeySearching]}
             </button>
           );
         })}

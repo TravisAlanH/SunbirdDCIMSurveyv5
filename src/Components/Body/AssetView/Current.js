@@ -1,14 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../Slices/CounterSlice";
-import FindMatch from "../../../Reuse/FindMatch";
-import Devices from "../../../Data/4Device";
+// import FindMatch from "../../../Reuse/FindMatch";
+// import Devices from "../../../Data/4Device";
+import SearchInput from "../../Inputs/SearchInput";
 
 export default function Current({ RackIndex, MatchedIndex }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0].Assets.AssetsArray[MatchedIndex]);
-  const [makeArray, setMakeArray] = React.useState([]);
-  const [inputText, setInputText] = React.useState("");
-  const [name, setName] = React.useState("");
+  // const [makeArray, setMakeArray] = React.useState([]);
+  // const [inputText, setInputText] = React.useState(BASE_DATA["Model"] === "" ? `Model` : BASE_DATA["Model"]);
+  const [name, setName] = React.useState(BASE_DATA["Name*"] === "" ? `Name` : BASE_DATA["Name*"]);
 
   let payload = {
     index: 0,
@@ -73,8 +74,11 @@ export default function Current({ RackIndex, MatchedIndex }) {
                 <div className="flex flex-row w-[5rem] items-end">
                   {/* <p className="text-xs">{BASE_DATA["Make"] === "" ? `Make` : BASE_DATA["Make"]}</p> */}
                   {/*  */}
+
                   <div className="dropdown" onClick={(e) => e.stopPropagation()}>
-                    <input
+                    <SearchInput modalBlock={"AssetsArray"} />
+
+                    {/*} <input
                       type="text"
                       id={"Model" + MatchedIndex}
                       className="dropbtn w-[7.5rem]"
@@ -128,8 +132,8 @@ export default function Current({ RackIndex, MatchedIndex }) {
                             {Devices[CabItem]["Model Name *"]}
                           </button>
                         );
-                      })}
-                    </div>
+                      })} 
+                    </div> */}
                   </div>
                   {/*  */}
                   {/* <input className="w-[5rem]" type="text" onClick={(e) => e.stopPropagation()} placeholder={"Model"} /> */}
