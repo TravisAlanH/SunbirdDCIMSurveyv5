@@ -148,7 +148,6 @@ export default function Modal({ data, ObjKey }) {
               {/* ASSETS QUICK ADD */}
               {modalBlock === "AssetsArray" ? (
                 <button
-                  disabled
                   className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
                   onClick={(e) => {
                     e.stopPropagation();
