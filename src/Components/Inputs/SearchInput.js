@@ -83,7 +83,6 @@ export default function SearchInput({ modalBlock }) {
     axios.get(fullURL + URL).then((res) => {
       setData(res.data);
       // Data = res.data;
-      console.log(Data);
     });
   }, [URL, fullURL]);
 
