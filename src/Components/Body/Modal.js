@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import AssetView from "./AssetView/AssetView";
 import SearchInput from "../Inputs/SearchInput";
+import { BiExport } from "react-icons/bi";
 
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -55,7 +56,7 @@ export default function Modal({ data, ObjKey }) {
       //! Block sets up MODAL Clicks
       <div
         key={modalIndex}
-        className="w-[20rem] h-[9rem] rounded-xl py-2 px-4"
+        className="w-[20rem] h-[9rem] rounded-xl py-2 px-4 text-white"
         style={{ backgroundColor: BASE_DATA["@COLOR"] }}
         id="myBtn"
         onClick={() => {
@@ -80,6 +81,9 @@ export default function Modal({ data, ObjKey }) {
             {/* HEAD OF MODAL */}
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-bold text-lg">{formatString(modalBlock)}</h2>
+              <button>
+                <BiExport className="text-2xl" />
+              </button>
             </div>
             {/* MISSING DATA IN MODAL */}
             <div>
@@ -203,7 +207,7 @@ export default function Modal({ data, ObjKey }) {
         </div>
         {/* END ASSETS QUICK ADD */}
         {/* MODAL CONTENT */}
-        <div className="modal" id={"modal" + modalIndex + modalBlock}>
+        <div className="modal text-black" id={"modal" + modalIndex + modalBlock}>
           <div className="modal-content max-w-[25rem]">
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-black">{modalBlock}</h2>

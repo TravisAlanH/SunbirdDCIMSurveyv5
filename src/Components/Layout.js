@@ -5,9 +5,9 @@ import Nav from "./Nav/Nav";
 
 export default function Layout() {
   return (
-    <div>
+    <div className="w-full">
       <Nav />
-      <div className="flex flex-row items-center">
+      <div className="flex flex-col items-center pt-4">
         <Body />
       </div>
     </div>

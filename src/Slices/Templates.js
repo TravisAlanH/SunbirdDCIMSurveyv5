@@ -117,21 +117,21 @@ const State = {
         "Capacity(kW)": "",
       },
       RoomData: {
-        "@COLOR": "red",
+        "@COLOR": "#3C4A65",
         RoomDataArray: [],
       }, // change these to objects not arrays, that hold Array Data
       Racks: {
         RacksArray: [],
-        "@COLOR": "yellow",
+        "@COLOR": "#43516C",
       },
       Assets: {
         AssetsArray: [],
-        "@COLOR": "orange",
+        "@COLOR": "#4B5873",
       },
       Electrical: {
         "ID": [],
         "Name*": [],
-        "@COLOR": "green",
+        "@COLOR": "#525F7A",
         "PanelsArray": [],
         "ReceptaclesArray": [],
         "UPSArray": [],
@@ -143,20 +143,20 @@ const State = {
       Mechanical: {
         "ID": [],
         "Name*": [],
-        "@COLOR": "blue", // Set color for each section
+        "@COLOR": "#606D87", // Set color for each section
         AirConditioningArray: [],
         HumidifierArray: [],
       },
       FireDetectionProtection: {
         "ID": [],
         "Name*": [],
-        "@COLOR": "purple",
+        "@COLOR": "#6E7A94",
         FireProtectionArray: [],
       },
       FiberTrunkCabling: {
         "ID": [],
         "Name*": [],
-        "@COLOR": "pink",
+        "@COLOR": "#7D88A2",
         LIU: [],
       },
     },

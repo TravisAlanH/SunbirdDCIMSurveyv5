@@ -4,24 +4,29 @@ import { FaGripLines } from "react-icons/fa";
 
 export default function NavMenu() {
   return (
-    <div className="flex flex-row justify-center items-center w-[2.5rem] h-full">
+    <div className="flex flex-row justify-center items-center w-[3.5rem] h-full">
       <div className="dropdown">
-        <div className="h-[3rem] flex flex-col justify-center">
-          <FaGripLines className="text-white text-2xl" />
+        <div className="h-[4rem] flex flex-col justify-center">
+          <FaGripLines className="text-white text-4xl" />
         </div>
-        <div className="dropdown-content-NAV px-3 py-1">
+        <div className="dropdown-content px-3 py-1 left-[-8rem]">
           <div className="flex flex-col justify-center items-center">
+            <button className="w-full h-full">Home</button>
+            <button className="w-full h-full">Settings</button>
+            <button className="w-full h-full">Help</button>
+            <button className="w-full h-full">Log Out</button>
+
             {/* <Link to="/" className="w-full h-full"> */}
-            Home
+
             {/* </Link>
             <Link to="/room" className="w-full h-full"> */}
-            Room
+
             {/* </Link>
             <Link to="/audit" className="w-full h-full"> */}
-            Audit
+
             {/* </Link>
             <Link to="/assets" className="w-full h-full"> */}
-            Assets
+
             {/* </Link> */}
           </div>
         </div>

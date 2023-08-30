@@ -6,7 +6,7 @@ export default function LocationModal() {
   const LOC_DATA = useSelector((state) => state.location.Location[0].LocationData);
 
   return (
-    <div className="md:w-[40rem] lg:w-[40rem] md:h-[9rem] lg:h-[9rem] w-[20rem] h-[17rem] bg-[#64B6AC] rounded-lg mb-3 p-2  flex flex-col">
+    <div className="md:w-[40rem] lg:w-[40rem] md:h-[9rem] lg:h-[9rem] w-[20rem] h-[17rem] bg-[#34435E] text-white rounded-lg mb-3 p-2  flex flex-col">
       <div className="w-full h-[2.5rem] p-1 flex flex-row items-center justify-center border-b-2">
         <h1 className="font-bold">Location </h1>
         <h1 className="font-black">: {LOC_DATA["dcTrack Location Name*"]}</h1>
