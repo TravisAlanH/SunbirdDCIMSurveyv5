@@ -11,7 +11,7 @@ export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const BASE_DATA = data;
   const ALL_DATA = useSelector((state) => state.location.Location[0]);
-  const [tableExport, setTableExport] = React.useState();
+  // const [tableExport, setTableExport] = React.useState();
 
   let inputType = {
     "*": "text",
