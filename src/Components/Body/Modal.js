@@ -4,11 +4,14 @@ import * as actions from "../../Slices/CounterSlice";
 import AssetView from "./AssetView/AssetView";
 import SearchInput from "../Inputs/SearchInput";
 import { BiExport } from "react-icons/bi";
+import createTable from "../../Reuse/CreateTable";
+import download_to_excel from "../../Reuse/ExportExcel";
 
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const BASE_DATA = data;
   const ALL_DATA = useSelector((state) => state.location.Location[0]);
+  const [tableExport, setTableExport] = React.useState();
 
   let inputType = {
     "*": "text",
@@ -81,9 +84,55 @@ export default function Modal({ data, ObjKey }) {
             {/* HEAD OF MODAL */}
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-bold text-lg">{formatString(modalBlock)}</h2>
-              <button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log(BASE_DATA[modalBlock]);
+                  // setTableExport(createTable(BASE_DATA[modalBlock]));
+                  var modal = document.getElementById("myModal export" + modalIndex);
+                  modal.style.display = "block";
+                  //
+                  createTable(BASE_DATA[modalBlock], "tableId");
+                  // document.getElementById("holdTable").innerHTML = tableExport;
+                  //
+
+                  // document.getElementById("viewData").innerHTML = tableExport;
+                  // document.getElementById("tableId").appendChild(tableExport);
+                  // console.log(document.getElementById("viewData"));
+                  window.onclick = function (event) {
+                    if (event.target === modal) {
+                      modal.style.display = "none";
+                    }
+                  };
+                }}
+              >
                 <BiExport className="text-2xl" />
               </button>
+              <div id={"myModal export" + modalIndex} className="modal text-black" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-content">
+                  <span
+                    className="close"
+                    onClick={() => {
+                      var modal = document.getElementById("myModal export" + modalIndex);
+                      modal.style.display = "none";
+                    }}
+                  >
+                    &times;
+                  </span>
+                  {/* display table */}
+                  {/* <button onClick={(e) => download_to_excel(e, modalBlock, "tableId")}>Export</button>
+                  <div id="viewData">
+                    <table id="tableId"></table>
+                  </div> */}
+                  {/* {console.log(tableExport)} */}
+
+                  <button onClick={(e) => download_to_excel(e, modalBlock, "tableId")}>Export</button>
+                  <div className="" id="holdTable">
+                    <table id="tableId" className="border-4"></table>
+                  </div>
+                  {/* {tableExport} */}
+                </div>
+              </div>
             </div>
             {/* MISSING DATA IN MODAL */}
             <div>

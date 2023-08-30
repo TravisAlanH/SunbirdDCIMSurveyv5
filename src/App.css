@@ -157,3 +157,7 @@ html, body { height: 100% }
 /* .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 } */
+
+.exportTable {
+  border: 1px solid black;
+}
