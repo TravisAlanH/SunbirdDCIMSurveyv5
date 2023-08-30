@@ -75,7 +75,7 @@ export default function StdInput({ ObjKey }) {
       ) : (
         <input
           type="text"
-          className="rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md"
+          className="rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md px-2"
           placeholder={Placeholder}
           value={Data}
           onChange={(e) => {

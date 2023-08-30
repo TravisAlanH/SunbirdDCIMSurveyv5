@@ -55,7 +55,7 @@ export default function Modal({ data, ObjKey }) {
       //! Block sets up MODAL Clicks
       <div
         key={modalIndex}
-        className="w-[20rem] h-[8.5rem] rounded-xl py-2 px-4"
+        className="w-[20rem] h-[9rem] rounded-xl py-2 px-4"
         style={{ backgroundColor: BASE_DATA["@COLOR"] }}
         id="myBtn"
         onClick={() => {
@@ -148,6 +148,7 @@ export default function Modal({ data, ObjKey }) {
               {/* ASSETS QUICK ADD */}
               {modalBlock === "AssetsArray" ? (
                 <button
+                  disabled
                   className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -167,7 +168,6 @@ export default function Modal({ data, ObjKey }) {
               <h2 className="font-black">Current Rack</h2>
               {/*  */}
               <select
-                // id={"ModalHeader" + modalIndex + modalBlock}
                 className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
@@ -249,21 +249,6 @@ export default function Modal({ data, ObjKey }) {
                                   {(modalBlock === "RacksArray" && item2 === "Model") || (modalBlock === "AssetsArray" && item2 === "Model") ? (
                                     <SearchInput payload={payload} modalBlock={modalBlock} ItemKey={item2} index={index} data={BASE_DATA} />
                                   ) : (
-                                    // <input
-                                    //   className="block w-full  px-1 ModInput"
-                                    //   inputMode={type}
-                                    //   placeholder="test"
-                                    //   value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
-                                    //   onChange={(e) => {
-                                    //     payload.index = index;
-                                    //     payload.key = item2;
-                                    //     payload.value = e.target.value;
-                                    //     payload.modalType = modalBlock;
-                                    //     payload.state = BASE_DATA[modalBlock];
-                                    //     payload.arrayIndex = CURRENT[modalBlock + "Index"];
-                                    //     dispatch(actions.updateKeyValueIn(payload));
-                                    //   }}
-                                    // />
                                     <input
                                       className="block w-full  px-1 ModInput"
                                       inputMode={type}

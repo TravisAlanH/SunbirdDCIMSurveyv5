@@ -8,12 +8,12 @@ export default function Body() {
   return (
     // <div className="w-full flex flex-col items-center">
     <div className="flex flex-col items-center">
-      <div className="w-full flex flex-col justify-center p-3">
+      {/* <div className="w-full flex flex-col justify-center p-3">
         <h1 className="text-xl font-black">V1.3 GREEN BLUE PINK MODALS NON FUNCTIONAL</h1>
         <p className="text-xs">input format needed</p>
         <p className="text-xs">input type needed</p>
         <p className="text-xs">input validation needed</p>
-      </div>
+      </div> */}
       <div>
         <LocationModal />
       </div>

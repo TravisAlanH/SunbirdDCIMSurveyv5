@@ -16,10 +16,6 @@ const locationSlice = createSlice({
       }
     },
     addToArray: (state, action) => {
-      // action.payload.state = [...action.payload.state, Templates[action.payload.modalType]];
-      // console.log([...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType]]);
-      // console.log(action.payload.modalType);
-      // console.log(action.payload.ObjKey);
       state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType] = [
         ...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType],
         Templates[action.payload.modalType],
@@ -27,10 +23,12 @@ const locationSlice = createSlice({
     },
     updateLocation: (state, action) => {
       state.Location[action.payload.index].LocationData[action.payload.ObjKey] = action.payload.value;
+      if (action.payload.ObjKey === "dcTrack Location Code*") {
+        for (let i = 0; i < state.Location[0].RoomData.RoomDataArray.length; i++) {
+          state.Location[0].RoomData.RoomDataArray[i]["Location"] = action.payload.value;
+        }
+      }
     },
-    // addToArray: (state, action) => {
-    //   state.Location[action.payload.index][action.payload.modalType] = [...state.Location[action.payload.index][action.payload.modalType], Templates[action.payload.modalType]];
-    // },
     //CURRENT
     updateCurrent: (state, action) => {
       state.Current[action.payload.key] = action.payload.value;
@@ -42,5 +40,4 @@ const locationSlice = createSlice({
 });
 
 export const { updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } = locationSlice.actions;
-// export {locationSlice.reducers} = locationSlice.actions
 export default locationSlice.reducer;

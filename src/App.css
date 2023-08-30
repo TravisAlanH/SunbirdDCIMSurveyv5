@@ -99,6 +99,10 @@ html, body { height: 100% }
   position: relative;
   width: 300px;
 } 
+
+.orangeSplit {
+  background: linear-gradient(290deg, #f59439 50%, #ffffff 50%);}
+
 /* .ModInput {  
     border: none;
     font-size: 16px;

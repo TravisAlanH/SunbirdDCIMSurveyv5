@@ -2,12 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import FindMatch from "../../Reuse/FindMatch";
+import axios from "axios";
 // import Devices from "../../Data/4Device";
 // import Racks from "../../Data/3Cabinet";
 
 export default function SearchInput({ modalBlock }) {
   const [modelArray, setModelArray] = React.useState([]);
   const [inputText, setInputText] = React.useState("");
+  const [Data, setData] = React.useState([]);
   const CURRENT = useSelector((state) => state.location.Current);
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ export default function SearchInput({ modalBlock }) {
   //   RU: "48",
   // },
 
-  console.log(modalBlock);
+  let fullURL = "https://raw.githubusercontent.com/TravisAlanH/PulseAuditData/main/";
 
   let KeySearching = "MODEL";
   let KeySearching2 = "MAKE";
@@ -32,7 +34,7 @@ export default function SearchInput({ modalBlock }) {
   let KeyChanging4 = "Type";
   let KeyChanging5 = "RU Available";
   let KeyChanging6 = "Rack Location";
-  let Data;
+  let URL;
 
   let payload = {
     index: 0,
@@ -47,15 +49,16 @@ export default function SearchInput({ modalBlock }) {
       payload.ObjKey = "Racks";
       payload.modalType = "RacksArray";
       payload.arrayIndex = CURRENT.RacksArrayIndex;
-      KeySearching = "MODEL";
-      KeySearching2 = "MAKE";
-      KeySearching3 = "RU";
-      KeySearching4 = "CLASS";
+      KeySearching = "Model Name *";
+      KeySearching2 = "Make *";
+      KeySearching3 = "Rack Units *";
+      KeySearching4 = "Class *";
       KeyChanging = "Model";
       KeyChanging2 = "Make";
       KeyChanging3 = "Height in UP";
       KeyChanging4 = "Type";
       KeyChanging5 = "RU Available";
+      URL = "Cabinet.json";
       break;
     case "AssetsArray":
       // Data = Devices;
@@ -70,13 +73,22 @@ export default function SearchInput({ modalBlock }) {
       KeyChanging2 = "Make";
       KeyChanging3 = "Height in UP";
       KeyChanging4 = "Type";
+      URL = "Device.json";
       break;
     default:
       break;
   }
 
+  React.useEffect(() => {
+    axios.get(fullURL + URL).then((res) => {
+      setData(res.data);
+      // Data = res.data;
+      console.log(Data);
+    });
+  }, [URL, fullURL]);
+
   return (
-    <div className="dropdown" onClick={(e) => e.stopPropagation()}>
+    <div className="dropdown z-30" onClick={(e) => e.stopPropagation()}>
       <input
         type="text"
         // id={"Model" + MatchedIndex}
@@ -86,6 +98,7 @@ export default function SearchInput({ modalBlock }) {
           e.stopPropagation();
           setInputText(e.target.value);
           setModelArray(FindMatch(e.target.value, Data, KeySearching));
+          console.log(modelArray);
           setTimeout(() => {
             payload.key = KeyChanging;
             payload.value = e.target.value;

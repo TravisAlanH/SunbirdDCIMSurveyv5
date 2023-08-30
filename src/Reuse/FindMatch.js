@@ -37,7 +37,8 @@ export default function findClosestMatches(userInput, dataArray, MatchKey) {
 
   dataArray.forEach((item, index) => {
     let model = item[MatchKey];
-    model = model.replace(/[^\w\s]/gi, "").toUpperCase();
+    // model = toString(model);
+    // model = model.replace(/[^\w\s]/gi, "").toUpperCase();
     const score = levenshteinDistance(userInput, model);
     scores.push({ index, score });
   });

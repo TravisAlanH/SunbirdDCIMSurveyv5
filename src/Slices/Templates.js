@@ -32,6 +32,7 @@ const Templates = {
     "Power": "",
     "Network": "",
     "Fiber": "",
+    "Location": "",
   },
   RacksArray: {
     "ID": "",
@@ -47,6 +48,7 @@ const Templates = {
     "RU Filled": "",
     "RU Available": "",
     "Grounded": "",
+    "Location": "",
   },
   RoomDataArray: {
     "ID": "",
@@ -59,6 +61,7 @@ const Templates = {
     "Ceiling Condition^": "",
     "Water Damage": "",
     "Water Damage Note": "",
+    "Location": "",
   },
   FireProtectionArray: {
     "ID": "",
@@ -67,6 +70,7 @@ const Templates = {
     "Detection": "",
     "Protection": "",
     "Rated": "",
+    "Location": "",
   },
 };
 
