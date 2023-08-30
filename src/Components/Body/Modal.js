@@ -119,7 +119,7 @@ export default function Modal({ data, ObjKey }) {
             <div className="flex flex-row items-end gap-2 justify-end mb-2">
               <select
                 id={"ModalHeader" + modalIndex + modalBlock}
-                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
+                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md text-black"
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
                   payload.key = modalBlock + "Index";
@@ -171,7 +171,7 @@ export default function Modal({ data, ObjKey }) {
               <h2 className="font-black">Current Rack</h2>
               {/*  */}
               <select
-                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
+                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md text-black"
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
                   payload.key = "RacksArrayIndex";
@@ -240,7 +240,7 @@ export default function Modal({ data, ObjKey }) {
                             if (type === "select") {
                               return (
                                 <div key={index2} className="relative my-2 float-container">
-                                  <select>
+                                  <select className="text-black">
                                     <option value="">{item2}</option>
                                   </select>
                                 </div>

@@ -63,7 +63,7 @@ export default function StdInput({ ObjKey }) {
       {ObjKey === "Can Contain Assets" ? (
         <input
           type="checkbox"
-          className="rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md"
+          className="text-black rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md"
           checked={Data}
           onChange={(e) => {
             // e.target.value === "on" ? (payload.value = "Yes") : (payload.value = "No");
@@ -75,7 +75,7 @@ export default function StdInput({ ObjKey }) {
       ) : (
         <input
           type="text"
-          className="rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md px-2"
+          className="rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md px-2 text-black"
           placeholder={Placeholder}
           value={Data}
           onChange={(e) => {

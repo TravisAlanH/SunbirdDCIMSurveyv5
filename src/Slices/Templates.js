@@ -1,4 +1,4 @@
-const Templates = {
+let Templates = {
   Location: {
     "ID": "",
     "Name*": "",
