@@ -158,7 +158,7 @@ export default function Current({ RackIndex, MatchedIndex }) {
                     onClick={(e) => e.stopPropagation()}
                     onChange={(e) => {
                       payload.value = e.target.value;
-                      payload.key = "Orientation";
+                      payload.key = "Orientation **";
                       dispatch(actions.updateKeyValueIn(payload));
                     }}
                   >

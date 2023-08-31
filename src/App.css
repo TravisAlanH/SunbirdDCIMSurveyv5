@@ -161,3 +161,7 @@ html, body { height: 100% }
 .exportTable {
   border: 1px solid black;
 }
+
+table { border-collapse: collapse; }
+tr { display: block; float: left; }
+th, td { display: block; border: 1px solid black; height: 1.5rem; }

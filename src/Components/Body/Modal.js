@@ -85,14 +85,17 @@ export default function Modal({ data, ObjKey }) {
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-bold text-lg">{formatString(modalBlock)}</h2>
               <button
+                className="w-[4rem] flex flex-row justify-center items-center"
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log(BASE_DATA[modalBlock]);
                   // setTableExport(createTable(BASE_DATA[modalBlock]));
                   var modal = document.getElementById("myModal export" + modalIndex);
                   modal.style.display = "block";
+                  document.getElementById("tableId").innerHTML = "";
                   //
-                  createTable(BASE_DATA[modalBlock], "tableId");
+                  let formatData = BASE_DATA[modalBlock].map(({ ID, ...item }) => ({ ...item }));
+                  formatData = formatData.sort((a, b) => (a["Cabinet **"] > b["Cabinet **"] ? 1 : -1));
+                  createTable(formatData, "tableId");
                   // document.getElementById("holdTable").innerHTML = tableExport;
                   //
 
@@ -109,7 +112,7 @@ export default function Modal({ data, ObjKey }) {
                 <BiExport className="text-2xl" />
               </button>
               <div id={"myModal export" + modalIndex} className="modal text-black" onClick={(e) => e.stopPropagation()}>
-                <div className="modal-content">
+                <div className="modal-content overflow-hidden lg:overflow-auto md:overflow-auto p-2">
                   <span
                     className="close"
                     onClick={() => {
@@ -127,9 +130,13 @@ export default function Modal({ data, ObjKey }) {
                   {/* {console.log(tableExport)} */}
 
                   <button onClick={(e) => download_to_excel(e, modalBlock, "tableId")}>Export</button>
-                  <div className="" id="holdTable">
-                    <table id="tableId" className="border-4"></table>
+                  {/* <div className="w-[25rem] overflow-hidden h-[30rem]"> */}
+                  <div className="w-[20rem] lg:w-[50rem] md:w-[50rem] h-[30rem] overflow-scroll">
+                    <div className=" h-[30rem] w-[100rem]" id="holdTable">
+                      <table id="tableId" className="border-4"></table>
+                    </div>
                   </div>
+                  {/* </div> */}
                   {/* {tableExport} */}
                 </div>
               </div>
@@ -182,22 +189,24 @@ export default function Modal({ data, ObjKey }) {
                   </option>
                 ))}
               </select>
-              <button
-                className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  payload.modalType = modalBlock;
-                  dispatch(actions.addToArray(payload));
-                  payload.key = modalBlock + "Index";
-                  payload.value = BASE_DATA[modalBlock].length;
-                  dispatch(actions.updateCurrent(payload));
-                  setTimeout(() => {
-                    document.getElementById("ModalHeader" + modalIndex + modalBlock).lastElementChild.selected = true;
-                  }, 200);
-                }}
-              >
-                +
-              </button>
+              {modalBlock === "AssetsArray" ? null : (
+                <button
+                  className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    payload.modalType = modalBlock;
+                    dispatch(actions.addToArray(payload));
+                    payload.key = modalBlock + "Index";
+                    payload.value = BASE_DATA[modalBlock].length;
+                    dispatch(actions.updateCurrent(payload));
+                    setTimeout(() => {
+                      document.getElementById("ModalHeader" + modalIndex + modalBlock).lastElementChild.selected = true;
+                    }, 200);
+                  }}
+                >
+                  +
+                </button>
+              )}
               {/* ASSETS QUICK ADD */}
               {modalBlock === "AssetsArray" ? (
                 <button
@@ -298,7 +307,7 @@ export default function Modal({ data, ObjKey }) {
                               return (
                                 <div key={index2} className="relative my-4 float-container">
                                   <legend className="absolute top-[-1rem] left-[.8rem] inline-block text-[.75rem] z-10">{item2}</legend>
-                                  {(modalBlock === "RacksArray" && item2 === "Model") || (modalBlock === "AssetsArray" && item2 === "Model") ? (
+                                  {(modalBlock === "RacksArray" && item2 === "Model *") || (modalBlock === "AssetsArray" && item2 === "Model *") ? (
                                     <SearchInput payload={payload} modalBlock={modalBlock} ItemKey={item2} index={index} data={BASE_DATA} />
                                   ) : (
                                     <input

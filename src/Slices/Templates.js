@@ -16,39 +16,41 @@ let Templates = {
     "Capacity(kW)": "",
   },
   AssetsArray: {
+    "# Operation *": "PLANNED",
+    "Object *": "DEVICE",
     "ID": "",
     "Name*": "",
     "Asset ID*": "",
     "Serial Number": "",
     "Device Name": "", //
-    "Make": "", //
-    "Model": "", //
+    "Make *": "", //
+    "Model *": "", //
     "Type": "",
-    "Rack Location": "", //
-    "RU Location": "", //
-    "Height in UP": "",
+    "Cabinet **": "", //
+    "U Position **": "", //
     "Mounting Type": "", //
-    "Orientation": "", //
+    "Orientation **": "", //
+    "Rails Used **": "", //
     "Power": "",
     "Network": "",
     "Fiber": "",
-    "Location": "",
+    "Location *": "",
   },
   RacksArray: {
     "ID": "",
     "Name*": "",
     "Serial Number*": "",
-    "Make": "",
-    "Model": "",
+    "Make *": "",
+    "Model *": "",
     "Type": "",
     "Position On Floor": "",
-    "Height in UP": 5,
+    "Height in UP": 0,
     "Width": "",
     "Depth": "",
     "RU Filled": "",
     "RU Available": "",
     "Grounded": "",
-    "Location": "",
+    "Location *": "",
   },
   RoomDataArray: {
     "ID": "",
@@ -61,7 +63,7 @@ let Templates = {
     "Ceiling Condition^": "",
     "Water Damage": "",
     "Water Damage Note": "",
-    "Location": "",
+    "Location *": "",
   },
   FireProtectionArray: {
     "ID": "",

@@ -30,13 +30,13 @@ export default function AddNew({ RackIndex }) {
             payload.modalType = "AssetsArray";
             dispatch(actions.addToArray(payload));
             setTimeout(() => {
-              payload.key = "Rack Location";
+              payload.key = "Cabinet **";
               payload.value = CurrentRack["Name*"];
               payload.arrayIndex = AssetsArray.length;
               dispatch(actions.updateKeyValueIn(payload));
             }, 100);
             setTimeout(() => {
-              payload.key = "RU Location";
+              payload.key = "U Position **";
               payload.value = RackIndex + 1;
               payload.arrayIndex = AssetsArray.length;
               dispatch(actions.updateKeyValueIn(payload));

@@ -18,7 +18,7 @@ const locationSlice = createSlice({
     addToArray: (state, action) => {
       let newData = JSON.parse(JSON.stringify(Templates[action.payload.modalType]));
       if (action.payload.modalType === "RoomDataArray" || action.payload.modalType === "AssetsArray" || action.payload.modalType === "RacksArray") {
-        newData["Location"] = state.Location[action.payload.index]["LocationData"]["dcTrack Location Code*"];
+        newData["Location *"] = state.Location[action.payload.index]["LocationData"]["dcTrack Location Code*"];
       }
       state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType] = [
         ...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType],
@@ -39,13 +39,13 @@ const locationSlice = createSlice({
       state.Location[action.payload.index].LocationData[action.payload.ObjKey] = action.payload.value;
       if (action.payload.ObjKey === "dcTrack Location Code*") {
         for (let i = 0; i < state.Location[0].RoomData.RoomDataArray.length; i++) {
-          state.Location[0].RoomData.RoomDataArray[i]["Location"] = action.payload.value;
+          state.Location[0].RoomData.RoomDataArray[i]["Location *"] = action.payload.value;
         }
         for (let i = 0; i < state.Location[0].Assets.AssetsArray.length; i++) {
-          state.Location[0].Assets.AssetsArray[i]["Location"] = action.payload.value;
+          state.Location[0].Assets.AssetsArray[i]["Location *"] = action.payload.value;
         }
         for (let i = 0; i < state.Location[0].Racks.RacksArray.length; i++) {
-          state.Location[0].Racks.RacksArray[i]["Location"] = action.payload.value;
+          state.Location[0].Racks.RacksArray[i]["Location *"] = action.payload.value;
         }
       }
     },

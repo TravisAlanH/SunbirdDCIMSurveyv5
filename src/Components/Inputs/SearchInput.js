@@ -69,9 +69,9 @@ export default function SearchInput({ modalBlock }) {
       KeySearching2 = "Make *";
       KeySearching3 = "Rack Units *";
       KeySearching4 = "Class *";
-      KeyChanging = "Model";
-      KeyChanging2 = "Make";
-      KeyChanging3 = "Height in UP";
+      KeyChanging = "Model *";
+      KeyChanging2 = "Make *";
+      KeyChanging3 = "Rails Used **";
       KeyChanging4 = "Type";
       URL = "Device.json";
       break;
@@ -97,7 +97,6 @@ export default function SearchInput({ modalBlock }) {
           e.stopPropagation();
           setInputText(e.target.value);
           setModelArray(FindMatch(e.target.value, Data, KeySearching));
-          console.log(modelArray);
           setTimeout(() => {
             payload.key = KeyChanging;
             payload.value = e.target.value;
@@ -114,7 +113,6 @@ export default function SearchInput({ modalBlock }) {
                 e.stopPropagation();
                 e.preventDefault();
                 setInputText(Data[SearchedItem][KeySearching]);
-                console.log(Data[SearchedItem][KeySearching]);
                 setTimeout(() => {
                   payload.key = KeyChanging;
                   payload.value = Data[SearchedItem][KeySearching];
@@ -145,7 +143,9 @@ export default function SearchInput({ modalBlock }) {
                 if (modalBlock === "AssetsArray") {
                   setTimeout(() => {
                     payload.key = KeyChanging6;
-                    payload.value = BASE_DATA["Racks"]["RacksArray"][CURRENT.RacksArrayIndex]["Name*"];
+                    payload.value = BASE_DATA["Racks"]["RacksArray"][CURRENT.RacksArrayIndex]["Name*"]
+                      ? BASE_DATA["Racks"]["RacksArray"][CURRENT.RacksArrayIndex]["Name*"]
+                      : "";
                     dispatch(actions.updateKeyValueIn(payload));
                   }, 100);
                 }

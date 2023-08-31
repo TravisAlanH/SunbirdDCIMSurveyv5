@@ -12,8 +12,8 @@ export default function AssetView() {
 
   function findIndexByNameAndLocation(RackIndex) {
     for (let i = 0; i < AssetState.length; i++) {
-      if (AssetState[i]["Rack Location"] === RackState[CurrentRack]["Name*"]) {
-        if (parseInt(AssetState[i]["RU Location"]) === RackIndex) {
+      if (AssetState[i]["Cabinet **"] === RackState[CurrentRack]["Name*"]) {
+        if (parseInt(AssetState[i]["U Position **"]) === RackIndex) {
           return i;
         }
       }
@@ -32,6 +32,12 @@ export default function AssetView() {
               return <Current RackIndex={RackIndex} MatchedIndex={MatchedIndex} key={RackIndex} />;
             } else return <AddNew RackIndex={RackIndex} key={RackIndex} />;
           })}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p className="text-black">No Rack Selected / Added</p>
       </div>
     );
   }
