@@ -6,9 +6,8 @@ import axios from "axios";
 // import Devices from "../../Data/4Device";
 // import Racks from "../../Data/3Cabinet";
 
-export default function SearchInput({ modalBlock }) {
+export default function SearchInput({ modalBlock, RackIndex }) {
   const [modelArray, setModelArray] = React.useState([]);
-  const [inputText, setInputText] = React.useState("");
   const [Data, setData] = React.useState([]);
   const CURRENT = useSelector((state) => state.location.Current);
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -54,6 +53,25 @@ export default function SearchInput({ modalBlock }) {
     arrayIndex: 0,
   };
 
+  let ObyKey = "";
+
+  switch (modalBlock) {
+    case "RacksArray":
+      ObyKey = "Racks";
+      break;
+    case "AssetsArray":
+      ObyKey = "Assets";
+      break;
+    default:
+      break;
+  }
+
+  const [inputText, setInputText] = React.useState(
+    BASE_DATA[ObyKey][modalBlock][CURRENT[modalBlock + "Index"]]["Model *"]
+      ? BASE_DATA[ObyKey][modalBlock][CURRENT[modalBlock + "Index"]]["Model *"]
+      : ""
+  );
+
   switch (modalBlock) {
     case "RacksArray":
       // Data = Racks;
@@ -73,9 +91,19 @@ export default function SearchInput({ modalBlock }) {
       break;
     case "AssetsArray":
       // Data = Devices;
+      for (let i = 0; i < BASE_DATA["Assets"]["AssetsArray"].length; i++) {
+        console.log("Test");
+        if (
+          BASE_DATA["Assets"]["AssetsArray"][i]["Cabinet **"] === BASE_DATA["Racks"]["RacksArray"][CURRENT["RacksArrayIndex"]]["Name*"] &&
+          BASE_DATA["Assets"]["AssetsArray"][i]["U Position **"] === RackIndex + 1
+        ) {
+          console.log("found");
+          payload.arrayIndex = BASE_DATA["Assets"]["AssetsArray"][i]["Index"];
+        }
+      }
+      console.log(payload.arrayIndex);
       payload.ObjKey = "Assets";
       payload.modalType = "AssetsArray";
-      payload.arrayIndex = CURRENT.AssetsArrayIndex;
       KeySearching = "Model Name *";
       KeySearching2 = "Make *";
       KeySearching3 = "Rack Units *";
@@ -107,6 +135,7 @@ export default function SearchInput({ modalBlock }) {
         className="dropbtn w-[7.5rem]"
         value={inputText}
         onChange={(e) => {
+          console.log(payload.arrayIndex);
           e.stopPropagation();
           setInputText(e.target.value);
           setModelArray(FindMatch(e.target.value, Data, KeySearching));

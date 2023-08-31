@@ -76,64 +76,7 @@ export default function Current({ RackIndex, MatchedIndex }) {
                   {/*  */}
 
                   <div className="dropdown" onClick={(e) => e.stopPropagation()}>
-                    <SearchInput modalBlock={"AssetsArray"} />
-
-                    {/*} <input
-                      type="text"
-                      id={"Model" + MatchedIndex}
-                      className="dropbtn w-[7.5rem]"
-                      // value={BASE_DATA["Model"] === "" ? `Model` : BASE_DATA["Model"]}
-                      value={inputText}
-                      onChange={(e) => {
-                        e.stopPropagation();
-                        setInputText(e.target.value);
-                        setMakeArray(FindMatch(e.target.value, Devices, "Model Name *"));
-                        setTimeout(() => {
-                          payload.key = "Model";
-                          payload.value = e.target.value;
-                          dispatch(actions.updateKeyValueIn(payload));
-                        }, 1000);
-                      }}
-                    />
-                    <div className="dropdown-content">
-                      {makeArray.map((CabItem, DeviceIndex) => {
-                        return (
-                          <button
-                            key={DeviceIndex}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              e.preventDefault();
-                              setInputText(Devices[CabItem]["Model Name *"]);
-                              setTimeout(() => {
-                                payload.key = "Model";
-                                payload.value = Devices[CabItem]["Model Name *"];
-                                dispatch(actions.updateKeyValueIn(payload));
-                                console.log(payload.value);
-                                setTimeout(() => {
-                                  payload.key = "Make";
-                                  payload.value = Devices[CabItem]["Make *"];
-                                  dispatch(actions.updateKeyValueIn(payload));
-                                  setTimeout(() => {
-                                    payload.key = "Name*";
-                                    payload.value = `${Devices[CabItem]["Make *"].substring(0, 4)}-${Devices[CabItem]["Model Name *"].substring(
-                                      0,
-                                      4
-                                    )}-${RackIndex + 1}`;
-                                    dispatch(actions.updateKeyValueIn(payload));
-                                    setTimeout(() => {
-                                      setName(payload.value);
-                                      // document.getElementById("Name" + MatchedIndex).setAttribute("value", payload.value);
-                                    }, 111);
-                                  }, 111);
-                                }, 100);
-                              }, 111);
-                            }}
-                          >
-                            {Devices[CabItem]["Model Name *"]}
-                          </button>
-                        );
-                      })} 
-                    </div> */}
+                    <SearchInput modalBlock={"AssetsArray"} RackIndex={RackIndex} />
                   </div>
                   {/*  */}
                   {/* <input className="w-[5rem]" type="text" onClick={(e) => e.stopPropagation()} placeholder={"Model"} /> */}

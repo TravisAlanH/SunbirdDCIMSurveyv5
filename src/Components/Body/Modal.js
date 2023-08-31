@@ -93,7 +93,8 @@ export default function Modal({ data, ObjKey }) {
                   modal.style.display = "block";
                   document.getElementById("tableId").innerHTML = "";
                   //
-                  let formatData = BASE_DATA[modalBlock].map(({ ID, ...item }) => ({ ...item }));
+                  let formatData = BASE_DATA[modalBlock].map(({ ID, Index, ...item }) => ({ ...item }));
+                  // formatData = formatData.map((Index, ...item) => ({ ...item }));
                   formatData = formatData.sort((a, b) => (a["Cabinet **"] > b["Cabinet **"] ? 1 : -1));
                   createTable(formatData, "tableId");
                   // document.getElementById("holdTable").innerHTML = tableExport;

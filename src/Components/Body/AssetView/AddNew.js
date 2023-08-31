@@ -42,6 +42,13 @@ export default function AddNew({ RackIndex }) {
               dispatch(actions.updateKeyValueIn(payload));
               payload.index = 0;
             }, 100);
+            setTimeout(() => {
+              payload.key = "Index";
+              payload.value = AssetsArray.length;
+              payload.arrayIndex = AssetsArray.length;
+              dispatch(actions.updateKeyValueIn(payload));
+              payload.index = 0;
+            }, 100);
           }}
         >
           Add

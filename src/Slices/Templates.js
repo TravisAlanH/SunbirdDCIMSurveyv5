@@ -19,10 +19,10 @@ let Templates = {
     "# Operation *": "PLANNED",
     "Object *": "DEVICE",
     "ID": "",
+    "Index": 0,
     "Name*": "",
     "Asset ID*": "",
     "Serial Number": "",
-    "Device Name": "", //
     "Make *": "", //
     "Model *": "", //
     "Type": "",
