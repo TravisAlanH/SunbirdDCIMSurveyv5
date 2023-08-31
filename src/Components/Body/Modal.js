@@ -209,16 +209,30 @@ export default function Modal({ data, ObjKey }) {
               )}
               {/* ASSETS QUICK ADD */}
               {modalBlock === "AssetsArray" ? (
-                <button
-                  className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    let modal = document.getElementById("RackModal" + modalIndex + modalBlock);
-                    modal.style.display = "block";
-                  }}
-                >
-                  R
-                </button>
+                <div>
+                  {ALL_DATA["Racks"]["RacksArray"].length === 0 || ALL_DATA["Racks"]["RacksArray"][CURRENT["RacksArrayIndex"]]["Name*"] === "" ? (
+                    <button
+                      className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        alert("- Please Add / Select a Rack \n or \n- Please Name your Current Rack by selecting Racks box");
+                      }}
+                    >
+                      R
+                    </button>
+                  ) : (
+                    <button
+                      className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        let modal = document.getElementById("RackModal" + modalIndex + modalBlock);
+                        modal.style.display = "block";
+                      }}
+                    >
+                      R
+                    </button>
+                  )}
+                </div>
               ) : null}
             </div>
           </div>

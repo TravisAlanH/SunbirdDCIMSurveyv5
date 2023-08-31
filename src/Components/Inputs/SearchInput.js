@@ -16,24 +16,35 @@ export default function SearchInput({ modalBlock }) {
   // const BASE_DATA = data;
 
   // {
-  //   MAKE: "Alpha Technologies",
-  //   MODEL: "031-322-20 DC Battery Stand",
-  //   CLASS: "Cabinet",
-  //   RU: "48",
+  //   "#Operation *": "ADD",
+  //   "Object *": "MODEL",
+  //   "Make *": "EGT",
+  //   "Model Name *": "001 ENC-02",
+  //   "Class *": "Device",
+  //   "Subclass**": "Standard",
+  //   "Mounting *": "Rackable",
+  //   "Form Factor *": "Fixed",
+  //   "Rack Units *": 1,
+  //   "Height *": 1.75,
+  //   "Width": 17.5,
+  //   "Depth": 15,
+  //   "Weight": 0,
+  //   "Units": "US",
+  //   "Potential Power (read-only)": 216
   // },
-
   let fullURL = "https://raw.githubusercontent.com/TravisAlanH/PulseAuditData/main/";
 
   let KeySearching = "MODEL";
   let KeySearching2 = "MAKE";
   let KeySearching3 = "RU";
   let KeySearching4 = "CLASS";
+  let KeySearching5 = "POTENTIAL POWER (READ-ONLY)";
   let KeyChanging = "Model";
   let KeyChanging2 = "Make";
   let KeyChanging3 = "Height in UP";
   let KeyChanging4 = "Type";
   let KeyChanging5 = "RU Available";
-  let KeyChanging6 = "Rack Location";
+  let KeyChanging6 = "Cabinet **";
   let URL;
 
   let payload = {
@@ -69,10 +80,12 @@ export default function SearchInput({ modalBlock }) {
       KeySearching2 = "Make *";
       KeySearching3 = "Rack Units *";
       KeySearching4 = "Class *";
+      KeySearching5 = "Potential Power (read-only)";
       KeyChanging = "Model *";
       KeyChanging2 = "Make *";
       KeyChanging3 = "Rails Used **";
       KeyChanging4 = "Type";
+      KeyChanging5 = "Power";
       URL = "Device.json";
       break;
     default:
@@ -147,6 +160,11 @@ export default function SearchInput({ modalBlock }) {
                       ? BASE_DATA["Racks"]["RacksArray"][CURRENT.RacksArrayIndex]["Name*"]
                       : "";
                     dispatch(actions.updateKeyValueIn(payload));
+                    setTimeout(() => {
+                      payload.key = KeyChanging5;
+                      payload.value = Data[SearchedItem][KeySearching5];
+                      dispatch(actions.updateKeyValueIn(payload));
+                    }, 100);
                   }, 100);
                 }
               }}
