@@ -130,37 +130,37 @@ const State = {
         AssetsArray: [],
         "@COLOR": "#4B5873",
       },
-      Electrical: {
-        "ID": [],
-        "Name*": [],
-        "@COLOR": "#525F7A",
-        "PanelsArray": [],
-        "ReceptaclesArray": [],
-        "UPSArray": [],
-        "RackATSArray": [],
-        "RackPDUArray": [],
-        "GroundBusArray": [],
-        "OtherArray": [],
-      },
-      Mechanical: {
-        "ID": [],
-        "Name*": [],
-        "@COLOR": "#606D87", // Set color for each section
-        AirConditioningArray: [],
-        HumidifierArray: [],
-      },
-      FireDetectionProtection: {
-        "ID": [],
-        "Name*": [],
-        "@COLOR": "#6E7A94",
-        FireProtectionArray: [],
-      },
-      FiberTrunkCabling: {
-        "ID": [],
-        "Name*": [],
-        "@COLOR": "#7D88A2",
-        LIU: [],
-      },
+      //   Electrical: {
+      //     "ID": [],
+      //     "Name*": [],
+      //     "@COLOR": "#525F7A",
+      //     "PanelsArray": [],
+      //     "ReceptaclesArray": [],
+      //     "UPSArray": [],
+      //     "RackATSArray": [],
+      //     "RackPDUArray": [],
+      //     "GroundBusArray": [],
+      //     "OtherArray": [],
+      //   },
+      //   Mechanical: {
+      //     "ID": [],
+      //     "Name*": [],
+      //     "@COLOR": "#606D87", // Set color for each section
+      //     AirConditioningArray: [],
+      //     HumidifierArray: [],
+      //   },
+      //   FireDetectionProtection: {
+      //     "ID": [],
+      //     "Name*": [],
+      //     "@COLOR": "#6E7A94",
+      //     FireProtectionArray: [],
+      //   },
+      //   FiberTrunkCabling: {
+      //     "ID": [],
+      //     "Name*": [],
+      //     "@COLOR": "#7D88A2",
+      //     LIU: [],
+      //   },
     },
   ],
   Current: {
@@ -170,6 +170,7 @@ const State = {
     "RoomArrayIndex": 0,
     "AssetsArrayIndex": 0,
     "RacksArrayIndex": 0,
+    "Login": 0,
   },
 };
 

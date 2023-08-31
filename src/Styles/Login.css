@@ -1,0 +1,41 @@
+.LoginBackground {
+    /* background: url("https://10.34.3.86/assets/raritan_assets/sunbird-login-bg-cfcde8aba14a2957fa25808c60c88d68d20c7d694dce2fb1392fd806c0d46459.jpg")
+        no-repeat center center fixed; */
+    background: url("../Img/DCBackground.jpeg")
+        no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.LoginInput {
+    height: 50px;
+    border: 1px solid #979797;
+    border-radius: 0;
+    background-color: #000;
+    color: #f18a20;
+    outline: none;
+    padding: 0;
+    padding-right: 5px;
+    width: 100%;
+    padding-left: 2rem;
+}
+
+.LoginButton {
+    height: 49px;
+    border: 1px solid #f18a20;
+    border-radius: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f18a20;
+    box-shadow: 0 1px 2px 0 #000000;
+    width: 175px;
+    display: inline-block;
+}

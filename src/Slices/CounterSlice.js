@@ -56,8 +56,11 @@ const locationSlice = createSlice({
     removeFromArray: (state, action) => {
       state["Array"] = state["Array"].filter((item, index) => index !== action.payload);
     },
+    loginInOut: (state, action) => {
+      state.Current["Login"] = action.payload.set;
+    },
   },
 });
 
-export const { updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } = locationSlice.actions;
+export const { loginInOut, updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } = locationSlice.actions;
 export default locationSlice.reducer;
