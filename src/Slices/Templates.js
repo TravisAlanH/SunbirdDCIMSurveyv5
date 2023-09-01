@@ -170,7 +170,7 @@ const State = {
     "RoomArrayIndex": 0,
     "AssetsArrayIndex": 0,
     "RacksArrayIndex": 0,
-    "Login": 0,
+    "Login": 1,
   },
 };
 

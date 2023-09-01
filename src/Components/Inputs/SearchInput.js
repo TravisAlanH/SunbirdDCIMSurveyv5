@@ -31,7 +31,7 @@ export default function SearchInput({ modalBlock, RackIndex }) {
   //   "Units": "US",
   //   "Potential Power (read-only)": 216
   // },
-  let fullURL = "https://raw.githubusercontent.com/TravisAlanH/PulseAuditData/main/";
+  let fullURL = process.env.REACT_APP_BASEURL;
 
   let KeySearching = "MODEL";
   let KeySearching2 = "MAKE";
@@ -87,7 +87,7 @@ export default function SearchInput({ modalBlock, RackIndex }) {
       KeyChanging3 = "Height in UP";
       KeyChanging4 = "Type";
       KeyChanging5 = "RU Available";
-      URL = "Cabinet.json";
+      URL = process.env.REACT_APP_RACKURL;
       break;
     case "AssetsArray":
       // Data = Devices;
@@ -114,7 +114,7 @@ export default function SearchInput({ modalBlock, RackIndex }) {
       KeyChanging3 = "Rails Used **";
       KeyChanging4 = "Type";
       KeyChanging5 = "Power";
-      URL = "Device.json";
+      URL = process.env.REACT_APP_DEVICEURL;
       break;
     default:
       break;
