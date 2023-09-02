@@ -12,7 +12,7 @@ export default function Layout() {
     return (
       <div className="w-full">
         <Nav />
-        <div className="flex flex-col items-center pt-4">
+        <div className="flex flex-col items-center">
           <Body />
         </div>
       </div>

@@ -38,7 +38,7 @@ const locationSlice = createSlice({
     updateLocation: (state, action) => {
       state.Location[action.payload.index].LocationData[action.payload.ObjKey] = action.payload.value;
       if (action.payload.ObjKey === "dcTrack Location Code*") {
-        for (let i = 0; i < state.Location[0].RoomData.RoomDataArray.length; i++) {
+        for (let i = 0; i < state.Location[0].Rooms.RoomsArray.length; i++) {
           state.Location[0].RoomData.RoomDataArray[i]["Location *"] = action.payload.value;
         }
         for (let i = 0; i < state.Location[0].Assets.AssetsArray.length; i++) {

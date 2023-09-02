@@ -16,7 +16,6 @@ export default function StdInput({ ObjKey }) {
   let Data;
   let Set;
   let Placeholder;
-  let label;
 
   let payload = {
     index: 0,
@@ -28,57 +27,43 @@ export default function StdInput({ ObjKey }) {
       Data = dcTrackLocationCode;
       Set = setDcTrackLocationCode;
       Placeholder = "Location Code";
-      label = "Loc Code";
       break;
     case "dcTrack Location Name*":
       Data = dcTrackLocationName;
       Set = setDcTrackLocationName;
       Placeholder = "Location Name";
-      label = "Loc Name";
-
       break;
     case "dcTrack Location Hierarchy*":
       Data = dcTrackLocationHierarchy;
       Set = setDcTrackLocationHierarchy;
       Placeholder = "Blank if no Hierarchy";
-      label = "Hierarchy";
-
       break;
     case "Can Contain Assets":
       Data = canContainAssets;
       Set = setCanContainAssets;
       Placeholder = "";
-      label = "Contain Assets";
-
       break;
     case "Data Center Area*":
       Data = dataCenterArea;
       Set = setDataCenterArea;
       Placeholder = "Area square feet";
-      label = "Area";
-
       break;
     case "Country*":
       Data = country;
       Set = setCountry;
       Placeholder = "Country";
-      label = "Country";
-
       break;
     default:
       break;
   }
 
   return (
-    <div className="flex flex-row w-full items-center justify-center">
-      <div className="w-[1rem] h-[1.5rem] flex flex-row justify-center items-center">
-        <p className="text-red-500">{ObjKey.includes("*") ? "*" : ""}</p>
-      </div>
-      <legend className="text-xs font-bold w-[5rem] p-1 bg-[#F7F5F1]">{label}</legend>
+    <fieldset className="flex flex-col w-full items-center justify-center">
+      <legend className="text-xs font-bold">{ObjKey}</legend>
       {ObjKey === "Can Contain Assets" ? (
         <input
           type="checkbox"
-          className="text-black rounded-md text-md w-[10rem]"
+          className="text-black rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md"
           checked={Data}
           onChange={(e) => {
             // e.target.value === "on" ? (payload.value = "Yes") : (payload.value = "No");
@@ -90,7 +75,7 @@ export default function StdInput({ ObjKey }) {
       ) : (
         <input
           type="text"
-          className="h-[1.5rem] w-[10rem] text-sm px-2 text-black border-b-2 border-[#F7F5F1] bg-inherit"
+          className="rounded-md lg:w-[90%] md:w-[90%] w-[90%] text-md px-2 text-black"
           placeholder={Placeholder}
           value={Data}
           onChange={(e) => {
@@ -100,6 +85,6 @@ export default function StdInput({ ObjKey }) {
           }}
         />
       )}
-    </div>
+    </fieldset>
   );
 }

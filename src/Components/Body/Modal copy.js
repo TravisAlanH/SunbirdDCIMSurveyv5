@@ -2,11 +2,16 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import AssetView from "./AssetView/AssetView";
+import SearchInput from "../Inputs/SearchInput";
+import { BiExport } from "react-icons/bi";
+import createTable from "../../Reuse/CreateTable";
+import download_to_excel from "../../Reuse/ExportExcel";
 
 export default function Modal({ data, ObjKey }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const BASE_DATA = data;
   const ALL_DATA = useSelector((state) => state.location.Location[0]);
+  // const [tableExport, setTableExport] = React.useState();
 
   let inputType = {
     "*": "text",
@@ -54,7 +59,7 @@ export default function Modal({ data, ObjKey }) {
       //! Block sets up MODAL Clicks
       <div
         key={modalIndex}
-        className="w-[20rem] h-[8.5rem] rounded-xl py-2 px-4"
+        className="w-[20rem] h-[9rem] rounded-xl py-2 px-4 text-white"
         style={{ backgroundColor: BASE_DATA["@COLOR"] }}
         id="myBtn"
         onClick={() => {
@@ -79,10 +84,73 @@ export default function Modal({ data, ObjKey }) {
             {/* HEAD OF MODAL */}
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-bold text-lg">{formatString(modalBlock)}</h2>
+              <button
+                className="w-[4rem] flex flex-row justify-center items-center"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // setTableExport(createTable(BASE_DATA[modalBlock]));
+                  var modal = document.getElementById("myModal export" + modalIndex);
+                  modal.style.display = "block";
+                  document.getElementById("tableId").innerHTML = "";
+                  //
+                  let formatData = BASE_DATA[modalBlock].map(({ ID, Index, ...item }) => ({ ...item }));
+                  // formatData = formatData.map((Index, ...item) => ({ ...item }));
+                  formatData = formatData.sort((a, b) => (a["Cabinet **"] > b["Cabinet **"] ? 1 : -1));
+                  createTable(formatData, "tableId");
+                  // document.getElementById("holdTable").innerHTML = tableExport;
+                  //
+
+                  // document.getElementById("viewData").innerHTML = tableExport;
+                  // document.getElementById("tableId").appendChild(tableExport);
+                  // console.log(document.getElementById("viewData"));
+                  window.onclick = function (event) {
+                    if (event.target === modal) {
+                      modal.style.display = "none";
+                    }
+                  };
+                }}
+              >
+                <BiExport className="text-2xl" />
+              </button>
+              <div id={"myModal export" + modalIndex} className="modal text-black" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-content overflow-hidden lg:overflow-auto md:overflow-auto p-2">
+                  <span
+                    className="close"
+                    onClick={() => {
+                      var modal = document.getElementById("myModal export" + modalIndex);
+                      modal.style.display = "none";
+                    }}
+                  >
+                    &times;
+                  </span>
+                  {/* display table */}
+                  {/* <button onClick={(e) => download_to_excel(e, modalBlock, "tableId")}>Export</button>
+                  <div id="viewData">
+                    <table id="tableId"></table>
+                  </div> */}
+                  {/* {console.log(tableExport)} */}
+
+                  <button onClick={(e) => download_to_excel(e, modalBlock, "tableId")}>Export</button>
+                  {/* <div className="w-[25rem] overflow-hidden h-[30rem]"> */}
+                  <div className="w-[20rem] lg:w-[50rem] md:w-[50rem] h-[30rem] overflow-scroll">
+                    <div className=" h-[30rem] w-[100rem]" id="holdTable">
+                      <table id="tableId" className="border-4"></table>
+                    </div>
+                  </div>
+                  {/* </div> */}
+                  {/* {tableExport} */}
+                </div>
+              </div>
             </div>
             {/* MISSING DATA IN MODAL */}
             <div>
-              <div className="flex flex-row justify-start border-b-2">{BASE_DATA[modalBlock].length > 0 ? <h2 className="text-sm">Required Actions</h2> : <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>}</div>
+              <div className="flex flex-row justify-start border-b-2">
+                {BASE_DATA[modalBlock].length > 0 ? (
+                  <h2 className="text-sm">Required Actions</h2>
+                ) : (
+                  <h2 className="text-sm">Use the + to add {modalBlock.split(/(?=[A-Z])/)[0]}</h2>
+                )}
+              </div>
             </div>
             {BASE_DATA[modalBlock]
               // .filter((_, index) => index === indexArray[modalIndex])
@@ -108,7 +176,7 @@ export default function Modal({ data, ObjKey }) {
             <div className="flex flex-row items-end gap-2 justify-end mb-2">
               <select
                 id={"ModalHeader" + modalIndex + modalBlock}
-                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
+                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md text-black"
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
                   payload.key = modalBlock + "Index";
@@ -122,34 +190,50 @@ export default function Modal({ data, ObjKey }) {
                   </option>
                 ))}
               </select>
-              <button
-                className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  payload.modalType = modalBlock;
-                  dispatch(actions.addToArray(payload));
-                  payload.key = modalBlock + "Index";
-                  payload.value = BASE_DATA[modalBlock].length;
-                  dispatch(actions.updateCurrent(payload));
-                  setTimeout(() => {
-                    document.getElementById("ModalHeader" + modalIndex + modalBlock).lastElementChild.selected = true;
-                  }, 200);
-                }}
-              >
-                +
-              </button>
-              {/* ASSETS QUICK ADD */}
-              {modalBlock === "AssetsArray" ? (
+              {modalBlock === "AssetsArray" ? null : (
                 <button
                   className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
                   onClick={(e) => {
                     e.stopPropagation();
-                    let modal = document.getElementById("RackModal" + modalIndex + modalBlock);
-                    modal.style.display = "block";
+                    payload.modalType = modalBlock;
+                    dispatch(actions.addToArray(payload));
+                    payload.key = modalBlock + "Index";
+                    payload.value = BASE_DATA[modalBlock].length;
+                    dispatch(actions.updateCurrent(payload));
+                    setTimeout(() => {
+                      document.getElementById("ModalHeader" + modalIndex + modalBlock).lastElementChild.selected = true;
+                    }, 200);
                   }}
                 >
-                  R
+                  +
                 </button>
+              )}
+              {/* ASSETS QUICK ADD */}
+              {modalBlock === "AssetsArray" ? (
+                <div>
+                  {ALL_DATA["Racks"]["RacksArray"].length === 0 || ALL_DATA["Racks"]["RacksArray"][CURRENT["RacksArrayIndex"]]["Name*"] === "" ? (
+                    <button
+                      className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        alert("- Please Add / Select a Rack \n or \n- Please Name your Current Rack by selecting Racks box");
+                      }}
+                    >
+                      R
+                    </button>
+                  ) : (
+                    <button
+                      className="border-2 border-gray-300 bg-slate-300 rounded-md w-8 h-8"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        let modal = document.getElementById("RackModal" + modalIndex + modalBlock);
+                        modal.style.display = "block";
+                      }}
+                    >
+                      R
+                    </button>
+                  )}
+                </div>
               ) : null}
             </div>
           </div>
@@ -157,11 +241,10 @@ export default function Modal({ data, ObjKey }) {
         <div className="modal" id={"RackModal" + modalIndex + modalBlock} onClick={(e) => e.stopPropagation()}>
           <div className="modal-content max-w-[25rem]">
             <div className="flex flex-row justify-between items-center">
-              <h2 className="font-black">{ALL_DATA.Racks.RacksArray[CURRENT["RacksArrayIndex"]]["Name*"] || "Current Rack"}</h2>
+              <h2 className="font-black">Current Rack</h2>
               {/*  */}
               <select
-                // id={"ModalHeader" + modalIndex + modalBlock}
-                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md"
+                className="max-w-[10rem] min-w-[10rem] selectBox border-2 border-gray-300 rounded-md text-black"
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
                   payload.key = "RacksArrayIndex";
@@ -197,7 +280,7 @@ export default function Modal({ data, ObjKey }) {
         </div>
         {/* END ASSETS QUICK ADD */}
         {/* MODAL CONTENT */}
-        <div className="modal" id={"modal" + modalIndex + modalBlock}>
+        <div className="modal text-black" id={"modal" + modalIndex + modalBlock}>
           <div className="modal-content max-w-[25rem]">
             <div className="flex flex-row justify-between items-center">
               <h2 className="font-black">{modalBlock}</h2>
@@ -230,29 +313,33 @@ export default function Modal({ data, ObjKey }) {
                             if (type === "select") {
                               return (
                                 <div key={index2} className="relative my-2 float-container">
-                                  <select>
+                                  <select className="text-black">
                                     <option value="">{item2}</option>
                                   </select>
                                 </div>
                               );
                             } else {
                               return (
-                                <div key={index2} className="relative my-2 float-container">
-                                  <legend className="absolute top-[-.5rem] left-[.5rem] inline-block text-[.75rem]">{item2}</legend>
-                                  <input
-                                    className="block w-full  px-1 ModInput"
-                                    inputMode={type}
-                                    value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
-                                    onChange={(e) => {
-                                      payload.index = index;
-                                      payload.key = item2;
-                                      payload.value = e.target.value;
-                                      payload.modalType = modalBlock;
-                                      payload.state = BASE_DATA[modalBlock];
-                                      payload.arrayIndex = CURRENT[modalBlock + "Index"];
-                                      dispatch(actions.updateKeyValueIn(payload));
-                                    }}
-                                  />
+                                <div key={index2} className="relative my-4 float-container">
+                                  <legend className="absolute top-[-1rem] left-[.8rem] inline-block text-[.75rem] z-10">{item2}</legend>
+                                  {(modalBlock === "RacksArray" && item2 === "Model *") || (modalBlock === "AssetsArray" && item2 === "Model *") ? (
+                                    <SearchInput payload={payload} modalBlock={modalBlock} ItemKey={item2} index={index} data={BASE_DATA} />
+                                  ) : (
+                                    <input
+                                      className="block w-full  px-1 ModInput"
+                                      inputMode={type}
+                                      value={BASE_DATA[modalBlock][CURRENT[modalBlock + "Index"]][item2]}
+                                      onChange={(e) => {
+                                        payload.index = index;
+                                        payload.key = item2;
+                                        payload.value = e.target.value;
+                                        payload.modalType = modalBlock;
+                                        payload.state = BASE_DATA[modalBlock];
+                                        payload.arrayIndex = CURRENT[modalBlock + "Index"];
+                                        dispatch(actions.updateKeyValueIn(payload));
+                                      }}
+                                    />
+                                  )}
                                 </div>
                               );
                             }
