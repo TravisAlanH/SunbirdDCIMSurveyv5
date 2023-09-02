@@ -4,7 +4,6 @@ import * as actions from "../../Slices/CounterSlice";
 
 export default function AddButton({ modalBlock }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
-  const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
 
   const dispatch = useDispatch();
 
