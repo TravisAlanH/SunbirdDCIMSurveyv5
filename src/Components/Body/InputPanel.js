@@ -41,7 +41,7 @@ export default function InputPanel({ modalBlock }) {
         <SelectElement modalBlock={modalBlock} />
         <AddButton modalBlock={modalBlock} />
       </div>
-      <div className="flex flex-row justify-center gap-3">
+      <div className="flex flex-col lg:flex-row md:flex-row sm:justify-start md:items-start lg:items-start gap-3">
         <InputPage modalBlock={modalBlock} />
         {modalBlock === "Racks" ? <AssetViewRack /> : <> </>}
       </div>
