@@ -41,6 +41,12 @@ export default function AddButton({ modalBlock }) {
             setLastOptionSelected("RacksSelection");
           }, 100);
         }
+        // Set CURRENT "AssestsArrayIndex" to -1 to reset asset view with new Rack
+        if (modalBlock === "Racks") {
+          payload.key = "AssetsArrayIndex";
+          payload.value = -1;
+          dispatch(actions.updateCurrent(payload));
+        }
       }}
     >
       <p>+</p>
