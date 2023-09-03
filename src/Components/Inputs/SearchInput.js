@@ -135,7 +135,7 @@ export default function SearchInput({ modalBlock, ItemKey }) {
                       payload.value = Data[SearchedItem][KeyArray[i]];
                       dispatch(actions.updateKeyValueIn(payload));
                     }
-                  }, i * 1000);
+                  }, i * 200);
                 }
               }}
             >

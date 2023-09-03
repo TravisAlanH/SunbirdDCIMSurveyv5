@@ -23,7 +23,7 @@ export default function AssetView() {
   if (RackState.length > 0) {
     return (
       <div className="flex flex-col-reverse text-black">
-        {Array(parseInt(RackState[CurrentRack]["Height in UP"]) ? parseInt(RackState[CurrentRack]["Height in UP"]) : 1)
+        {Array(parseInt(RackState[CurrentRack]["Rack Units *"]) ? parseInt(RackState[CurrentRack]["Rack Units *"]) : 1)
           .fill()
           .map((_, RackIndex) => {
             let MatchedIndex = findIndexByNameAndLocation(RackIndex + 1);
