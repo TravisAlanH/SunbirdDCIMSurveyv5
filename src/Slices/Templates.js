@@ -24,7 +24,7 @@ let Templates = {
     "Asset ID *": "",
     "Serial Number": "",
     "Make *": "", //
-    "Model *": "", //
+    "Model Name *": "", //
     "Type": "",
     "Cabinet **": "", //
     "U Position **": "", //
@@ -41,7 +41,7 @@ let Templates = {
     "Name *": "",
     "Serial Number *": "",
     "Make *": "",
-    "Model *": "",
+    "Model Name *": "",
     "Type": "",
     "Position On Floor": "",
     "Height in UP": 0,
