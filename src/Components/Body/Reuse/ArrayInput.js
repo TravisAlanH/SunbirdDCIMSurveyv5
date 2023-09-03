@@ -23,18 +23,14 @@ export default function ArrayInput({ modalBlock, keyItem, edit, size }) {
     edit = true;
   }
 
-  console.log(keyItem);
-
   return (
     <div className="flex flex-row w-full items-center justify-center">
       <div className="w-[1rem] h-[1.5rem] flex flex-row justify-center items-center">
         <p className="text-red-500">{keyItem.includes("*") ? "*" : ""}</p>
       </div>
       <legend className="text-xs font-bold w-[7rem] h-[1.5rem] p-1 bg-[#F7F5F1]">{label}</legend>
-      {label === "Model Name" && modalBlock === "Assets" ? (
-        <SearchInput modalBlock={modalBlock} keyItem={keyItem} />
-      ) : label === "Model Name " && modalBlock === "Racks" ? (
-        <SearchInput modalBlock={modalBlock} keyItem={keyItem} />
+      {(label === "Model Name " && modalBlock === "Assets") || (label === "Model Name " && modalBlock === "Racks") ? (
+        <SearchInput modalBlock={modalBlock} ItemKey={keyItem} />
       ) : (
         <input
           type="text"

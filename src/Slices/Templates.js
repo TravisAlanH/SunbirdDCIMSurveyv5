@@ -16,37 +16,44 @@ let Templates = {
     "Capacity(kW)": "",
   },
   AssetsArray: {
+    "Name *": "",
     "# Operation *": "PLANNED",
     "Object *": "DEVICE",
-    "ID": "",
-    "Index": 0,
-    "Name *": "",
-    "Asset ID *": "",
-    "Serial Number": "",
     "Make *": "", //
     "Model Name *": "", //
-    "Type": "",
+    "Class *": "",
+    "Mounting *": "", //
+    "Form Factor *": "", //
+    "Rack Units *": 0,
+    "Height *": 0,
+    "Width": 0,
+    "Depth": 0,
+    "Weight": 0,
+    "Units": "US",
+    "Asset ID *": "",
     "Cabinet **": "", //
     "U Position **": "", //
-    "Mounting Type": "", //
     "Orientation **": "", //
     "Rails Used **": "", //
-    "Power": "",
-    "Network": "",
-    "Fiber": "",
     "Location *": "",
   },
   RacksArray: {
     "ID": "",
     "Name *": "",
-    "Serial Number *": "",
+    "#Operation *": "",
+    "Object *": "",
     "Make *": "",
     "Model Name *": "",
-    "Type": "",
-    "Position On Floor": "",
-    "Height in UP": 0,
-    "Width": "",
-    "Depth": "",
+    "Serial Number *": "",
+    "Class *": "",
+    "Mounting *": "",
+    "Form Factor *": "",
+    "Rack Units *": 0,
+    "Height *": 0,
+    "Width": 0,
+    "Depth": 0,
+    "Weight": 0,
+    "Units": "",
     "RU Filled": "",
     "RU Available": "",
     "Grounded": "",

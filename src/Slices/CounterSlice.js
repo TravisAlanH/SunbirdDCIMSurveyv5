@@ -11,9 +11,6 @@ const locationSlice = createSlice({
     updateKeyValueIn: (state, action) => {
       state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex][action.payload.key] =
         action.payload.value;
-      if (action.payload.key === "Name*") {
-        state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex]["ID"] = action.payload.value;
-      }
     },
     addToArray: (state, action) => {
       let newData = JSON.parse(JSON.stringify(Templates[action.payload.modalType]));
