@@ -4,6 +4,7 @@ import SelectElement from "./SelectElement";
 import AddButton from "./AddButton";
 import InputPage from "./InputPage";
 import AssetViewRack from "./AssetView/AssetViewRack";
+import AssetView from "./AssetView/AssetView";
 
 export default function InputPanel({ modalBlock }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -44,6 +45,7 @@ export default function InputPanel({ modalBlock }) {
       <div className="flex flex-col lg:flex-row md:flex-row sm:justify-start md:items-start lg:items-start gap-3">
         <InputPage modalBlock={modalBlock} />
         {modalBlock === "Racks" ? <AssetViewRack /> : <> </>}
+        {modalBlock === "Assets" ? <AssetView /> : <> </>}
       </div>
     </div>
   );

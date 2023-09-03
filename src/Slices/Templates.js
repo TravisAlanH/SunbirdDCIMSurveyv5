@@ -21,7 +21,7 @@ let Templates = {
     "ID": "",
     "Index": 0,
     "Name *": "",
-    "Asset ID*": "",
+    "Asset ID *": "",
     "Serial Number": "",
     "Make *": "", //
     "Model *": "", //
@@ -39,7 +39,7 @@ let Templates = {
   RacksArray: {
     "ID": "",
     "Name *": "",
-    "Serial Number*": "",
+    "Serial Number *": "",
     "Make *": "",
     "Model *": "",
     "Type": "",
@@ -170,7 +170,7 @@ const State = {
     "RoomsArrayIndex": 0,
     "AssetsArrayIndex": 0,
     "RacksArrayIndex": 0,
-    "Login": 0,
+    "Login": 1,
   },
 };
 

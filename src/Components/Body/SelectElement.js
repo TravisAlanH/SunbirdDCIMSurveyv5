@@ -22,7 +22,7 @@ export default function SelectElement({ modalBlock }) {
       {modalBlock === "Rooms" ? (
         <div>
           <select
-            className="w-[10rem]"
+            className="w-[10rem] border-2"
             id="RoomsSelection"
             onChange={(e) => {
               payload.key = "RoomsArrayIndex";

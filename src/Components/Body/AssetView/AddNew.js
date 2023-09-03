@@ -29,9 +29,10 @@ export default function AddNew({ RackIndex }) {
           onClick={() => {
             payload.modalType = "AssetsArray";
             dispatch(actions.addToArray(payload));
+            dispatch(actions.updateCurrent({ key: "AssetsArrayIndex", value: AssetsArray.length }));
             setTimeout(() => {
               payload.key = "Cabinet **";
-              payload.value = CurrentRack["Name*"];
+              payload.value = CurrentRack["Name *"];
               payload.arrayIndex = AssetsArray.length;
               dispatch(actions.updateKeyValueIn(payload));
             }, 100);

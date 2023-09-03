@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../Slices/CounterSlice";
 // import FindMatch from "../../../Reuse/FindMatch";
 // import Devices from "../../../Data/4Device";
-import SearchInput from "../../Inputs/SearchInput";
 
 export default function Current({ RackIndex, MatchedIndex }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0].Assets.AssetsArray[MatchedIndex]);
   // const [makeArray, setMakeArray] = React.useState([]);
   // const [inputText, setInputText] = React.useState(BASE_DATA["Model"] === "" ? `Model` : BASE_DATA["Model"]);
-  const [name, setName] = React.useState(BASE_DATA["Name*"] === "" ? `Name` : BASE_DATA["Name*"]);
 
   let payload = {
     index: 0,
@@ -33,18 +31,12 @@ export default function Current({ RackIndex, MatchedIndex }) {
         <div className="w-[1.5rem] h-[4.2rem] flex flex-row justify-center items-center border-r-2">
           <p>{RackIndex + 1}</p>
         </div>
-        <div
-          className="w-[20rem] lg:w-[30rem] h-[4.2rem] modAssetView"
-          id="myBtn"
-          onClick={() => {
-            let modal = document.getElementById("myModal");
-            modal.style.display = "block";
-          }}
-        >
+        <div className="w-[20rem] lg:w-[30rem] h-[4.2rem] modAssetView" id="myBtn">
           <div className="flex flex-col justify-between p-1">
             <div className="flex flex-row justify-between">
-              <p className="text-xs w-[5rem]">{BASE_DATA["Make"] === "" ? `Make` : BASE_DATA["Make"]}</p>
-
+              <p className="text-xs w-[5rem]">{BASE_DATA["Make *"]}</p>
+              <p>{BASE_DATA["Name *"]}</p>
+              {/* 
               <input
                 type="text"
                 id={"Name" + MatchedIndex}
@@ -66,18 +58,17 @@ export default function Current({ RackIndex, MatchedIndex }) {
                   payload.value = `${BASE_DATA["Make"].substring(0, 4)}-${e.target.value}-${RackIndex + 1}`;
                   dispatch(actions.updateKeyValueIn(payload));
                 }}
-              />
-              <div>Edit</div>
+              /> */}
             </div>
             <div className="flex flex-row w-full h-full items-center">
               <div className="flex flex-row justify-between w-full">
                 <div className="flex flex-row w-[5rem] items-end">
                   {/* <p className="text-xs">{BASE_DATA["Make"] === "" ? `Make` : BASE_DATA["Make"]}</p> */}
                   {/*  */}
-
-                  <div className="dropdown" onClick={(e) => e.stopPropagation()}>
+                  {BASE_DATA["Model *"]}
+                  {/* <div className="dropdown" onClick={(e) => e.stopPropagation()}>
                     <SearchInput modalBlock={"AssetsArray"} RackIndex={RackIndex} />
-                  </div>
+                  </div> */}
                   {/*  */}
                   {/* <input className="w-[5rem]" type="text" onClick={(e) => e.stopPropagation()} placeholder={"Model"} /> */}
                 </div>
@@ -111,27 +102,6 @@ export default function Current({ RackIndex, MatchedIndex }) {
                   </select>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div id="myModal" className="modal">
-            <div className="modal-content">
-              <span
-                className="close"
-                onClick={() => {
-                  let modal = document.getElementById("myModal");
-                  modal.style.display = "none";
-                  window.onclick = function (event) {
-                    if (event.target === modal) {
-                      modal.style.display = "none";
-                    }
-                  };
-                }}
-              >
-                &times;
-              </span>
-              <p>Additional Selections to be Added</p>
             </div>
           </div>
         </div>
