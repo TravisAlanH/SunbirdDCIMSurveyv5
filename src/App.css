@@ -163,10 +163,6 @@ html, body { height: 100% }
   border: 1px solid black;
 }
 
-table { border-collapse: collapse; }
-tr { display: block; float: left; }
-th, td { display: block; border: 1px solid black; height: 1.5rem; }
-
 
 
 /* TABS */
@@ -175,19 +171,17 @@ th, td { display: block; border: 1px solid black; height: 1.5rem; }
 }
 body {
   font-family: "Open Sans";
-
   line-height: 1.618em;
 }
 .wrapper {
   margin: 0 auto;
 }
 .tabs {
-  /* position: relative; */
+  position: relative;
   background: #EBE5E0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
 }
 .tabs::before,
 .tabs::after {
@@ -227,7 +221,6 @@ flex-grow: 4;
 .tab-content {
   height: 12rem;
   position: absolute;
-  z-index: 1;
   top: 2.75em;
   left: 0;
   padding: 1.618rem;
@@ -243,11 +236,18 @@ flex-grow: 4;
   border-bottom: 0;
   border-right: 0.125rem solid #fff;
   transition: all 0.35s;
-  z-index: 1;
   top: -0.0625rem;
 }
 .tab-switch:checked + label + .tab-content {
-  z-index: 2;
   opacity: 1;
   transition: all 0.35s;
+}
+
+th, td { border: 1px solid black; height: 1.5rem;padding: .5rem; }  
+
+
+@media (max-width: 767px) {
+  table { border-collapse: collapse; padding: .5rem; }
+  tr { display: block; float: left; padding: .5rem; }
+  th, td { display: block; border: 1px solid black; height: 1.5rem; padding: .5rem;}  
 }

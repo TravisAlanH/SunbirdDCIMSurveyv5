@@ -7,13 +7,13 @@ import Login from "./Login/Login";
 export default function Layout() {
   const isLogin = useSelector((state) => state.location.Current["Login"]);
   console.log(isLogin);
-
+  const [pageContent, setPageContent] = React.useState();
   if (isLogin === 1) {
     return (
       <div className="w-full">
-        <Nav />
-        <div className="flex flex-col items-center">
-          <Body />
+        <Nav setPageContent={setPageContent} />
+        <div className="flex flex-col items-center mt-[4rem]">
+          <Body pageContent={pageContent} setPageContent={setPageContent} />
         </div>
       </div>
     );

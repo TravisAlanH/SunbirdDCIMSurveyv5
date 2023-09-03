@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import LocationModal from "./LocationModal";
 import InputPanel from "./InputPanel";
 
-export default function Body() {
+export default function Body({ pageContent, setPageContent }) {
   const State = useSelector((state) => state.location.Location[0]);
-  const [pageContent, setPageContent] = React.useState();
+  // const [pageContent, setPageContent] = React.useState();
   return (
     // <div className="w-full flex flex-col items-center">
     <div className="flex flex-col items-center">
@@ -21,7 +21,7 @@ export default function Body() {
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"> */}
       <div className="w-screen">
         <div className="w-screen wrapper">
-          <div className="tabs w-screen sticky top-[4rem]">
+          <div className="tabs w-screen">
             {Object.keys(State).map((DataItem, DataIndex) => {
               // console.log(DataItem);
               if (DataIndex === 0) {
