@@ -30,12 +30,13 @@ export default function ExportPage() {
 
                 setModalBlock(e.target.value);
                 let Input = BASE_DATA[e.target.value][e.target.value + "Array"];
+                console.log(Input);
                 let Field = Assets;
                 //
+                const updatedArray = [];
                 if (e.target.value === "Assets") {
-                  const updatedInput = {};
-                  const updatedArray = [];
                   for (let i = 0; i < Input.length; i++) {
+                    const updatedInput = {};
                     for (const inputKey in Input[i]) {
                       if (Input[i].hasOwnProperty(inputKey)) {
                         const inputValue = Input[i][inputKey];
