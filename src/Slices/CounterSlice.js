@@ -51,9 +51,27 @@ const locationSlice = createSlice({
     getAssetData: (state, action) => {
       state.DataAssets = action.payload;
     },
+    addRemoveCustomFieldsFromAssets: (state, action) => {
+      for (let i = 0; i < state.Location[0].Assets.AssetsArray.length; i++) {
+        if (action.payload.checked) {
+          state.Location[0].Assets.AssetsArray[i][action.payload.value] = "";
+        } else {
+          delete state.Location[0].Assets.AssetsArray[i][action.payload.value];
+        }
+      }
+    },
   },
 });
 
-export const { getRackData, getAssetData, loginInOut, updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } =
-  locationSlice.actions;
+export const {
+  addRemoveCustomFieldsFromAssets,
+  getRackData,
+  getAssetData,
+  loginInOut,
+  updateLocation,
+  addToArray,
+  updateKeyValueIn,
+  removeFromArray,
+  updateCurrent,
+} = locationSlice.actions;
 export default locationSlice.reducer;

@@ -28,11 +28,7 @@ export default function AddNew({ RackIndex }) {
           className="w-[4rem] h-[1.5rem] bg-slate-200 rounded-md"
           onClick={() => {
             payload.modalType = "AssetsArray";
-            //
-            // payload.key = "AssetsArrayIndex";
-            // payload.value = -1;
-            // dispatch(actions.updateCurrent(payload));
-            //
+
             dispatch(actions.addToArray(payload));
             dispatch(actions.updateCurrent({ key: "AssetsArrayIndex", value: AssetsArray.length }));
             setTimeout(() => {
