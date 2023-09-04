@@ -56,8 +56,15 @@ const locationSlice = createSlice({
     loginInOut: (state, action) => {
       state.Current["Login"] = action.payload.set;
     },
+    getRackData: (state, action) => {
+      state.DataRacks = action.payload;
+    },
+    getAssetData: (state, action) => {
+      state.DataAssets = action.payload;
+    },
   },
 });
 
-export const { loginInOut, updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } = locationSlice.actions;
+export const { getRackData, getAssetData, loginInOut, updateLocation, addToArray, updateKeyValueIn, removeFromArray, updateCurrent } =
+  locationSlice.actions;
 export default locationSlice.reducer;

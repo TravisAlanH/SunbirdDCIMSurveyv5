@@ -156,18 +156,18 @@ const State = {
       //     AirConditioningArray: [],
       //     HumidifierArray: [],
       //   },
-      FireDetectionProtection: {
-        "ID": [],
-        "Name*": [],
-        "@COLOR": "#6E7A94",
-        FireDetectionProtectionArray: [],
-      },
-      FiberTrunkCabling: {
-        "ID": [],
-        "Name*": [],
-        "@COLOR": "#7D88A2",
-        FiberTrunkCablingArray: [],
-      },
+      // FireDetectionProtection: {
+      //   "ID": [],
+      //   "Name*": [],
+      //   "@COLOR": "#6E7A94",
+      //   FireDetectionProtectionArray: [],
+      // },
+      // FiberTrunkCabling: {
+      //   "ID": [],
+      //   "Name*": [],
+      //   "@COLOR": "#7D88A2",
+      //   FiberTrunkCablingArray: [],
+      // },
     },
   ],
   Current: {
@@ -179,6 +179,8 @@ const State = {
     "RacksArrayIndex": 0,
     "Login": 0,
   },
+  DataRacks: [],
+  DataAssets: [],
 };
 
 export { State, State2 };

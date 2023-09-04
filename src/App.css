@@ -243,11 +243,13 @@ flex-grow: 4;
   transition: all 0.35s;
 }
 
-th, td { border: 1px solid black; height: 1.5rem;padding: .5rem; }  
+tr { font-size: .8rem; width:fit-content;padding-left: .3rem; padding-right: .3rem}
+
+th, td { border: 1px solid black; height: 1.5rem; font-size: .8rem;padding-left: .3rem; padding-right: .3rem }  
 
 
 @media (max-width: 767px) {
-  table { border-collapse: collapse; padding: .5rem; }
-  tr { display: block; float: left; padding: .5rem; }
-  th, td { display: block; border: 1px solid black; height: 1.5rem; padding: .5rem;}  
+  table { border-collapse: collapse; font-size: .8rem}
+  tr { display: block; float: left; font-size: .8rem; width:fit-content;}
+  th, td { display: block; border: 1px solid black; height: 1.5rem; font-size: .8rem; padding-left: .3rem; padding-right: .3rem}  
 }

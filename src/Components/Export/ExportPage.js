@@ -42,7 +42,7 @@ export default function ExportPage() {
       </div>
       <div className="text-black w-full">
         <div className="overflow-scroll">
-          <table id="ExportTable"></table>
+          <table id="ExportTable" className="text-xs"></table>
         </div>
         <div className="w-full flex flex-row justify-end">
           <button
