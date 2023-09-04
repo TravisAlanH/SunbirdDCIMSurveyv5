@@ -40,7 +40,6 @@ import Templates from "../../Slices/Templates";
 // },
 
 export default function SearchInput({ modalBlock, ItemKey }) {
-  console.log(modalBlock, ItemKey);
   const [modelArray, setModelArray] = React.useState([]);
   const [Data, setData] = React.useState([]);
   const CURRENT = useSelector((state) => state.location.Current);
@@ -63,8 +62,6 @@ export default function SearchInput({ modalBlock, ItemKey }) {
     // payload.arrayIndex = CURRENT.RacksArrayIndex;
     // payload.key = "Model Name *";
   };
-
-  console.log("Model Name *" === ItemKey);
 
   const [inputText, setInputText] = React.useState(
     BASE_DATA[payload.ObjKey][payload.modalType][CURRENT[payload.modalType + "Index"]][payload.Key]
@@ -89,8 +86,6 @@ export default function SearchInput({ modalBlock, ItemKey }) {
       break;
   }
 
-  console.log(KeyArray);
-
   React.useEffect(() => {
     axios.get(fullURL + URLAdd).then((res) => {
       setData(res.data);
@@ -110,11 +105,6 @@ export default function SearchInput({ modalBlock, ItemKey }) {
           dispatch(actions.updateKeyValueIn(payload));
           setInputText(e.target.value);
           payload.value = e.target.value;
-          console.log(payload);
-          // setTimeout(() => {
-          //   payload.key = "Model Name *";
-          //   dispatch(actions.updateKeyValueIn(payload));
-          // }, 100);
           setTimeout(() => {
             setModelArray(FindMatch(inputText, Data, ItemKey));
           }, 100);
@@ -127,7 +117,6 @@ export default function SearchInput({ modalBlock, ItemKey }) {
               key={SearchedIndex}
               onClick={(e) => {
                 setInputText(e.target.innerText);
-                console.log(KeyArray.length);
                 for (let i = 0; i < KeyArray.length; i++) {
                   setTimeout(() => {
                     if (Data[SearchedItem].hasOwnProperty(KeyArray[i])) {

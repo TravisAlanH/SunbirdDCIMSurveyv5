@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import createTable from "../../Reuse/CreateTable";
 import download_to_excel from "../../Reuse/ExportExcel";
+import { Assets } from "../../Components/CustomField/CustomFieldExportTemplates";
 
 export default function ExportPage() {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -26,10 +27,44 @@ export default function ExportPage() {
                 if (e.target.value === "default") {
                   return;
                 }
-                // let formatData = BASE_DATA[e.target.value][e.target.value + "Array"].map(({ ID, Index, ...item }) => ({ ...item }));
-                // formatData = formatData.sort((a, b) => (a["Cabinet **"] > b["Cabinet **"] ? 1 : -1));
+
                 setModalBlock(e.target.value);
-                createTable(BASE_DATA[e.target.value][e.target.value + "Array"], "ExportTable");
+                let Input = BASE_DATA[e.target.value][e.target.value + "Array"];
+                let Field = Assets;
+                //
+                if (e.target.value === "Assets") {
+                  const updatedInput = {};
+                  const updatedArray = [];
+                  for (let i = 0; i < Input.length; i++) {
+                    for (const inputKey in Input[i]) {
+                      if (Input[i].hasOwnProperty(inputKey)) {
+                        const inputValue = Input[i][inputKey];
+
+                        // Check if the input key exists as a value in the Field object
+                        if (Object.values(Field).includes(inputKey)) {
+                          // If it does, find the corresponding key in the Field object
+                          for (const fieldKey in Field) {
+                            if (Field.hasOwnProperty(fieldKey) && Field[fieldKey] === inputKey) {
+                              // Replace the input key with the field key in the updatedInput object
+                              updatedInput[fieldKey] = inputValue;
+                              break; // Stop searching for the field key once found
+                            }
+                          }
+                        }
+                        // Note: If the input key is not found in Field, it will not be added to updatedInput
+                      }
+                    }
+                    updatedArray.push(updatedInput);
+                    console.log(updatedArray);
+                    // updatedInput now contains only the keys that exist in Field
+                  }
+
+                  createTable(updatedArray, "ExportTable");
+                } else {
+                  createTable(BASE_DATA[e.target.value][e.target.value + "Array"], "ExportTable");
+                }
+
+                //
               }}
             >
               <option value="default">Select</option>
@@ -48,7 +83,11 @@ export default function ExportPage() {
           <button
             className="w-[4rem] h-[1.5rem] bg-slate-200 rounded-md m-4"
             onClick={(e) => {
-              download_to_excel(e, modalBlock, "ExportTable");
+              delete modalBlock["ID"];
+              delete modalBlock["Name *"];
+              delete modalBlock["Index"];
+              // download_to_excel(e, modalBlock, "ExportTable");
+              download_to_excel("xlsx");
             }}
           >
             Export

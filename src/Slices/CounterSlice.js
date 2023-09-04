@@ -7,7 +7,6 @@ const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
-    // Update and Add to Modals
     updateKeyValueIn: (state, action) => {
       state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][action.payload.arrayIndex][action.payload.key] =
         action.payload.value;
@@ -21,16 +20,6 @@ const locationSlice = createSlice({
         ...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType],
         newData,
       ];
-
-      // state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType] = [
-      //   ...state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType],
-      //   Templates[action.payload.modalType],
-      // ];
-      // if (action.payload.modalType === "RoomDataArray") {
-      //   state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType][
-      //     state.Location[action.payload.index][action.payload.ObjKey][action.payload.modalType].length - 1
-      //   ]["Location"] = state.Location[action.payload.index]["LocationData"]["dcTrack Location Code*"];
-      // }
     },
     updateLocation: (state, action) => {
       state.Location[action.payload.index].LocationData[action.payload.ObjKey] = action.payload.value;

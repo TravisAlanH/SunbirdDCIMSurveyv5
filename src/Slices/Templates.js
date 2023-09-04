@@ -1,9 +1,8 @@
 let Templates = {
   Location: {
-    "ID": "",
+    "# Operation *": "ADD", //
+    "Object *": "LOCATION", //
     "Name *": "",
-    "# Operation *": "",
-    "Object *": "",
     "dcTrack Location Name*": "",
     "dcTrack Location Code*": "",
     "dcTrack Location Hierarchy*": "",
@@ -16,14 +15,14 @@ let Templates = {
     "Capacity(kW)": "",
   },
   AssetsArray: {
-    "Name *": "",
-    "# Operation *": "PLANNED",
-    "Object *": "DEVICE",
+    "# Operation *": "ADD", //
+    "Object *": "DEVICE-RACKABLE", //
+    "Name *": "", //
     "Make *": "", //
     "Model Name *": "", //
-    "Class *": "",
+    "Class *": "", //
     "Mounting *": "", //
-    "Form Factor *": "", //
+    "Form Factor *": "",
     "Rack Units *": 0,
     "Height *": 0,
     "Width": 0,
@@ -36,12 +35,12 @@ let Templates = {
     "Orientation **": "", //
     "Rails Used **": "", //
     "Location *": "",
+    "Status": "PLANNED",
   },
   RacksArray: {
-    "ID": "",
-    "Name *": "",
-    "#Operation *": "",
+    "# Operation *": "ADD", //
     "Object *": "",
+    "Name *": "",
     "Make *": "",
     "Model Name *": "",
     "Serial Number *": "",
@@ -58,9 +57,11 @@ let Templates = {
     "RU Available": "",
     "Grounded": "",
     "Location *": "",
+    "Status": "PLANNED",
   },
   RoomsArray: {
-    "ID": "",
+    "# Operation *": "ADD", //
+    "Object *": "LOCATION",
     "Name *": "",
     "Room Number*": "",
     "GPS Location": "",
@@ -71,6 +72,7 @@ let Templates = {
     "Water Damage": "",
     "Water Damage Note": "",
     "Location *": "",
+    "Status": "PLANNED",
   },
   FireProtectionArray: {
     "ID": "",
@@ -82,29 +84,6 @@ let Templates = {
     "Location": "",
   },
 };
-
-const State2 = {
-  Location: [
-    {
-      Location: [],
-      RoomDataArray: [],
-      AssetsArray: [],
-      RacksArray: [],
-    },
-  ],
-  Current: {
-    "dcTrack Location Name*": "",
-    "Room Number": "",
-    "LocationIndex": 0,
-    "RoomArrayIndex": 0,
-    "AssetsArrayIndex": 0,
-    "RacksArrayIndex": 0,
-  },
-};
-
-// Fix Location Refactor to be Object not Array
-
-// turn Modal.js into component, passing in State2.Location[//Section from something//].Sections Below (Not the LocationData)
 
 const State = {
   Location: [
@@ -183,5 +162,5 @@ const State = {
   DataAssets: [],
 };
 
-export { State, State2 };
+export { State };
 export default Templates;

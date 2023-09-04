@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ArrayInput from "./Reuse/ArrayInput";
+import CustomFieldButton from "../CustomField/CustomFieldButton";
 
 export default function InputPage({ modalBlock }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -43,6 +44,7 @@ export default function InputPage({ modalBlock }) {
             </div>
           </div>
         )}
+        {modalBlock === "Assets" ? <CustomFieldButton /> : null}
       </div>
     );
   }
