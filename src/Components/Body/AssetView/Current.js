@@ -11,11 +11,11 @@ export default function Current({ RackIndex, MatchedIndex }) {
       </div>
       <div className="w-full h-full flex flex-row justify-center">
         <div className="flex flex-row justify-start">
-          <RacksPreviewInput modalBlock={"Assets"} keyItem={"Name *"} edit={false} />
-          <RacksPreviewInput modalBlock={"Assets"} keyItem={"Make *"} edit={false} />
+          <RacksPreviewInput modalBlock={"Assets"} keyItem={"Name *"} edit={false} Current={MatchedIndex} />
+          <RacksPreviewInput modalBlock={"Assets"} keyItem={"Make *"} edit={false} Current={MatchedIndex} />
         </div>
         <div className="flex flex-row justify-start">
-          <RacksPreviewInput modalBlock={"Assets"} keyItem={"Model *"} edit={false} />
+          <RacksPreviewInput modalBlock={"Assets"} keyItem={"Model Name *"} edit={false} Current={MatchedIndex} />
           {/* <select
             className="w-[5rem] border-2 rounded-md"
             onClick={(e) => e.stopPropagation()}

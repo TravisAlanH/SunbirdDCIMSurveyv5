@@ -118,10 +118,13 @@ export default function SearchInput({ modalBlock, ItemKey }) {
               onClick={(e) => {
                 setInputText(e.target.innerText);
                 for (let i = 0; i < KeyArray.length; i++) {
+                  let AdjustedData = Data[SearchedItem];
+                  delete AdjustedData["#Operation *"];
+                  delete AdjustedData["Object *"];
                   setTimeout(() => {
-                    if (Data[SearchedItem].hasOwnProperty(KeyArray[i])) {
+                    if (AdjustedData.hasOwnProperty(KeyArray[i])) {
                       payload.key = KeyArray[i];
-                      payload.value = Data[SearchedItem][KeyArray[i]];
+                      payload.value = AdjustedData[KeyArray[i]];
                       dispatch(actions.updateKeyValueIn(payload));
                     }
                   }, i * 200);

@@ -24,9 +24,11 @@ export default function AddButton({ modalBlock }) {
     }
   }
 
+  let display = modalBlock === "Assets" ? "hidden" : "inline-block";
+
   return (
     <button
-      className="w-[4rem] h-[1.5rem] bg-slate-200 rounded-md"
+      className={"w-[4rem] h-[1.5rem] bg-slate-200 rounded-md " + display}
       onClick={() => {
         dispatch(actions.addToArray(payload));
         payload.key = modalBlock + "ArrayIndex";
