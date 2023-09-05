@@ -33,7 +33,8 @@ export default function ArrayInput({ modalBlock, keyItem, edit, size, assetData,
       </div>
       <legend className="text-xs font-bold w-[7rem] h-[1.5rem] p-1 bg-[#F7F5F1]">{label}</legend>
       {(label === "Model Name " && modalBlock === "Assets") || (label === "Model Name " && modalBlock === "Racks") ? (
-        <SearchInput modalBlock={modalBlock} ItemKey={keyItem} rackData={rackData} assetData={assetData} />
+        // <SearchInput modalBlock={modalBlock} ItemKey={keyItem} rackData={rackData} assetData={assetData} data={modalBlock === "Racks" ? rackData : assetData} />
+        <SearchInput modalBlock={modalBlock} ItemKey={keyItem} data={modalBlock === "Racks" ? rackData : assetData} />
       ) : (
         <input
           type="text"

@@ -5,15 +5,19 @@ import FindMatch from "../../Reuse/FindMatch";
 // import axios from "axios";
 import Templates from "../../Slices/Templates";
 
-export default function SearchInput({ modalBlock, ItemKey, assetData, rackData }) {
+export default function SearchInput({ modalBlock, ItemKey, data }) {
   const [modelArray, setModelArray] = React.useState([]);
-  // const [Data, setData] = React.useState([]);
+  // const [Data, setData] = React.useState(data);
   const CURRENT = useSelector((state) => state.location.Current);
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const dispatch = useDispatch();
 
+  const Data = data;
+
   // let fullURL = process.env.REACT_APP_BASEURL;
   // let URLAdd = "";
+
+  // let modelArray = [];
 
   let payload = {
     index: 0,
@@ -34,23 +38,24 @@ export default function SearchInput({ modalBlock, ItemKey, assetData, rackData }
       ? BASE_DATA[payload.ObjKey][payload.modalType][CURRENT[payload.modalType + "Index"]][payload.Key]
       : ""
   );
+  // const [inputText, setInputText] = React.useState("");
 
   let KeyArray = [];
 
-  let Data = [];
+  // let Data = [];
 
   switch (modalBlock) {
     case "Racks":
       KeyArray = Object.keys(Templates.RacksArray);
       payload.arrayIndex = CURRENT.RacksArrayIndex;
-      Data = rackData;
+      // Data = rackData;
       // setData(rackData);
       // URLAdd = process.env.REACT_APP_RACKURL;
       break;
     case "Assets":
       KeyArray = Object.keys(Templates.AssetsArray);
       payload.arrayIndex = CURRENT.AssetsArrayIndex;
-      Data = assetData;
+      // Data = assetData;
       // setData(assetData);
       // URLAdd = process.env.REACT_APP_DEVICEURL;
       break;
@@ -77,35 +82,41 @@ export default function SearchInput({ modalBlock, ItemKey, assetData, rackData }
           setInputText(e.target.value);
           payload.value = e.target.value;
           setTimeout(() => {
+            // modelArray = FindMatch(inputText, Data, ItemKey);
             setModelArray(FindMatch(inputText, Data, ItemKey));
           }, 100);
         }}
       />
       <div className="dropdown-content">
-        {modelArray.map((SearchedItem, SearchedIndex) => {
-          return (
-            <button
-              key={SearchedIndex}
-              onClick={(e) => {
-                setInputText(e.target.innerText);
-                for (let i = 0; i < KeyArray.length; i++) {
-                  let AdjustedData = Data[SearchedItem];
-                  delete AdjustedData["#Operation *"];
-                  delete AdjustedData["Object *"];
-                  setTimeout(() => {
-                    if (AdjustedData.hasOwnProperty(KeyArray[i])) {
-                      payload.key = KeyArray[i];
-                      payload.value = AdjustedData[KeyArray[i]];
-                      dispatch(actions.updateKeyValueIn(payload));
-                    }
-                  }, i * 200);
-                }
-              }}
-            >
-              {Data[SearchedItem][ItemKey]}
-            </button>
-          );
-        })}
+        {modelArray.length === 0 ? (
+          <div></div>
+        ) : (
+          modelArray.map((SearchedItem, SearchedIndex) => {
+            return (
+              <button
+                key={SearchedIndex}
+                onClick={(e) => {
+                  setInputText(e.target.innerText);
+                  for (let i = 0; i < KeyArray.length; i++) {
+                    let AdjustedData = Data[SearchedItem];
+                    delete AdjustedData["#Operation *"];
+                    delete AdjustedData["Object *"];
+                    delete AdjustedData["Model Name *"];
+                    setTimeout(() => {
+                      if (AdjustedData.hasOwnProperty(KeyArray[i])) {
+                        payload.key = KeyArray[i];
+                        payload.value = AdjustedData[KeyArray[i]];
+                        dispatch(actions.updateKeyValueIn(payload));
+                      }
+                    }, i * 200);
+                  }
+                }}
+              >
+                {Data[SearchedItem][ItemKey]}
+              </button>
+            );
+          })
+        )}
       </div>
     </div>
   );
