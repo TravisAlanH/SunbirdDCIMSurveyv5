@@ -9,8 +9,6 @@ export default function InputPage({ modalBlock, assetData, rackData }) {
   const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
   const ARRAY_DATA = BASE_DATA[modalBlock][modalBlock + "Array"][CURRENT];
 
-  console.log("InputPage");
-
   if (CURRENT < 0) {
     return null;
   } else {
