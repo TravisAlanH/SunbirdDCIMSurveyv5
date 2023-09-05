@@ -180,7 +180,7 @@ const State = {
     "AssetsArrayIndex": 0,
     "RacksArrayIndex": 0,
     "Login": 0,
-    "LocalStorage": false,
+    "LocalStorage": true,
   },
   DataRacks: [],
   DataAssets: [],
