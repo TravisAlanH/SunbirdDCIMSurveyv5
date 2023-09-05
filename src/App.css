@@ -105,8 +105,19 @@ html, body { height: 100% }
   background: linear-gradient(290deg, #f59439 50%, #852e2e 50%);} */
 
   .orangeSplit {
-    background: linear-gradient(290deg, #f59439 50%, #ffffff 50%);}
+    background: linear-gradient(290deg, #f59439 50%, #ffffff 50%);
+  }
   
+    .orangeButton {
+      /* width: 4rem; */
+      padding-left: .7rem;
+      padding-right: .7rem;
+      height: 1.8rem;
+      background-color: #f59439;
+      border-radius: 0.25rem;
+      color: white
+      /* "w-[4rem] h-[1.5rem] bg-slate-200 rounded-md" */
+    }
 /* .ModInput {  
     border: none;
     font-size: 16px;

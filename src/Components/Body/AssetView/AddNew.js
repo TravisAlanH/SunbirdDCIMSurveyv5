@@ -25,7 +25,7 @@ export default function AddNew({ RackIndex }) {
       </div>
       <div className="w-[20rem] h-[2rem] flex flex-row justify-start items-center px-4">
         <button
-          className="w-[4rem] h-[1.5rem] bg-slate-200 rounded-md"
+          className="orangeButton"
           onClick={() => {
             payload.modalType = "AssetsArray";
 
