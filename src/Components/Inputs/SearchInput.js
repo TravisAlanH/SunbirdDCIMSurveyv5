@@ -2,12 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import FindMatch from "../../Reuse/FindMatch";
-// import axios from "axios";
+import axios from "axios";
 import Templates from "../../Slices/Templates";
 
-<<<<<<< HEAD
-export default function SearchInput({ modalBlock, ItemKey, data }) {
-=======
 //RACKS
 // {
 //   "#Operation *": "ADD",
@@ -43,21 +40,14 @@ export default function SearchInput({ modalBlock, ItemKey, data }) {
 // },
 
 export default function SearchInput({ modalBlock, ItemKey }) {
->>>>>>> parent of f102557 (Clean up)
   const [modelArray, setModelArray] = React.useState([]);
-<<<<<<< HEAD
-  // const [Data, setData] = React.useState(data);
-=======
   const [Data, setData] = React.useState([]);
->>>>>>> parent of 8bcaf26 (Clean up Data)
   const CURRENT = useSelector((state) => state.location.Current);
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const dispatch = useDispatch();
 
-  const Data = data;
-
-  // let fullURL = process.env.REACT_APP_BASEURL;
-  // let URLAdd = "";
+  let fullURL = process.env.REACT_APP_BASEURL;
+  let URLAdd = "";
 
   // let modelArray = [];
 
@@ -84,52 +74,29 @@ export default function SearchInput({ modalBlock, ItemKey }) {
 
   let KeyArray = [];
 
-<<<<<<< HEAD
-  // let Data = [];
-
-=======
->>>>>>> parent of 8bcaf26 (Clean up Data)
   switch (modalBlock) {
     case "Racks":
       KeyArray = Object.keys(Templates.RacksArray);
       payload.arrayIndex = CURRENT.RacksArrayIndex;
-<<<<<<< HEAD
-      // Data = rackData;
       // setData(rackData);
-=======
-      setData(rackData);
->>>>>>> parent of 8bcaf26 (Clean up Data)
-      // URLAdd = process.env.REACT_APP_RACKURL;
+      URLAdd = process.env.REACT_APP_RACKURL;
       break;
     case "Assets":
       KeyArray = Object.keys(Templates.AssetsArray);
       payload.arrayIndex = CURRENT.AssetsArrayIndex;
-<<<<<<< HEAD
-      // Data = assetData;
       // setData(assetData);
-=======
-      setData(assetData);
->>>>>>> parent of 8bcaf26 (Clean up Data)
-      // URLAdd = process.env.REACT_APP_DEVICEURL;
+      URLAdd = process.env.REACT_APP_DEVICEURL;
       break;
     default:
       break;
   }
 
-<<<<<<< HEAD
-  // React.useEffect(() => {
-  //   axios.get(fullURL + URLAdd).then((res) => {
-  //     setData(res.data);
-  //   });
-  // }, [URLAdd, fullURL]);
-=======
   React.useEffect(() => {
     axios.get(fullURL + URLAdd).then((res) => {
       setData(res.data);
       // Data = res.data;
     });
   }, [URLAdd, fullURL]);
->>>>>>> parent of f102557 (Clean up)
 
   return (
     <div className="dropdown z-30" onClick={(e) => e.stopPropagation()}>
