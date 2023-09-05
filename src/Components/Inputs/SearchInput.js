@@ -78,14 +78,24 @@ export default function SearchInput({ modalBlock, ItemKey }) {
     case "Racks":
       KeyArray = Object.keys(Templates.RacksArray);
       payload.arrayIndex = CURRENT.RacksArrayIndex;
+<<<<<<< HEAD
       // setData(rackData);
       URLAdd = process.env.REACT_APP_RACKURL;
+=======
+      setData(rackData);
+      // URLAdd = process.env.REACT_APP_RACKURL;
+>>>>>>> parent of 8bcaf26 (Clean up Data)
       break;
     case "Assets":
       KeyArray = Object.keys(Templates.AssetsArray);
       payload.arrayIndex = CURRENT.AssetsArrayIndex;
+<<<<<<< HEAD
       // setData(assetData);
       URLAdd = process.env.REACT_APP_DEVICEURL;
+=======
+      setData(assetData);
+      // URLAdd = process.env.REACT_APP_DEVICEURL;
+>>>>>>> parent of 8bcaf26 (Clean up Data)
       break;
     default:
       break;
