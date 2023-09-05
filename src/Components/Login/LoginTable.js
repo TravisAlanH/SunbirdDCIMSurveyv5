@@ -4,9 +4,13 @@ import axios from "axios";
 import * as actions from "../../Slices/CounterSlice";
 import { useDispatch } from "react-redux";
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import axios from "axios";
 =======
 >>>>>>> parent of bd5ee0e (Update LoginTable.js)
+=======
+import axios from "axios";
+>>>>>>> parent of b12fad0 (revert)
 
 export default function LoginTable({ setAssetData, setRackData }) {
   const dispatch = useDispatch();
@@ -41,6 +45,7 @@ export default function LoginTable({ setAssetData, setRackData }) {
   // console.log(data);
   //   }
 
+<<<<<<< HEAD
   // let FULL_URL = process.env.REACT_APP_BASEURL;
 =======
   async function getData() {
@@ -52,6 +57,9 @@ export default function LoginTable({ setAssetData, setRackData }) {
     });
   }
 >>>>>>> parent of bd5ee0e (Update LoginTable.js)
+=======
+  let FULL_URL = process.env.REACT_APP_BASEURL;
+>>>>>>> parent of b12fad0 (revert)
 
   return (
     <div className="h-[31rem] w-[17.5rem] flex flex-col pt-[1rem] justify-center items-center relative bg-[rgba(16,16,16,0.68);] rounded-md">
@@ -79,6 +87,7 @@ export default function LoginTable({ setAssetData, setRackData }) {
               if (user === baseLogin && pass === basePass) {
                 dispatch(actions.loginInOut(payload));
 <<<<<<< HEAD
+<<<<<<< HEAD
                 // setTimeout(() => {
                 //   let AddURL = process.env.REACT_APP_RACKURL;
                 //   axios.get(FULL_URL + AddURL).then((res) => {
@@ -96,6 +105,22 @@ export default function LoginTable({ setAssetData, setRackData }) {
 =======
                 getData();
 >>>>>>> parent of bd5ee0e (Update LoginTable.js)
+=======
+                setTimeout(() => {
+                  let AddURL = process.env.REACT_APP_RACKURL;
+                  axios.get(FULL_URL + AddURL).then((res) => {
+                    dispatch(actions.getRackData(res.data));
+                    // Data = res.data;
+                  });
+                  setTimeout(() => {
+                    let AddURL = process.env.REACT_APP_DEVICEURL;
+                    axios.get(FULL_URL + AddURL).then((res) => {
+                      dispatch(actions.getAssetData(res.data));
+                      // Data = res.data;
+                    });
+                  }, 1000);
+                }, 1000);
+>>>>>>> parent of b12fad0 (revert)
               }
             }}
           >

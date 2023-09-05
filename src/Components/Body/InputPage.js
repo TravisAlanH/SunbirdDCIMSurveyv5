@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ArrayInput from "./Reuse/ArrayInput";
 import CustomFieldButton from "../CustomField/CustomFieldButton";
 
-export default function InputPage({ modalBlock }) {
+export default function InputPage({ modalBlock, assetData, rackData }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
   const ARRAY_DATA = BASE_DATA[modalBlock][modalBlock + "Array"][CURRENT];
@@ -24,7 +24,7 @@ export default function InputPage({ modalBlock }) {
                 .map((keyItem, keyIndex) => {
                   return (
                     <div key={keyItem}>
-                      <ArrayInput modalBlock={modalBlock} keyItem={keyItem} />
+                      <ArrayInput modalBlock={modalBlock} keyItem={keyItem} rackData={rackData} assetData={assetData} />
                     </div>
                   );
                 })}
@@ -37,7 +37,7 @@ export default function InputPage({ modalBlock }) {
               {Object.keys(ARRAY_DATA).map((keyItem, keyIndex) => {
                 return (
                   <div key={keyItem}>
-                    <ArrayInput modalBlock={modalBlock} keyItem={keyItem} />
+                    <ArrayInput modalBlock={modalBlock} keyItem={keyItem} rackData={rackData} assetData={assetData} />
                   </div>
                 );
               })}
