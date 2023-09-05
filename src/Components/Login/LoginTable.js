@@ -1,18 +1,11 @@
 import React from "react";
 import Logo from "../../Img/sunbird-logo-white.png";
-import axios from "axios";
+// import axios from "axios";
 import * as actions from "../../Slices/CounterSlice";
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD
-<<<<<<< HEAD
-// import axios from "axios";
-=======
->>>>>>> parent of bd5ee0e (Update LoginTable.js)
-=======
 import axios from "axios";
->>>>>>> parent of b12fad0 (revert)
 
-export default function LoginTable({ setAssetData, setRackData }) {
+export default function LoginTable() {
   const dispatch = useDispatch();
   const baseLogin = process.env.REACT_APP_LOGIN;
   const basePass = process.env.REACT_APP_PASS;
@@ -21,11 +14,13 @@ export default function LoginTable({ setAssetData, setRackData }) {
     set: 1,
   };
 
-  let fullURL = process.env.REACT_APP_BASEURL;
-  let URLRack = process.env.REACT_APP_RACKURL;
-  let URLAssets = process.env.REACT_APP_DEVICEURL;
+  //   function Login(e) {
+  //     e.preventDefault();
+  //     // e.preventDefault();
+  //     let user = document.getElementById("user").value;
+  //     let pass = document.getElementById("pass").value;
+  //     // let domain = document.getElementById("domain").value;
 
-<<<<<<< HEAD
   //     if (user === baseLogin && pass === basePass) {
   //       dispatch(actions.loginInOut(payload));
   //     }
@@ -45,21 +40,7 @@ export default function LoginTable({ setAssetData, setRackData }) {
   // console.log(data);
   //   }
 
-<<<<<<< HEAD
-  // let FULL_URL = process.env.REACT_APP_BASEURL;
-=======
-  async function getData() {
-    await axios.get(fullURL + URLAssets).then((res) => {
-      setAssetData(res.data);
-    });
-    await axios.get(fullURL + URLRack).then((res) => {
-      setRackData(res.data);
-    });
-  }
->>>>>>> parent of bd5ee0e (Update LoginTable.js)
-=======
   let FULL_URL = process.env.REACT_APP_BASEURL;
->>>>>>> parent of b12fad0 (revert)
 
   return (
     <div className="h-[31rem] w-[17.5rem] flex flex-col pt-[1rem] justify-center items-center relative bg-[rgba(16,16,16,0.68);] rounded-md">
@@ -86,26 +67,6 @@ export default function LoginTable({ setAssetData, setRackData }) {
               // let domain = document.getElementById("domain").value;
               if (user === baseLogin && pass === basePass) {
                 dispatch(actions.loginInOut(payload));
-<<<<<<< HEAD
-<<<<<<< HEAD
-                // setTimeout(() => {
-                //   let AddURL = process.env.REACT_APP_RACKURL;
-                //   axios.get(FULL_URL + AddURL).then((res) => {
-                //     dispatch(actions.getRackData(res.data));
-                //     // Data = res.data;
-                //   });
-                //   setTimeout(() => {
-                //     let AddURL = process.env.REACT_APP_DEVICEURL;
-                //     axios.get(FULL_URL + AddURL).then((res) => {
-                //       dispatch(actions.getAssetData(res.data));
-                //       // Data = res.data;
-                //     });
-                //   }, 1000);
-                // }, 1000);
-=======
-                getData();
->>>>>>> parent of bd5ee0e (Update LoginTable.js)
-=======
                 setTimeout(() => {
                   let AddURL = process.env.REACT_APP_RACKURL;
                   axios.get(FULL_URL + AddURL).then((res) => {
@@ -120,7 +81,6 @@ export default function LoginTable({ setAssetData, setRackData }) {
                     });
                   }, 1000);
                 }, 1000);
->>>>>>> parent of b12fad0 (revert)
               }
             }}
           >
