@@ -44,7 +44,9 @@ const locationSlice = createSlice({
     },
 
     removeFromAssetsArray: (state, action) => {
-      state.Location[0]["Assets"]["AssetsArray"] = state.Location[0]["Assets"]["AssetsArray"].filter((item, index) => index !== action.payload);
+      state.Location[0]["Assets"]["AssetsArray"] = state.Location[0]["Assets"]["AssetsArray"].filter(
+        (item, index) => index !== action.payload.removeIndex
+      );
     },
 
     loginInOut: (state, action) => {

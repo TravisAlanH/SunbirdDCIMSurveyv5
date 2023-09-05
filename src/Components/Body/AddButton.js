@@ -28,7 +28,7 @@ export default function AddButton({ modalBlock }) {
 
   return (
     <button
-      className={"w-[4rem] h-[1.5rem] bg-slate-200 rounded-md " + display}
+      className={"orangeButton w-[6rem] font-white " + display}
       onClick={() => {
         dispatch(actions.addToArray(payload));
         payload.key = modalBlock + "ArrayIndex";
