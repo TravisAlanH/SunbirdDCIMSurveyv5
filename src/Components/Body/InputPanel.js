@@ -7,6 +7,7 @@ import AssetViewRack from "./AssetView/AssetViewRack";
 import AssetView from "./AssetView/AssetView";
 
 export default function InputPanel({ modalBlock, assetData, rackData }) {
+  console.log("InputPanel");
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   // const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
   // const dispatch = useDispatch();

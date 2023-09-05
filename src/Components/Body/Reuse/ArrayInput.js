@@ -9,7 +9,10 @@ export default function ArrayInput({ modalBlock, keyItem, edit, size, assetData,
   const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
   const dispatch = useDispatch();
 
+  console.log("ArrayInput");
+
   let Placeholder;
+
   let label = keyItem.replace("*", "");
 
   let payload = {

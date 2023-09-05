@@ -5,6 +5,7 @@ import InputPanel from "./InputPanel";
 
 export default function Body({ pageContent, setPageContent, assetData, rackData }) {
   const State = useSelector((state) => state.location.Location[0]);
+  console.log("body");
   // const [pageContent, setPageContent] = React.useState();
   return (
     <div className="flex flex-col items-center">

@@ -20,6 +20,7 @@ export default function LoginTable({ setAssetData, setRackData }) {
   async function getData() {
     await axios.get(fullURL + URLAssets).then((res) => {
       setAssetData(res.data);
+      console.log(res.data);
     });
     await axios.get(fullURL + URLRack).then((res) => {
       setRackData(res.data);
