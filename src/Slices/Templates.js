@@ -156,7 +156,7 @@ const State = {
     "RoomsArrayIndex": 0,
     "AssetsArrayIndex": 0,
     "RacksArrayIndex": 0,
-    "Login": 1,
+    "Login": 0,
   },
   DataRacks: [],
   DataAssets: [],
