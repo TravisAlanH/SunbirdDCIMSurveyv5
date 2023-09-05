@@ -2,18 +2,18 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../Slices/CounterSlice";
 import FindMatch from "../../Reuse/FindMatch";
-import axios from "axios";
+// import axios from "axios";
 import Templates from "../../Slices/Templates";
 
-export default function SearchInput({ modalBlock, ItemKey }) {
+export default function SearchInput({ modalBlock, ItemKey, assetData, rackData }) {
   const [modelArray, setModelArray] = React.useState([]);
   const [Data, setData] = React.useState([]);
   const CURRENT = useSelector((state) => state.location.Current);
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const dispatch = useDispatch();
 
-  let fullURL = process.env.REACT_APP_BASEURL;
-  let URLAdd = "";
+  // let fullURL = process.env.REACT_APP_BASEURL;
+  // let URLAdd = "";
 
   let payload = {
     index: 0,
@@ -41,22 +41,24 @@ export default function SearchInput({ modalBlock, ItemKey }) {
     case "Racks":
       KeyArray = Object.keys(Templates.RacksArray);
       payload.arrayIndex = CURRENT.RacksArrayIndex;
-      URLAdd = process.env.REACT_APP_RACKURL;
+      setData(rackData);
+      // URLAdd = process.env.REACT_APP_RACKURL;
       break;
     case "Assets":
       KeyArray = Object.keys(Templates.AssetsArray);
       payload.arrayIndex = CURRENT.AssetsArrayIndex;
-      URLAdd = process.env.REACT_APP_DEVICEURL;
+      setData(assetData);
+      // URLAdd = process.env.REACT_APP_DEVICEURL;
       break;
     default:
       break;
   }
 
-  React.useEffect(() => {
-    axios.get(fullURL + URLAdd).then((res) => {
-      setData(res.data);
-    });
-  }, [URLAdd, fullURL]);
+  // React.useEffect(() => {
+  //   axios.get(fullURL + URLAdd).then((res) => {
+  //     setData(res.data);
+  //   });
+  // }, [URLAdd, fullURL]);
 
   return (
     <div className="dropdown z-30" onClick={(e) => e.stopPropagation()}>

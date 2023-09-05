@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "../../Img/sunbird-logo-white.png";
-// import axios from "axios";
+import axios from "axios";
 import * as actions from "../../Slices/CounterSlice";
 import { useDispatch } from "react-redux";
 
-export default function LoginTable() {
+export default function LoginTable({ setAssetData, setRackData }) {
   const dispatch = useDispatch();
   const baseLogin = process.env.REACT_APP_LOGIN;
   const basePass = process.env.REACT_APP_PASS;
@@ -13,31 +13,18 @@ export default function LoginTable() {
     set: 1,
   };
 
-  //   function Login(e) {
-  //     e.preventDefault();
-  //     // e.preventDefault();
-  //     let user = document.getElementById("user").value;
-  //     let pass = document.getElementById("pass").value;
-  //     // let domain = document.getElementById("domain").value;
+  let fullURL = process.env.REACT_APP_BASEURL;
+  let URLRack = process.env.REACT_APP_RACKURL;
+  let URLAssets = process.env.REACT_APP_DEVICEURL;
 
-  //     if (user === baseLogin && pass === basePass) {
-  //       dispatch(actions.loginInOut(payload));
-  //     }
-
-  // axios
-  //   .get(`/api?type=makes&user=${user}&pass=${pass}&domain=${domain}`)
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
-  // fetch(`/api?type=makes&user=${user}&pass=${pass}&domain=${domain}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data.message));
-  // console.log(data);
-  //   }
+  async function getData() {
+    await axios.get(fullURL + URLAssets).then((res) => {
+      setAssetData(res.data);
+    });
+    await axios.get(fullURL + URLRack).then((res) => {
+      setRackData(res.data);
+    });
+  }
 
   return (
     <div className="h-[31rem] w-[17.5rem] flex flex-col pt-[1rem] justify-center items-center relative bg-[rgba(16,16,16,0.68);] rounded-md">
@@ -64,6 +51,7 @@ export default function LoginTable() {
               // let domain = document.getElementById("domain").value;
               if (user === baseLogin && pass === basePass) {
                 dispatch(actions.loginInOut(payload));
+                getData();
               }
             }}
           >

@@ -6,7 +6,7 @@ import InputPage from "./InputPage";
 import AssetViewRack from "./AssetView/AssetViewRack";
 import AssetView from "./AssetView/AssetView";
 
-export default function InputPanel({ modalBlock }) {
+export default function InputPanel({ modalBlock, assetData, rackData }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   // const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
   // const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export default function InputPanel({ modalBlock }) {
         <AddButton modalBlock={modalBlock} />
       </div>
       <div className="flex flex-col lg:flex-row md:flex-row sm:justify-start md:items-start lg:items-start gap-3">
-        <InputPage modalBlock={modalBlock} />
+        <InputPage modalBlock={modalBlock} rackData={rackData} assetData={assetData} />
         {modalBlock === "Racks" ? <AssetViewRack /> : <> </>}
         {modalBlock === "Assets" ? <AssetView /> : <> </>}
       </div>

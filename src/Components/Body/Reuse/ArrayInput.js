@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../Slices/CounterSlice";
 import SearchInput from "../../Inputs/SearchInput";
 
-export default function ArrayInput({ modalBlock, keyItem, edit, size }) {
+export default function ArrayInput({ modalBlock, keyItem, edit, size, assetData, rackData }) {
   // const BASE_DATA = useSelector((state) => state.location.Location[0]);
   const DATA_Array = useSelector((state) => state.location.Location[0][modalBlock][modalBlock + "Array"]);
   const CURRENT = useSelector((state) => state.location.Current[modalBlock + "ArrayIndex"]);
@@ -30,7 +30,7 @@ export default function ArrayInput({ modalBlock, keyItem, edit, size }) {
       </div>
       <legend className="text-xs font-bold w-[7rem] h-[1.5rem] p-1 bg-[#F7F5F1]">{label}</legend>
       {(label === "Model Name " && modalBlock === "Assets") || (label === "Model Name " && modalBlock === "Racks") ? (
-        <SearchInput modalBlock={modalBlock} ItemKey={keyItem} />
+        <SearchInput modalBlock={modalBlock} ItemKey={keyItem} rackData={rackData} assetData={assetData} />
       ) : (
         <input
           type="text"
