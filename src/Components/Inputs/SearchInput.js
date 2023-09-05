@@ -103,7 +103,7 @@ export default function SearchInput({ modalBlock, ItemKey }) {
       <input
         type="text"
         className="dropbtn w-[12rem]"
-        value={inputText}
+        value={inputText !== undefined ? inputText : ""}
         onChange={(e) => {
           payload.value = e.target.value;
           payload.key = ItemKey;
@@ -121,15 +121,14 @@ export default function SearchInput({ modalBlock, ItemKey }) {
           <div></div>
         ) : (
           modelArray.map((SearchedItem, SearchedIndex) => {
+            console.log(SearchedItem);
+            console.log(SearchedIndex);
             return (
               <button
-                key={SearchedIndex}
+                key={SearchedItem}
                 onClick={(e) => {
-                  console.log(SearchedItem);
-
                   setInputText(e.target.innerText);
                   for (let i = 0; i < KeyArray.length; i++) {
-                    console.log(KeyArray[i]);
                     let AdjustedData = Data[SearchedItem];
                     delete AdjustedData["#Operation *"];
                     delete AdjustedData["Object *"];
@@ -139,7 +138,7 @@ export default function SearchInput({ modalBlock, ItemKey }) {
                         payload.value = AdjustedData[KeyArray[i]];
                         dispatch(actions.updateKeyValueIn(payload));
                       }
-                    }, i * 300);
+                    }, i * 50);
                   }
                 }}
               >
