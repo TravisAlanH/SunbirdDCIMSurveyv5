@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ArrayInput from "./Reuse/ArrayInput";
 import CustomFieldButton from "../CustomField/CustomFieldButton";
-import DeleteAssetButton from "./Reuse/DeleteAssetButton";
 
 export default function InputPage({ modalBlock, assetData, rackData }) {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
@@ -45,10 +44,7 @@ export default function InputPage({ modalBlock, assetData, rackData }) {
             </div>
           </div>
         )}
-        <div className="flex flex-row justify-between">
-          {modalBlock === "Assets" ? <CustomFieldButton /> : null}
-          {modalBlock === "Assets" ? <DeleteAssetButton /> : null}
-        </div>
+        {modalBlock === "Assets" ? <CustomFieldButton /> : null}
       </div>
     );
   }

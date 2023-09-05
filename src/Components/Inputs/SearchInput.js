@@ -5,7 +5,45 @@ import FindMatch from "../../Reuse/FindMatch";
 // import axios from "axios";
 import Templates from "../../Slices/Templates";
 
+<<<<<<< HEAD
 export default function SearchInput({ modalBlock, ItemKey, data }) {
+=======
+//RACKS
+// {
+//   "#Operation *": "ADD",
+//   "Object *": "MODEL",
+//   "Make *": "Comm/Net Systems Inc",
+//   "Model Name *": "016-353-10",
+//   "Class *": "Cabinet",
+//   "Mounting *": "Free-Standing",
+//   "Form Factor *": "4-Post Enclosure",
+//   "Rack Units *": 45,
+//   "Height *": 84.1,
+//   "Width": 22.88,
+//   "Depth": 25.9,
+//   "Weight": 0,
+//   "Units": "US"
+// },
+
+//ASSETS
+// {
+//   "#Operation *": "ADD",
+//   "Object *": "MODEL",
+//   "Make *": "Comm/Net Systems Inc",
+//   "Model Name *": "016-353-10",
+//   "Class *": "Cabinet",
+//   "Mounting *": "Free-Standing",
+//   "Form Factor *": "4-Post Enclosure",
+//   "Rack Units *": 45,
+//   "Height *": 84.1,
+//   "Width": 22.88,
+//   "Depth": 25.9,
+//   "Weight": 0,
+//   "Units": "US"
+// },
+
+export default function SearchInput({ modalBlock, ItemKey }) {
+>>>>>>> parent of f102557 (Clean up)
   const [modelArray, setModelArray] = React.useState([]);
 <<<<<<< HEAD
   // const [Data, setData] = React.useState(data);
@@ -78,11 +116,20 @@ export default function SearchInput({ modalBlock, ItemKey, data }) {
       break;
   }
 
+<<<<<<< HEAD
   // React.useEffect(() => {
   //   axios.get(fullURL + URLAdd).then((res) => {
   //     setData(res.data);
   //   });
   // }, [URLAdd, fullURL]);
+=======
+  React.useEffect(() => {
+    axios.get(fullURL + URLAdd).then((res) => {
+      setData(res.data);
+      // Data = res.data;
+    });
+  }, [URLAdd, fullURL]);
+>>>>>>> parent of f102557 (Clean up)
 
   return (
     <div className="dropdown z-30" onClick={(e) => e.stopPropagation()}>

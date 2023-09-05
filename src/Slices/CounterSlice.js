@@ -42,9 +42,6 @@ const locationSlice = createSlice({
     removeFromArray: (state, action) => {
       state["Array"] = state["Array"].filter((item, index) => index !== action.payload);
     },
-    removeFromAssetsArray: (state, action) => {
-      state.Location[0]["Assets"]["AssetsArray"] = state.Location[0]["Assets"]["AssetsArray"].filter((item, index) => index !== action.payload);
-    },
     loginInOut: (state, action) => {
       state.Current["Login"] = action.payload.set;
     },
@@ -67,7 +64,6 @@ const locationSlice = createSlice({
 });
 
 export const {
-  removeFromAssetsArray,
   addRemoveCustomFieldsFromAssets,
   getRackData,
   getAssetData,

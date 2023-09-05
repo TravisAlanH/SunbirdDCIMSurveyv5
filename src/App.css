@@ -247,16 +247,6 @@ tr { font-size: .8rem; width:fit-content;padding-left: .3rem; padding-right: .3r
 
 th, td { border: 1px solid black; height: 1.5rem; font-size: .8rem;padding-left: .3rem; padding-right: .3rem }  
 
-.orangeButton {
-  /* width: 4rem; */
-  padding-left: .7rem;
-  padding-right: .7rem;
-  height: 1.8rem;
-  background-color: #f59439;
-  border-radius: 0.25rem;
-  color: white
-  /* "w-[4rem] h-[1.5rem] bg-slate-200 rounded-md" */
-}
 
 @media (max-width: 767px) {
   table { border-collapse: collapse; font-size: .8rem}
