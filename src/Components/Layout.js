@@ -8,14 +8,13 @@ export default function Layout() {
   const isLogin = useSelector((state) => state.location.Current["Login"]);
   console.log(isLogin);
   const [pageContent, setPageContent] = React.useState();
-  const [rackData, setRackData] = React.useState([]);
-  const [assetData, setAssetData] = React.useState([]);
+
   if (isLogin === 1) {
     return (
       <div className="w-full">
-        <Nav setPageContent={setPageContent} setRackData={setRackData} setAssetData={setAssetData} />
+        <Nav setPageContent={setPageContent} />
         <div className="flex flex-col items-center mt-[4rem]">
-          <Body pageContent={pageContent} setPageContent={setPageContent} rackData={rackData} assetData={assetData} />
+          <Body pageContent={pageContent} setPageContent={setPageContent} />
         </div>
       </div>
     );

@@ -130,7 +130,6 @@ export default function SearchInput({ modalBlock, ItemKey }) {
                     let AdjustedData = Data[SearchedItem];
                     delete AdjustedData["#Operation *"];
                     delete AdjustedData["Object *"];
-                    delete AdjustedData["Model Name *"];
                     setTimeout(() => {
                       if (AdjustedData.hasOwnProperty(KeyArray[i])) {
                         payload.key = KeyArray[i];

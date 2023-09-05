@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import LocationModal from "./LocationModal";
 import InputPanel from "./InputPanel";
 
-export default function Body({ pageContent, setPageContent, assetData, rackData }) {
+export default function Body({ pageContent, setPageContent }) {
   const State = useSelector((state) => state.location.Location[0]);
   // const [pageContent, setPageContent] = React.useState();
   return (
@@ -25,7 +25,7 @@ export default function Body({ pageContent, setPageContent, assetData, rackData 
                       name="css-tabs"
                       id={`tab-${DataIndex + 1}`}
                       className="tab-switch"
-                      onChange={() => setPageContent(<InputPanel modalBlock={DataItem} rackData={rackData} assetData={assetData} />)}
+                      onChange={() => setPageContent(<InputPanel modalBlock={DataItem} />)}
                     />
                     <label htmlFor={`tab-${DataIndex + 1}`} className="tab-label">
                       {DataItem}
