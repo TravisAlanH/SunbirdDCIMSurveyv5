@@ -45,6 +45,60 @@ const Assets = {
   "Notes": "Notes",
 };
 
+const Locations = {
+  "# Operation *": "# Operation *", //
+  "Object *": "Object *", //
+  "dcTrack Location Code*": "dcTrack Location Code*", //
+  "New dcTrack Location Code": "New dcTrack Location Code",
+  "dcTrack Location Name*": "dcTrack Location Name*", //
+  "dcTrack Location Hierarchy": "dcTrack Location Hierarchy*",
+  "dcTrack Location Parent": "dcTrack Location Parent*",
+  "Can Contain Assets": "Can Contain Assets",
+  "Is Default Location": "Is Default Location",
+  "Location Type": "Location Type",
+  "Units": "Units",
+  "Data Center Area": "Data Center Area*", //
+  "Outer Room Dim - L": "Outer Room Dim - L",
+  "Outer Room Dim - W": "Outer Room Dim - W",
+  "Data Center Height Raised Floor": "Data Center Height Raised Floor",
+  "Data Center Height Finished Floor to Finished Ceiling": "Data Center Height Finished Floor to Finished Ceiling",
+  "Data Center Height Finished Ceiling to Slab Ceiling": "Data Center Height Finished Ceiling to Slab Ceiling",
+  "Country": "Country*", //
+  "Street": "Street",
+  "Street (Line 2)": "Street (Line 2)",
+  "City": "City",
+  "State": "State",
+  "Postal Code": "Postal Code",
+  "Drawing North": "Drawing North",
+  "Grid Label": "Grid Label",
+  "Vertical Row Orientation": "Vertical Row Orientation",
+  "Horizontal Row Orientation": "Horizontal Row Orientation",
+  "Location Picture Path": "Location Picture Path",
+  "Enable Virtual Power Chain": "Enable Virtual Power Chain",
+  "Power IQ Appliance": "Power IQ Appliance",
+  "Power IQ Object Type": "Power IQ Object Type",
+  "Power IQ Object ID": "Power IQ Object ID",
+  "Power IQ Object Name": "Power IQ Object Name",
+  "Capacity(kW)": "Capacity(kW)",
+};
+
+const Racks = {
+  "# Operation *": "# Operation *",
+  "Object *": "Object *",
+  "Name *": "Name *",
+  "Make *": "Make *",
+  "Model *": "Model Name *",
+  "Part Number": "Serial Number",
+  "Location  *": "Location *",
+  "Location Name": "Location Name",
+  "Front Faces": "Front Faces",
+  "Aisle Label": "Aisle Label",
+  "Row Label **": "Row Label *",
+  "Position in Row **": "Position in Row *",
+  "Status": "Status",
+  "Weight Capacity": "Weight Capacity",
+};
+
 const AssetsAddRemove = {
   "Part Number": "Part Number",
   "Serial Number": "Serial Number",
@@ -77,4 +131,4 @@ const AssetsAddRemove = {
   "Notes": "Notes",
 };
 
-export { Assets, AssetsAddRemove };
+export { Assets, Locations, AssetsAddRemove, Racks };

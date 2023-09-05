@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import createTable from "../../Reuse/CreateTable";
 import download_to_excel from "../../Reuse/ExportExcel";
-import { Assets } from "../../Components/CustomField/CustomFieldExportTemplates";
+import * as transitionData from "../../Components/CustomField/CustomFieldExportTemplates";
 
 export default function ExportPage() {
   const BASE_DATA = useSelector((state) => state.location.Location[0]);
-  const [modalBlock, setModalBlock] = React.useState();
+  // const [modalBlock, setModalBlock] = React.useState();
 
   return (
     <div className="w-full text-white mb-3 flex flex-col border-[#F3EEE7] border-2">
@@ -28,48 +28,63 @@ export default function ExportPage() {
                   return;
                 }
 
-                setModalBlock(e.target.value);
-                let Input = BASE_DATA[e.target.value][e.target.value + "Array"];
-                console.log(Input);
-                let Field = Assets;
+                // setModalBlock(e.target.value);
+                let Input = e.target.value === "Locations" ? BASE_DATA["LocationData"] : BASE_DATA[e.target.value][e.target.value + "Array"];
+                // let Input = BASE_DATA[e.target.value][e.target.value + "Array"];
+                // let Location = BASE_DATA["LocationData"];
+                // console.log(Input);
+
+                let Field = transitionData[e.target.value];
                 //
                 const updatedArray = [];
-                if (e.target.value === "Assets") {
+                if (e.target.value !== "Locations") {
                   for (let i = 0; i < Input.length; i++) {
                     const updatedInput = {};
                     for (const inputKey in Input[i]) {
                       if (Input[i].hasOwnProperty(inputKey)) {
                         const inputValue = Input[i][inputKey];
-
-                        // Check if the input key exists as a value in the Field object
                         if (Object.values(Field).includes(inputKey)) {
-                          // If it does, find the corresponding key in the Field object
                           for (const fieldKey in Field) {
                             if (Field.hasOwnProperty(fieldKey) && Field[fieldKey] === inputKey) {
-                              // Replace the input key with the field key in the updatedInput object
                               updatedInput[fieldKey] = inputValue;
-                              break; // Stop searching for the field key once found
+                              break;
                             }
                           }
                         }
-                        // Note: If the input key is not found in Field, it will not be added to updatedInput
                       }
                     }
                     updatedArray.push(updatedInput);
                     console.log(updatedArray);
-                    // updatedInput now contains only the keys that exist in Field
                   }
 
                   createTable(updatedArray, "ExportTable");
                 } else {
-                  createTable(BASE_DATA[e.target.value][e.target.value + "Array"], "ExportTable");
+                  const updatedInput = {};
+                  for (const inputKey in Input) {
+                    if (Input.hasOwnProperty(inputKey)) {
+                      const inputValue = Input[inputKey];
+                      if (Object.values(Field).includes(inputKey)) {
+                        for (const fieldKey in Field) {
+                          if (Field.hasOwnProperty(fieldKey) && Field[fieldKey] === inputKey) {
+                            updatedInput[fieldKey] = inputValue;
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  updatedArray.push(updatedInput);
+
+                  createTable(updatedArray, "ExportTable");
+                  // createTable(BASE_DATA[e.target.value][e.target.value + "Array"], "ExportTable");
                 }
 
                 //
               }}
             >
               <option value="default">Select</option>
-              <option value="Rooms">Rooms</option>
+              <option value="Locations">Locations</option>
+              {/* <option value="Rooms">Rooms</option> */}
               <option value="Racks">Racks</option>
               <option value="Assets">Assets</option>
             </select>
@@ -84,9 +99,9 @@ export default function ExportPage() {
           <button
             className="w-[4rem] h-[1.5rem] bg-slate-200 rounded-md m-4"
             onClick={(e) => {
-              delete modalBlock["ID"];
-              delete modalBlock["Name *"];
-              delete modalBlock["Index"];
+              // delete modalBlock["ID"];
+              // delete modalBlock["Name *"];
+              // delete modalBlock["Index"];
               // download_to_excel(e, modalBlock, "ExportTable");
               download_to_excel("xlsx");
             }}
