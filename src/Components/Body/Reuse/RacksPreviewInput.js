@@ -20,8 +20,6 @@ export default function RacksPreviewInput({ modalBlock, keyItem, edit, Current }
   if (edit === undefined) {
     edit = true;
   }
-  console.log("key", keyItem);
-  console.log("model", DATA_Array[Current][keyItem]);
 
   return (
     <div className="flex flex-row items-center justify-center">

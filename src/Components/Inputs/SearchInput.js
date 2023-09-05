@@ -78,24 +78,14 @@ export default function SearchInput({ modalBlock, ItemKey }) {
     case "Racks":
       KeyArray = Object.keys(Templates.RacksArray);
       payload.arrayIndex = CURRENT.RacksArrayIndex;
-<<<<<<< HEAD
       // setData(rackData);
       URLAdd = process.env.REACT_APP_RACKURL;
-=======
-      setData(rackData);
-      // URLAdd = process.env.REACT_APP_RACKURL;
->>>>>>> parent of 8bcaf26 (Clean up Data)
       break;
     case "Assets":
       KeyArray = Object.keys(Templates.AssetsArray);
       payload.arrayIndex = CURRENT.AssetsArrayIndex;
-<<<<<<< HEAD
       // setData(assetData);
       URLAdd = process.env.REACT_APP_DEVICEURL;
-=======
-      setData(assetData);
-      // URLAdd = process.env.REACT_APP_DEVICEURL;
->>>>>>> parent of 8bcaf26 (Clean up Data)
       break;
     default:
       break;
@@ -135,19 +125,21 @@ export default function SearchInput({ modalBlock, ItemKey }) {
               <button
                 key={SearchedIndex}
                 onClick={(e) => {
+                  console.log(SearchedItem);
+
                   setInputText(e.target.innerText);
                   for (let i = 0; i < KeyArray.length; i++) {
+                    console.log(KeyArray[i]);
                     let AdjustedData = Data[SearchedItem];
                     delete AdjustedData["#Operation *"];
                     delete AdjustedData["Object *"];
-                    delete AdjustedData["Model Name *"];
                     setTimeout(() => {
                       if (AdjustedData.hasOwnProperty(KeyArray[i])) {
                         payload.key = KeyArray[i];
                         payload.value = AdjustedData[KeyArray[i]];
                         dispatch(actions.updateKeyValueIn(payload));
                       }
-                    }, i * 200);
+                    }, i * 300);
                   }
                 }}
               >

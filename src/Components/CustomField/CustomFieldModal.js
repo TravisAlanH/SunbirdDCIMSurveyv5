@@ -8,7 +8,6 @@ export default function CustomFieldModal() {
   const dispatch = useDispatch();
 
   const unmatchedKeys = AssetsAddRemove;
-  console.log(unmatchedKeys);
   // if the key is in the array, do not display the key and checkbox
   // if the key is not in the array, then display the key and a checkbox that is not checked
   // button to update the array object with the checked keys
